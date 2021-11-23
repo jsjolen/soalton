@@ -8,7 +8,7 @@
 (serapeum:defstruct-read-only immutable-listmap
   (data (fset:empty-map (fset:empty-seq)) :type fset:map))
 
-(defun immutable-listmap-lookup (m key &key no-error)
+(cl-defun immutable-listmap-lookup (m key &key no-error)
   "Lookup key in M"
   (declare (type immutable-listmap m)
            (type symbol key)
@@ -20,7 +20,7 @@
       (error "Undefined key ~a" key))
     value))
 
-(defun immutable-listmap-push (m key value &optional (constructor #'make-immutable-listmap))
+(cl-defun immutable-listmap-push (m key value &optional (constructor #'make-immutable-listmap))
   "Push value to the list at KEY in M"
   (declare (type immutable-listmap m)
            (type symbol key)
@@ -29,7 +29,7 @@
   (let ((map (immutable-listmap-data m)))
     (funcall constructor :data (fset:with map key (fset:with-first (fset:lookup map key) value)))))
 
-(defun immutable-listmap-replace (m key index value &optional (constructor #'make-immutable-listmap))
+(cl-defun immutable-listmap-replace (m key index value &optional (constructor #'make-immutable-listmap))
   "Replace value at INDEX with VALUE in the map at KEY in M."
   (declare (type immutable-listmap m)
            (type symbol key)
@@ -38,7 +38,7 @@
   (let ((map (immutable-listmap-data m)))
     (funcall constructor :data (fset:with map key (fset:with (fset:lookup map key) index value)))))
 
-(defun immutable-listmap-diff (m1 m2 &optional (constructor #'make-immutable-listmap))
+(cl-defun immutable-listmap-diff (m1 m2 &optional (constructor #'make-immutable-listmap))
   "Return a new SHADOW-LIST with elements in M1 but not M2."
   (let ((diff-map (fset:empty-map)))
     (fset:do-map (k v1 (immutable-listmap-data m1))

@@ -16,13 +16,13 @@
            (values t))
   (fset:lookup (immutable-map-data m) key))
 
-(defun immutable-map-set (m key value &optional (constructor #'make-immutable-map))
+(cl-defun immutable-map-set (m key value &optional (constructor #'make-immutable-map))
   "Set KEY to VALUE in M"
   (declare (type immutable-map m)
            (type symbol key))
   (funcall constructor :data (fset:with (immutable-map-data m) key value)))
 
-(defun immutable-map-set-multiple (m items &optional (constructor #'make-immutable-map))
+(cl-defun immutable-map-set-multiple (m items &optional (constructor #'make-immutable-map))
   "Create an IMMUTABLE-MAP from M with ITEMS set as bindings"
   (declare (type immutable-map m)
            (type list items)
@@ -39,14 +39,14 @@
   (declare (type immutable-map m))
   (fset:convert 'list (fset:domain (immutable-map-data m))))
 
-(defun immutable-map-diff (m1 m2 &optional (constructor #'make-immutable-map))
+(cl-defun immutable-map-diff (m1 m2 &optional (constructor #'make-immutable-map))
   "Returns the elements that appear in M1 but not M2"
   (declare (type immutable-map m1 m2)
            (values immutable-map &optional))
   (funcall constructor :data (fset:map-difference-2 (immutable-map-data m1)
                                                     (immutable-map-data m2))))
 
-(defun immutable-map-remove (m key &optional (constructor #'make-immutable-map))
+(cl-defun immutable-map-remove (m key &optional (constructor #'make-immutable-map))
   (declare (type immutable-map m)
            (type symbol key)
            (values immutable-map &optional))
