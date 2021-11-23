@@ -9,6 +9,7 @@ This prelude includes all ports for Coalton to load.
 
 (defmacro TODO (def name)
   "Don't know what to do? TODO it!"
+  (cl-format t "TODO: ~a ~a" def name)
   `(,def ,name (&rest args) (progn)))
 
 ;;;; PACKAGES
@@ -56,7 +57,9 @@ This prelude includes all ports for Coalton to load.
        (print (cadr cmpt))
        (load (concat default-directory pathname (cadr cmpt) ".lisp")))
       ((eq (car cmpt) :module)
-       (do-load pathname (plist-get cmpt :components)))))
+       (print (concat pathname (cadr cmpt) "/"))
+       (do-load (concat pathname (cadr cmpt) "/")
+                (plist-get cmpt :components)))))
    components))
 
 
