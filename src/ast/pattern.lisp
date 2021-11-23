@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/ast)
+(in-package :coalton-impl/ast)
 
 ;;;
 ;;; Patterns
@@ -13,8 +13,6 @@
 (deftype pattern-list ()
   '(satisfies pattern-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type pattern-list))
 
 (serapeum:defstruct-read-only
     (pattern-var
@@ -22,16 +20,12 @@
      (:constructor pattern-var (id)))
   (id :type symbol))
 
-#+sbcl
-(declaim (sb-ext:freeze-type pattern-var))
 
 (serapeum:defstruct-read-only
     (pattern-wildcard
      (:include pattern)
      (:constructor pattern-wildcard)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type pattern-wildcard))
 
 (serapeum:defstruct-read-only
     (pattern-literal
@@ -39,21 +33,12 @@
      (:constructor pattern-literal (value)))
   (value  :type node-literal))
 
-#+sbcl
-(declaim (sb-ext:freeze-type pattern-literal))
-
 (serapeum:defstruct-read-only
     (pattern-constructor
      (:include pattern)
      (:constructor pattern-constructor (name patterns)))
   (name      :type symbol)
   (patterns  :type pattern-list))
-
-#+sbcl
-(declaim (sb-ext:freeze-type pattern-constructor))
-
-#+sbcl
-(declaim (sb-ext:freeze-type pattern))
 
 (defun rewrite-pattern-vars (pattern m)
   "Rewrite the variables in PATTERN according to the mapping defined in M."
@@ -105,4 +90,5 @@
                                  (pattern-constructor-patterns pattern))))
   pattern)
 
-(set-pprint-dispatch 'pattern 'pprint-pattern)
+
+(TODO (set-pprint-dispatch 'pattern 'pprint-pattern))
