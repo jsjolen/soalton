@@ -47,13 +47,11 @@ and it will print a flat S-expression with all symbols qualified."
         (*package* (find-package "KEYWORD")))
     (prin1 object stream)))
 
-(defmacro include-if (condition &body body)
+(defmacro include-if (condition &rest body)
   `(when ,condition
      (list ,@ (remove nil body))))
 
-(defmacro define-symbol-property (property-accessor &key
-                                                      (type nil type-provided)
-                                                      documentation)
+(defmacro define-symbol-property (property-accessor &rest args)
   "Define an accessor for a symbol property.
 
 Implementation notes: These notes aren't relevant to users of this macro, but are Good To Know.
@@ -64,17 +62,20 @@ Implementation notes: These notes aren't relevant to users of this macro, but ar
     "
   (check-type property-accessor symbol)
   (check-type documentation (or null string))
-  (let ((symbol (gensym "SYMBOL"))
-        (new-value (gensym "NEW-VALUE")))
-    `(progn
-       (declaim (inline ,property-accessor (setf ,property-accessor)))
-       ,@(include-if type-provided
-           `(declaim (ftype (function (symbol) (or null ,type)) ,property-accessor))
-           `(declaim (ftype (function (,type symbol) ,type) (setf ,property-accessor))))
-       (defun ,property-accessor (,symbol)
-         ,@(include-if documentation documentation)
-         (get ,symbol ',property-accessor))
-       (defun (setf ,property-accessor) (,new-value ,symbol)
-         (setf (get ,symbol ',property-accessor) ,new-value))
-       ;; Return the name defined.
-       ',property-accessor)))
+  (let* ((type (or (plist-get args :type) nil))
+        (type-provided (if type t nil))
+         (documentation (plist-get args :documentation)))
+    (let ((symbol (gensym "SYMBOL"))
+          (new-value (gensym "NEW-VALUE")))
+      `(progn
+         (declaim (inline ,property-accessor))
+         ,@(include-if type-provided
+                       `(declaim (ftype (function (symbol) (or null ,type)) ,property-accessor))
+                       `(declaim (ftype (function (,type symbol) ,type) (setf ,property-accessor))))
+         (defun ,property-accessor (,symbol)
+           ,@(include-if documentation documentation)
+           (get ,symbol ',property-accessor))
+         (gv-define-setter ,property-accessor (,new-value ,symbol)
+            (setf (get ,symbol ',property-accessor) ,new-value))
+         ;; Return the name defined.
+         ',property-accessor))))

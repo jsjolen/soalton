@@ -1,5 +1,67 @@
-;;;; coalton.asd
+;; -*- lexical-binding: t -*-
 
+"
+Port of Coalton to Emacs.
+This prelude includes all ports for Coalton to load.
+"
+
+(package-install 'cl-format)
+
+(defmacro TODO (def name)
+  "Don't know what to do? TODO it!"
+  `(,def ,name (&rest args) (progn)))
+
+;;;; PACKAGES
+(defmacro in-package (&rest args)
+  (progn))
+(defmacro defpackage (&rest args)
+  (progn))
+(defmacro uiop:define-package (&rest args)
+  (progn))
+
+;;;; TYPES
+
+(defmacro declaim (&rest args)
+  `(cl-declaim ,@args))
+
+(defmacro deftype (&rest args)
+  `(cl-deftype ,@args))
+
+
+;;;; Conditions
+
+(defmacro define-condition (name superclass &rest args)
+  `(define-error ',name ,(format "COALTON ERROR %s" name) ',(first superclass)))
+
+;;;; Utils
+(defun first (cons)
+  (car cons))
+
+(defun uiop:getenv (env-var)
+  (getenv env-var))
+
+(defmacro check-type (&rest args)
+  (progn))
+
+
+(defmacro asdf:defsystem (name &rest args)
+  "Basic linear loading of a system"
+  `(do-load ,(plist-get args :pathname) ',(plist-get args :components)))
+
+(defun do-load (pathname components)
+  (mapcar
+   (lambda (cmpt)
+     (cond
+      ((eq (car cmpt) :file)
+       (print (cadr cmpt))
+       (load (concat default-directory pathname (cadr cmpt) ".lisp")))
+      ((eq (car cmpt) :module)
+       (do-load pathname (plist-get cmpt :components)))))
+   components))
+
+
+
+;;;; Load Coalton
 (asdf:defsystem :coalton
   :description "An efficient, statically typed functional programming language that supercharges Common Lisp. "
   :author "Coalton contributors (https://github.com/coalton-lang/coalton)"
@@ -99,25 +161,3 @@
                              (:file "vector")
                              (:file "graph")))
                (:file "toplevel-environment")))
-
-(asdf:defsystem :coalton/tests
-  :description "Tests for COALTON."
-  :author "Coalton contributors (https://github.com/coalton-lang/coalton)"
-  :license "MIT"
-  :depends-on (:coalton
-               :fiasco
-               :coalton-json/tests
-               :quil-coalton/tests
-               :thih-coalton/tests)
-  :perform (asdf:test-op (o s)
-                         (unless (symbol-call :coalton-tests :run-coalton-tests)
-                           (error "Tests failed")))
-  :pathname "tests/"
-  :serial t
-  :components ((:file "package")
-               (:file "utilities")
-               (:file "free-variables-tests")
-               (:file "tarjan-scc-tests")
-               (:file "type-inference-tests")
-               (:file "environment-persist-tests")
-               (:file "graph-tests")))
