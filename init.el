@@ -7,10 +7,10 @@ This prelude includes all ports for Coalton to load.
 
 (package-install 'cl-format)
 
-(defmacro TODO (def name)
+(defmacro TODO (&rest args)
   "Don't know what to do? TODO it!"
-  (cl-format t "TODO: ~a ~a" def name)
-  `(,def ,name (&rest args) (progn)))
+  (print (cl-format nil "TODO: ~a" args))
+  `(progn))
 
 ;;;; PACKAGES
 (defmacro in-package (&rest args)
@@ -44,6 +44,12 @@ This prelude includes all ports for Coalton to load.
 (defmacro check-type (&rest args)
   (progn))
 
+(defmacro defstruct (&rest args)
+  `(cl-defstruct ,@args))
+(defmacro serapeum:defstruct-read-only (&rest args)
+  "This definition works in immutable-map.lisp"
+  `(cl-defstruct ,@args))
+
 
 (defmacro asdf:defsystem (name &rest args)
   "Basic linear loading of a system"
@@ -62,10 +68,9 @@ This prelude includes all ports for Coalton to load.
                 (plist-get cmpt :components)))))
    components))
 
-
-
 ;;;; Load Coalton
-(asdf:defsystem :coalton
+(setf sys
+'(asdf:defsystem :coalton
   :description "An efficient, statically typed functional programming language that supercharges Common Lisp. "
   :author "Coalton contributors (https://github.com/coalton-lang/coalton)"
   :license "MIT"
@@ -163,4 +168,4 @@ This prelude includes all ports for Coalton to load.
                              (:file "cell")
                              (:file "vector")
                              (:file "graph")))
-               (:file "toplevel-environment")))
+               (:file "toplevel-environment"))))
