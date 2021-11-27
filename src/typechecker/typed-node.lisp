@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Typed AST nodes
@@ -15,9 +15,6 @@
 (deftype typed-node-list ()
   '(satisfies typed-node-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-list))
-
 (defun typed-binding-list-p (x)
   (and (alexandria:proper-list-p x)
        (every (lambda (b) (typep b '(cons symbol typed-node))) x)))
@@ -25,17 +22,11 @@
 (deftype typed-binding-list ()
   `(satisfies typed-binding-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-binding-list))
-
 (serapeum:defstruct-read-only
     (typed-node-literal
      (:include typed-node)
      (:constructor typed-node-literal (type unparsed value)))
   (value :type literal-value))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-literal))
 
 (serapeum:defstruct-read-only
     (typed-node-variable
@@ -43,9 +34,6 @@
      (:constructor typed-node-variable (type unparsed name)))
   ;; The name of the variable
   (name :type symbol))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-variable))
 
 (serapeum:defstruct-read-only
     (typed-node-application
@@ -56,9 +44,6 @@
 
   ;; The arguments
   (rands :type typed-node-list))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-application))
 
 (serapeum:defstruct-read-only
     (typed-node-direct-application
@@ -76,9 +61,6 @@
   ;; The arguments
   (rands :type typed-node-list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-direct-application))
-
 (serapeum:defstruct-read-only
     (typed-node-abstraction
      (:include typed-node)
@@ -92,9 +74,6 @@
   ;; An alist mapping of the current paramater names
   ;; to their origional names
   (name-map :type list))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-abstraction))
 
 (serapeum:defstruct-read-only
     (typed-node-let
@@ -116,9 +95,6 @@
   ;; to their origional names
   (name-map :type list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-let))
-
 (serapeum:defstruct-read-only
     (typed-node-lisp
      (:include typed-node)
@@ -129,9 +105,6 @@
   ;; The lisp block
   (form :type t))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-lisp))
-
 (serapeum:defstruct-read-only
     (typed-match-branch
      (:constructor typed-match-branch (unparsed pattern subexpr bindings name-map)))
@@ -141,18 +114,12 @@
   (bindings :type scheme-binding-list)
   (name-map :type list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-match-branch))
-
 (defun typed-match-branch-list-p (x)
   (and (alexandria:proper-list-p x)
        (every #'typed-match-branch-p x)))
 
 (deftype typed-match-branch-list ()
   '(satisfies typed-match-branch-list-p))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-match-branch-list))
 
 (serapeum:defstruct-read-only
     (typed-node-match
@@ -161,33 +128,24 @@
   (expr     :type typed-node)
   (branches :type typed-match-branch-list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-match))
-
 (serapeum:defstruct-read-only
     (typed-node-seq
      (:include typed-node)
      (:constructor typed-node-seq (type unparsed subnodes)))
      (subnodes :type typed-node-list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node-seq))
-
-#+sbcl
-(declaim (sb-ext:freeze-type typed-node))
-
 ;;;
 ;;; Methods
 ;;;
 
-(defmethod type-variables ((node typed-node))
+(cl-defmethod type-variables ((node typed-node))
   (type-variables (typed-node-type node)))
 
 ;; typed-node-seq has type type of it's last argument. As such it can contain type variables in it's subnodes that it does not include at the top level. This change is done for check-variables.
-(defmethod type-variables ((node typed-node-seq))
+(cl-defmethod type-variables ((node typed-node-seq))
   (remove-duplicates (mapcan #'type-variables (typed-node-seq-subnodes node)) :test #'equalp))
 
-(defmethod apply-substitution (subs (node typed-node-literal))
+(cl-defmethod apply-substitution (subs (node typed-node-literal))
   (declare (type substitution-list subs)
            (values typed-node-literal))
   (typed-node-literal
@@ -195,7 +153,7 @@
    (typed-node-unparsed node)
    (typed-node-literal-value node)))
 
-(defmethod apply-substitution (subs (node typed-node-variable))
+(cl-defmethod apply-substitution (subs (node typed-node-variable))
   (declare (type substitution-list subs)
            (values typed-node-variable))
   (typed-node-variable
@@ -203,7 +161,7 @@
    (typed-node-unparsed node)
    (typed-node-variable-name node)))
 
-(defmethod apply-substitution (subs (node typed-node-application))
+(cl-defmethod apply-substitution (subs (node typed-node-application))
   (declare (type substitution-list subs)
            (values typed-node-application))
   (typed-node-application
@@ -212,7 +170,7 @@
    (apply-substitution subs (typed-node-application-rator node))
    (apply-substitution subs (typed-node-application-rands node))))
 
-(defmethod apply-substitution (subs (node typed-node-direct-application))
+(cl-defmethod apply-substitution (subs (node typed-node-direct-application))
   (declare (type substitution-list subs)
            (values typed-node-direct-application))
   (typed-node-direct-application
@@ -222,7 +180,7 @@
    (typed-node-direct-application-rator node)
    (apply-substitution subs (typed-node-direct-application-rands node))))
 
-(defmethod apply-substitution (subs (node typed-node-abstraction))
+(cl-defmethod apply-substitution (subs (node typed-node-abstraction))
   (declare (type substitution-list subs)
            (values typed-node-abstraction))
   (typed-node-abstraction
@@ -234,7 +192,7 @@
    (apply-substitution subs (typed-node-abstraction-subexpr node))
    (typed-node-abstraction-name-map node)))
 
-(defmethod apply-substitution (subs (node typed-node-let))
+(cl-defmethod apply-substitution (subs (node typed-node-let))
   (declare (type substitution-list subs)
            (values typed-node-let))
   (typed-node-let
@@ -248,7 +206,7 @@
    (typed-node-let-dynamic-extent-bindings node)
    (typed-node-let-name-map node)))
 
-(defmethod apply-substitution (subs (node typed-node-lisp))
+(cl-defmethod apply-substitution (subs (node typed-node-lisp))
   (declare (type substitution-list subs)
            (values typed-node-lisp))
   (typed-node-lisp
@@ -257,7 +215,7 @@
    (typed-node-lisp-variables node)
    (typed-node-lisp-form node)))
 
-(defmethod apply-substitution (subs (node typed-node-match))
+(cl-defmethod apply-substitution (subs (node typed-node-match))
   (declare (type substitution-list subs)
            (values typed-node-match))
   (typed-node-match
@@ -266,7 +224,7 @@
    (apply-substitution subs (typed-node-match-expr node))
    (apply-substitution subs (typed-node-match-branches node))))
 
-(defmethod apply-substitution (subs (node typed-match-branch))
+(cl-defmethod apply-substitution (subs (node typed-match-branch))
   (declare (type substitution-list subs)
            (values typed-match-branch))
   (typed-match-branch
@@ -279,7 +237,7 @@
            (typed-match-branch-bindings node))
    (typed-match-branch-name-map node)))
 
-(defmethod apply-substitution (subs (node typed-node-seq))
+(cl-defmethod apply-substitution (subs (node typed-node-seq))
   (declare (type substitution-list subs)
            (values typed-node-seq))
   (typed-node-seq
@@ -287,7 +245,7 @@
    (typed-node-unparsed node)
    (apply-substitution subs (typed-node-seq-subnodes node))))
 
-(defgeneric replace-node-type (node new-type)
+(cl-defgeneric replace-node-type (node new-type)
   (:method ((node typed-node-literal) new-type)
     (typed-node-literal
      new-type
@@ -353,7 +311,7 @@
      (typed-node-unparsed node)
      (typed-node-seq-subnodes node))))
 
-(defgeneric collect-type-predicates (node)
+(cl-defgeneric collect-type-predicates (node)
   (:method ((type qualified-ty))
     (qualified-ty-predicates type))
 
@@ -424,7 +382,7 @@
            (values symbol-list))
   (remove-duplicates (collect-variable-namespace-g node) :test #'equalp))
 
-(defgeneric collect-variable-namespace-g (node)
+(cl-defgeneric collect-variable-namespace-g (node)
   (:method ((node typed-node-literal))
     nil)
 

@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Type predicates
@@ -11,8 +11,6 @@
   (class :type symbol)
   (types :type ty-list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-predicate))
 
 (defun ty-predicate-list-p (x)
   (and (alexandria:proper-list-p x)
@@ -22,8 +20,6 @@
   "A list of type predicates"
   `(satisfies ty-predicate-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-predicate-list))
 
 ;;;
 ;;; Qualified types
@@ -34,9 +30,6 @@
      (:constructor qualified-ty (predicates type)))
   (predicates :type ty-predicate-list)
   (type :type ty))
-
-#+sbcl
-(declaim (sb-ext:freeze-type qualified-ty))
 
 (defun qualify (predicates type)
   "Qualify TYPE with PREDICATES"
@@ -73,7 +66,7 @@
   (remove-duplicates
    (append (type-variables (qualified-ty-predicates type))
            (type-variables (qualified-ty-type type)))
-   :test #'equalp))
+   :test 'equalp))
 
 (defmethod instantiate (types (type qualified-ty))
   (qualified-ty (instantiate types (qualified-ty-predicates type))
@@ -106,7 +99,7 @@
           (ty-predicate-types predicate))
   predicate)
 
-(set-pprint-dispatch 'ty-predicate 'pprint-predicate)
+;(set-pprint-dispatch 'ty-predicate 'pprint-predicate)
 
 
 (defun pprint-qualified-ty (stream qualified-ty &optional colon-p at-sign-p)
@@ -135,4 +128,4 @@
      (format stream "~A" (qualified-ty-type qualified-ty))))
   nil)
 
-(set-pprint-dispatch 'qualified-ty 'pprint-qualified-ty)
+;(set-pprint-dispatch 'qualified-ty 'pprint-qualified-ty)

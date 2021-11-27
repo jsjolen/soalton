@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Type schemes
@@ -8,8 +8,6 @@
   (kinds :type list)
   (type  :type qualified-ty))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-scheme))
 
 (defun scheme-list-p (x)
   (and (alexandria:proper-list-p x)
@@ -18,18 +16,12 @@
 (deftype scheme-list ()
   '(satisfies scheme-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type scheme-list))
-
 (defun scheme-binding-list-p (x)
   (and (alexandria:proper-list-p x)
        (every (lambda (b) (typep b '(cons symbol ty-scheme))) x)))
 
 (deftype scheme-binding-list ()
   `(satisfies scheme-binding-list-p))
-
-#+sbcl
-(declaim (sb-ext:freeze-type scheme-binding-list))
 
 (defun quantify (tyvars type)
   (let* ((vars (remove-if
@@ -45,7 +37,7 @@
 (defun to-scheme (type)
   (%make-ty-scheme nil type))
 
-(defgeneric instantiate (types type)
+(cl-defgeneric instantiate (types type)
   (:method (types (type tapp))
     (%make-tapp (instantiate types (tapp-from type))
                 (instantiate types (tapp-to type))))
@@ -69,23 +61,23 @@
 ;;; Methods
 ;;;
 
-(defmethod apply-substitution (subst-list (type ty-scheme))
+(cl-defmethod apply-substitution (subst-list (type ty-scheme))
   (%make-ty-scheme (ty-scheme-kinds type)
                    (apply-substitution subst-list (ty-scheme-type type))))
 
-(defmethod type-variables ((type ty-scheme))
+(cl-defmethod type-variables ((type ty-scheme))
   (type-variables (ty-scheme-type type)))
 
-(defmethod kind-of ((type ty-scheme))
+(cl-defmethod kind-of ((type ty-scheme))
   (kind-of (fresh-inst type)))
 
-(defmethod function-type-p ((type ty-scheme))
+(cl-defmethod function-type-p ((type ty-scheme))
   (function-type-p (fresh-inst type)))
 
-(defmethod function-return-type ((type ty-scheme))
+(cl-defmethod function-return-type ((type ty-scheme))
   (to-scheme (function-return-type (fresh-inst type))))
 
-(defmethod function-type-arguments ((type ty-scheme))
+(cl-defmethod function-type-arguments ((type ty-scheme))
   (function-type-arguments (fresh-inst type)))
 
 ;;;
@@ -114,4 +106,4 @@
      ))
   scheme)
 
-(set-pprint-dispatch 'ty-scheme 'pprint-scheme)
+;(set-pprint-dispatch 'ty-scheme 'pprint-scheme)

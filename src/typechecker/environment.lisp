@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Value type environments
@@ -6,8 +6,6 @@
 
 (serapeum:defstruct-read-only (value-environment (:include immutable-map)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type value-environment))
 
 (defmethod apply-substitution (subst-list (env value-environment))
   (make-value-environment :data (fset:image (lambda (key value)
@@ -15,7 +13,7 @@
                 (immutable-map-data env))))
 
 (defmethod type-variables ((env value-environment))
-  (remove-duplicates (mapcan #'type-variables (fset:convert 'list (fset:range (immutable-map-data env)))) :test #'equalp))
+  (remove-duplicates (mapcan 'type-variables (fset:convert 'list (fset:range (immutable-map-data env)))) :test 'equalp))
 
 ;;;
 ;;; Type environments
@@ -45,14 +43,7 @@
   ;; recursive newtypes.
   (newtype :type boolean))
 
-#+sbcl
-(declaim (sb-ext:freeze-type type-entry))
-
 (serapeum:defstruct-read-only (type-environment (:include immutable-map)))
-
-#+sbcl
-(declaim (sb-ext:freeze-type type-environment))
-
 
 (defun make-default-type-environment ()
   "Create a TYPE-ENVIRONMENT containing early types"
@@ -179,18 +170,12 @@
   ;; compressed-repr is the runtime value of this nullary constructor
   (compressed-repr :type t))
 
-#+sbcl
-(declaim (sb-ext:freeze-type constructor-entry))
-
 (defun constructor-entry-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every #'constructor-entry-p x)))
+       (every 'constructor-entry-p x)))
 
 (deftype constructor-entry-list ()
   '(satisfies constructor-entry-list-p))
-
-#+sbcl
-(declaim (sb-ext:freeze-type constructor-entry-list))
 
 
 (serapeum:defstruct-read-only (constructor-environment (:include immutable-map)))
@@ -220,9 +205,6 @@
             :classname 'coalton::Boolean/False
             :compressed-repr 'nil)))))
 
-#+sbcl
-(declaim (sb-ext:freeze-type constructor-environment))
-
 ;;;
 ;;; Class environment
 ;;;
@@ -241,18 +223,13 @@
   (docstring :type (or null string))
   (location :type t))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-class))
-
 (defun ty-class-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every #'ty-class-p x)))
+       (every 'ty-class-p x)))
 
 (deftype ty-class-list ()
   '(satisfies ty-class-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-class-list))
 
 (defmethod apply-substitution (subst-list (class ty-class))
   (declare (type substitution-list subst-list)
@@ -274,9 +251,6 @@
 
 (serapeum:defstruct-read-only (class-environment (:include immutable-map)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type class-environment))
-
 ;;;
 ;;; Instance environment
 ;;;
@@ -288,18 +262,14 @@
   (predicate :type ty-predicate)
   (codegen-sym :type symbol))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-class-instance))
 
 (defun ty-class-instance-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every #'ty-class-instance-p x)))
+       (every 'ty-class-instance-p x)))
 
 (deftype ty-class-instance-list ()
   `(satisfies ty-class-instance-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-class-instance-list))
 
 (defmethod apply-substitution (subst-list (instance ty-class-instance))
   (declare (type substitution-list subst-list)
@@ -311,9 +281,6 @@
 
 (serapeum:defstruct-read-only (instance-environment (:include immutable-listmap)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type instance-environment))
-
 ;;;
 ;;; Function environment
 ;;;
@@ -322,23 +289,16 @@
   (name :type symbol)
   (arity :type fixnum))
 
-#+sbcl
-(declaim (sb-ext:freeze-type function-env-entry))
-
 (defun function-env-entry-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every #'function-env-entry-p x)))
+       (every 'function-env-entry-p x)))
 
 (deftype function-env-entry-list ()
   `(satisfies function-env-entry-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type function-env-entry-list))
 
 (serapeum:defstruct-read-only (function-environment (:include immutable-map)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type function-environment))
 
 ;;;
 ;;; Name environment
@@ -350,13 +310,9 @@
   (docstring :type (or null string))
   (location :type t))
 
-#+sbcl
-(declaim (sb-ext:freeze-type name-entry))
 
 (serapeum:defstruct-read-only (name-environment (:include immutable-map)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type name-environment))
 
 ;;;
 ;;; Environment
@@ -380,8 +336,6 @@
   (function-environment    :type function-environment)
   (name-environment        :type name-environment))
 
-#+sbcl
-(declaim (sb-ext:freeze-type environment))
 
 (defun make-default-environment ()
   (make-environment
@@ -393,7 +347,7 @@
    (make-function-environment)
    (make-name-environment)))
 
-(defun update-environment (env
+(cl-defun update-environment (env
                            &key
                              (value-environment (environment-value-environment env))
                              (type-environment (environment-type-environment env))
@@ -426,25 +380,25 @@
   (make-environment
    (immutable-map-diff (environment-value-environment env)
                       (environment-value-environment old-env)
-                      #'make-value-environment)
+                      'make-value-environment)
    (immutable-map-diff (environment-type-environment env)
                       (environment-type-environment old-env)
-                      #'make-type-environment)
+                      'make-type-environment)
    (immutable-map-diff (environment-constructor-environment env)
                       (environment-constructor-environment old-env)
-                      #'make-constructor-environment)
+                      'make-constructor-environment)
    (immutable-map-diff (environment-class-environment env)
                       (environment-class-environment old-env)
-                      #'make-class-environment)
+                      'make-class-environment)
    (immutable-listmap-diff (environment-instance-environment env)
                      (environment-instance-environment old-env)
-                     #'make-instance-environment)
+                     'make-instance-environment)
    (immutable-map-diff (environment-function-environment env)
                       (environment-function-environment old-env)
-                      #'make-function-environment)
+                      'make-function-environment)
    (immutable-map-diff (environment-name-environment env)
                       (environment-name-environment old-env)
-                      #'make-name-environment)))
+                      'make-name-environment)))
 
 ;;;
 ;;; Methods
@@ -489,7 +443,7 @@
                        (environment-value-environment env)
                        symbol
                        value
-                       #'make-value-environment)))
+                       'make-value-environment)))
 
 (defun lookup-type (env symbol &key no-error)
   (declare (type environment env)
@@ -518,7 +472,7 @@
                        (environment-type-environment env)
                        symbol
                        value
-                       #'make-type-environment)))
+                       'make-type-environment)))
 
 (defun lookup-constructor (env symbol &key no-error)
   (declare (type environment env)
@@ -538,7 +492,7 @@
                              (environment-constructor-environment env)
                              symbol
                              value
-                             #'make-constructor-environment)))
+                             'make-constructor-environment)))
 
 (defun lookup-class (env symbol &key no-error)
   (declare (type environment env)
@@ -558,7 +512,7 @@
                        (environment-class-environment env)
                        symbol
                        value
-                       #'make-class-environment)))
+                       'make-class-environment)))
 
 (defun lookup-function (env symbol &key no-error)
   (declare (type environment env)
@@ -578,7 +532,7 @@
                           (environment-function-environment env)
                           symbol
                           value
-                          #'make-function-environment)))
+                          'make-function-environment)))
 
 (defun unset-function (env symbol)
   (declare (type environment env)
@@ -588,7 +542,7 @@
    :function-environment (immutable-map-remove
                           (environment-function-environment env)
                           symbol
-                          #'make-function-environment)))
+                          'make-function-environment)))
 
 (defun lookup-name (env symbol &key no-error)
   (declare (type environment env)
@@ -616,7 +570,7 @@
                             (environment-name-environment env)
                             symbol
                             value
-                            #'make-name-environment)))))
+                            'make-name-environment)))))
 
 (defun lookup-class-instances (env class &key no-error)
   (declare (type environment env)
@@ -647,7 +601,7 @@
    :value-environment (immutable-map-set-multiple
                        (environment-value-environment env)
                        value-types
-                       #'make-value-environment)))
+                       'make-value-environment)))
 
 (defun push-type-environment (env types)
   (declare (type environment env)
@@ -658,7 +612,7 @@
    :type-environment (immutable-map-set-multiple
                       (environment-type-environment env)
                       types
-                      #'make-type-environment)))
+                      'make-type-environment)))
 
 (defun push-constructor-environment (env constructors)
   (declare (type environment env)
@@ -669,7 +623,7 @@
    :constructor-environment (immutable-map-set-multiple
                              (environment-constructor-environment env)
                              constructors
-                             #'make-constructor-environment)))
+                             'make-constructor-environment)))
 
 (defun push-function-environment (env functions)
   (declare (type environment env)
@@ -680,7 +634,7 @@
    :function-environment (immutable-map-set-multiple
                           (environment-function-environment env)
                           functions
-                          #'make-function-environment)))
+                          'make-function-environment)))
 
 (defun add-class (env symbol value)
   (declare (type environment env)
@@ -722,7 +676,7 @@
                                     class
                                     index
                                     value
-                                    #'make-instance-environment)))
+                                    'make-instance-environment)))
           (error 'overlapping-instance-error
                  :inst1 (ty-class-instance-predicate value)
                  :inst2 (ty-class-instance-predicate inst)))))
@@ -733,7 +687,7 @@
                           (environment-instance-environment env)
                           class
                           value
-                          #'make-instance-environment)))
+                          'make-instance-environment)))
 ;;;
 ;;; Directly applicable functions
 ;;;
@@ -798,4 +752,4 @@
   (print-unreadable-object (env stream :type t :identity t))
   env)
 
-(set-pprint-dispatch 'environment 'pprint-env)
+;(set-pprint-dispatch 'environment 'pprint-env)

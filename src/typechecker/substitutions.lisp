@@ -35,7 +35,7 @@
     s2)
    s1))
 
-(defgeneric apply-substitution (subst-list type)
+(cl-defgeneric apply-substitution (subst-list type)
   (:documentation "Apply the substitutions defined in SUBST-LIST on TYPE.")
   ;; For a type variable, substitute if it is in SUBST-LIST, otherwise return the original type
   (:method (subst-list (type tvar))
@@ -54,7 +54,7 @@
   (:method (subst-list (type-list list))
     (mapcar (lambda (x) (apply-substitution subst-list x)) type-list)))
 
-(defgeneric type-variables (type)
+(cl-defgeneric type-variables (type)
   (:documentation "Get a list containing the type variables in TYPE.")
   ;; For any type variable, simply return a list containing itself
   (:method ((type tvar))
@@ -80,4 +80,4 @@
   (format stream "~a" (substitution-to sub))
   nil)
 
-(set-pprint-dispatch 'substitution 'pprint-substution)
+;(set-pprint-dispatch 'substitution 'pprint-substution)

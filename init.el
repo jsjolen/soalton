@@ -50,6 +50,9 @@ This prelude includes all ports for Coalton to load.
   "This definition works in immutable-map.lisp"
   `(cl-defstruct ,@args))
 
+(defmacro alexandria:define-constant (&rest args)
+  `(defconst ,(car args) ,(cadr args)))
+
 
 (defmacro asdf:defsystem (name &rest args)
   "Basic linear loading of a system"

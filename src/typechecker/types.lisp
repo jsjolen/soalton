@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Types
@@ -13,9 +13,6 @@
 (deftype ty-list ()
   '(satisfies ty-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-list))
-
 (defun ty-binding-list-p (x)
   (and (alexandria:proper-list-p x)
        (every (lambda (b) (typep b '(cons symbol ty))) x)))
@@ -23,15 +20,9 @@
 (deftype ty-binding-list ()
   `(satisfies ty-binding-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type ty-binding-list))
-
 (serapeum:defstruct-read-only (tyvar (:constructor %make-tyvar))
-  (id   :type fixnum)
-  (kind :type kind))
-
-#+sbcl
-(declaim (sb-ext:freeze-type tyvar))
+  (id)
+  (kind))
 
 (defun tyvar-list-p (x)
   (and (alexandria:proper-list-p x)
@@ -40,15 +31,9 @@
 (deftype tyvar-list ()
   '(satisfies tyvar-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type tyvar-list))
-
 (serapeum:defstruct-read-only (tvar (:include ty)
                  (:constructor %make-tvar (tyvar)))
-  (tyvar (required 'tyvar) :type tyvar))
-
-#+sbcl
-(declaim (sb-ext:freeze-type tvar))
+  (tyvar (required 'tyvar)))
 
 (defun tvar-list-p (x)
   (and (alexandria:proper-list-p x)
@@ -57,49 +42,27 @@
 (deftype tvar-list ()
   '(satisfies tvar-list-p))
 
-#+sbcl
-(declaim (sb-ext:freeze-type tvar-list))
-
 (serapeum:defstruct-read-only (tycon (:constructor %make-tycon))
   (name  :type symbol)
   (kind  :type kind))
 
-#+sbcl
-(declaim (sb-ext:freeze-type tycon))
-
 (serapeum:defstruct-read-only (tcon (:include ty)
                  (:constructor %make-tcon (tycon)))
-  (tycon :type tycon))
-
-#+sbcl
-(declaim (sb-ext:freeze-type tcon))
+  (tycon))
 
 (serapeum:defstruct-read-only (tapp (:include ty)
                  (:constructor %make-tapp (from to)))
-  (from  :type ty)
-  (to    :type ty))
-
-#+sbcl
-(declaim (sb-ext:freeze-type tapp))
+  (from)
+  (to))
 
 (serapeum:defstruct-read-only (tgen (:include ty)
                  (:constructor %make-tgen (id)))
-  (id  :type fixnum))
-
-#+sbcl
-(declaim (sb-ext:freeze-type tgen))
-
-#+sbcl
-(declaim (sb-ext:freeze-type ty))
-
+  (id))
 
 (defvar *next-variable-id* 0)
 
-#+sbcl
-(declaim (sb-ext:always-bound *next-variable-id*))
-
 (declaim (inline make-variable))
-(defun make-variable (&optional (kind kstar))
+(cl-defun make-variable (&optional (kind kstar))
   (prog1 (%make-tvar (%make-tyvar :id *next-variable-id* :kind kind))
     (incf *next-variable-id*)))
 
@@ -107,21 +70,22 @@
 ;;; Methods
 ;;;
 
-(defgeneric kind-of (type)
-  (:documentation "Get the kind of TYPE.")
-  (:method ((type tyvar))
+(cl-defgeneric kind-of (type)
+  (:documentation "Get the kind of TYPE."))
+(cl-defmethod kind-of ((type tyvar))
     (tyvar-kind type))
-  (:method ((type tycon))
+(cl-defmethod kind-of ((type tycon))
     (tycon-kind type))
-  (:method ((type tcon))
+(cl-defmethod kind-of ((type tcon))
     (kind-of (tcon-tycon type)))
-  (:method ((type tvar))
+(cl-defmethod kind-of ((type tvar))
     (kind-of (tvar-tyvar type)))
-  (:method ((type tapp))
-    (let ((from-kind (kind-of (tapp-from type))))
-      (if (kfun-p from-kind)
-          (kfun-to from-kind)
-          (error "Malformed type application")))))
+(cl-defmethod kind-of ((type tapp))
+         (let ((from-kind (kind-of (tapp-from type))))
+           (if (kfun-p from-kind)
+               (kfun-to from-kind)
+             (error "Malformed type application"))))
+
 
 ;;;
 ;;; Early types
@@ -290,4 +254,4 @@ This requires a valid PPRINT-VARIABLE-CONTEXT")
      (format stream "#GEN~A" (tgen-id ty))))
   ty)
 
-(set-pprint-dispatch 'ty 'pprint-ty)
+;(set-pprint-dispatch 'ty 'pprint-ty)

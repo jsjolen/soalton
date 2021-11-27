@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Kinds
@@ -8,10 +8,7 @@
 
 (serapeum:defstruct-read-only (kstar (:include kind)))
 
-#+sbcl
-(declaim (sb-ext:freeze-type kstar))
-
-(alexandria:define-constant kstar (make-instance 'kstar) :test #'equalp)
+(alexandria:define-constant kstar (make-kstar) :test #'equalp)
 
 (serapeum:defstruct-read-only
     (kfun
@@ -19,12 +16,6 @@
      (:constructor kfun (from to)))
   (from :type kind)
   (to   :type kind))
-
-#+sbcl
-(declaim (sb-ext:freeze-type kfun))
-
-#+sbcl
-(declaim (sb-ext:freeze-type kind))
 
 (defun simple-kind-p (kind)
   "Whether KIND is a simple kind (either * or a function from many * to *)"
@@ -84,4 +75,4 @@
          (format stream ")")))))
   kind)
 
-(set-pprint-dispatch 'kind 'pprint-kind)
+;(set-pprint-dispatch 'kind 'pprint-kind)

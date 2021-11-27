@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/typechecker)
+(in-package :coalton-impl/typechecker)
 
 ;;;
 ;;; Type unification
@@ -11,7 +11,7 @@
                            (apply-substitution substs type2))))
       (compose-substitution-lists new-substs substs))))
 
-(defgeneric mgu (type1 type2)
+(cl-defgeneric mgu (type1 type2)
   (:documentation "Returns a SUBSTITUTION-LIST of the most general substitutions required to unify TYPE1 and TYPE2.")
   (:method ((type1 tapp) (type2 tapp))
     (let* ((s1 (mgu (tapp-from type1)
@@ -45,7 +45,7 @@
             :kind (kind-of type)))
     (t (list (%make-substitution tyvar type)))))
 
-(defgeneric match (type1 type2)
+(cl-defgeneric match (type1 type2)
   (:documentation "Returns a SUBSTITUTION-LIST which unifies TYPE1 to TYPE2
 
 apply s type1 == type2")
