@@ -16,9 +16,6 @@
 
   (constructors :type constructor-entry-list))
 
-#+sbcl
-(declaim (sb-ext:freeze-type type-definition))
-
 (defun type-definition-list-p (x)
   (and (alexandria:proper-list-p x)
        (every #'type-definition-p x)))
@@ -46,15 +43,15 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                    (or (listp (second form))
                        (symbolp (second form))))
               () "Malformed DEFINE-TYPE form ~A" form)
-      (destructuring-bind (def-type type &rest ctors) form
+      (cl-destructuring-bind (def-type type &rest ctors) form
         (declare (ignore def-type))
         ;; Pull bare symbols into a list for easier parsing
         (setf type (alexandria:ensure-list type))
 
         ;; Pull out the type name and type variables
-        (destructuring-bind (tycon-name &rest tyvar-names) type
+        (cl-destructuring-bind (tycon-name &rest tyvar-names) type
           (assert (and (symbolp tycon-name)
-                       (every #'symbolp tyvar-names))
+                       (every 'symbolp tyvar-names))
                   () "Malformed DEFINE-TYPE type ~A" type)
           (assert (every (lambda (var)
                            (equalp (symbol-package var)
@@ -139,11 +136,11 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
 
                                       ((and enum-type
                                             (eql coalton-impl:*interaction-mode* ':release))
-                                       (let ((parsed-ctors (mapcar #'rewrite-ctor parsed-ctors)))
+                                       (let ((parsed-ctors (mapcar 'rewrite-ctor parsed-ctors)))
                                          (make-type-definition
                                           :name tycon-name
                                           :type tcon
-                                          :runtime-type `(member ,@(mapcar #'constructor-entry-compressed-repr parsed-ctors))
+                                          :runtime-type `(member ,@(mapcar 'constructor-entry-compressed-repr parsed-ctors))
                                           :enum-repr t
                                           :newtype nil
                                           :constructors parsed-ctors)))
@@ -190,7 +187,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
            (values constructor-entry))
   ;; Make sure we have a list we can destructure
   (setf form (alexandria:ensure-list form))
-  (destructuring-bind (ctor-name &rest tyarg-names) form
+  (cl-destructuring-bind (ctor-name &rest tyarg-names) form
 
     (with-parsing-context ("constructor definition of ~A" ctor-name)
       ;; Lookup all type arguments either within the given TYPE-VARS or
@@ -200,7 +197,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                                (qualified-ty-type (fresh-inst (parse-and-resolve-type env arg type-vars tyvars))))
                              tyarg-names)))
 
-        (unless (subsetp (type-variables tyargs) tyvars :test #'equalp)
+        (unless (subsetp (type-variables tyargs) tyvars :test 'equalp)
           (error "Constructor ~A cannot use type variables that are not in scope."
                  form))
 
@@ -215,9 +212,9 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                  ;; from the type.
                  (quantify-using-tvar-order (tyvars type)
                    (let* ((vars (remove-if
-                                 (lambda (x) (not (find x (type-variables type) :test #'equalp)))
+                                 (lambda (x) (not (find x (type-variables type) :test 'equalp)))
                                  tyvars))
-                          (kinds (mapcar #'kind-of vars))
+                          (kinds (mapcar 'kind-of vars))
                           (subst (loop :for var :in vars
                                        :for id :from 0
                                        :collect (%make-substitution var (%make-tgen id)))))

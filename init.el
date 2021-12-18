@@ -3,6 +3,12 @@
 "
 Port of Coalton to Emacs.
 This prelude includes all ports for Coalton to load.
+
+Stuff that's difficult:
+
+1. Coalton uses the keyword package to recognise type variables:
+;; tyvar := symbol in the keyword package (e.g. :a, :b, etc.)
+We have to replace this.
 "
 
 (package-install 'cl-format)
@@ -52,6 +58,14 @@ This prelude includes all ports for Coalton to load.
 
 (defmacro alexandria:define-constant (&rest args)
   `(defconst ,(car args) ,(cadr args)))
+
+(defun find-package (&rest a)
+  nil) 
+(defun symbol-package (&rest a)
+  nil)
+
+(cl-defun alexandria:format-symbol (package control &rest arguments)
+  (intern (cl-format control arguments)))
 
 
 (defmacro asdf:defsystem (name &rest args)

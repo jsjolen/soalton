@@ -1,19 +1,17 @@
 (in-package #:coalton-impl/codegen)
 
 ;; We need to evaluate this early so the macro below can inline calls
-(eval-when (:load-toplevel)
+(cl-eval-when (:load-toplevel)
   (serapeum:defstruct-read-only function-entry
     (arity :type fixnum)
     (function :type function)
-    (curried :type function))
-  #+sbcl
-  (declaim (sb-ext:freeze-type function-entry)))
+    (curried :type function)))
 
 (defvar *function-constructor-functions* (make-hash-table))
 (defvar *function-application-functions* (make-hash-table))
 
 (defmacro define-function-macros ()
-  (labels ((define-function-macros-with-arity (arity)
+  (cl-labels ((define-function-macros-with-arity (arity)
              (declare (type fixnum arity))
              (let ((constructor-sym (alexandria:format-symbol t "F~D" arity))
                    (application-sym (alexandria:format-symbol t "A~D" arity))
@@ -22,7 +20,7 @@
                    (applied-function-sym (alexandria:make-gensym "F"))
                    (arg-syms (alexandria:make-gensym-list arity)))
 
-               (labels ((build-curried-function (args)
+               (cl-labels ((build-curried-function (args)
                           (if (null (car args))
                               `(funcall ,function-sym ,@arg-syms)
                               `(lambda (,(car args)) ,(build-curried-function (cdr args)))))
@@ -63,8 +61,8 @@
                        :curried ,(build-curried-function arg-syms)))
                     (setf (gethash ,arity *function-constructor-functions*) ',constructor-sym))))))
     `(progn
-       ,@(loop :for i :of-type fixnum :from 1 :below 10
-               :collect (define-function-macros-with-arity i)))))
+       ,@(cl-loop for i from 1 below 10
+               collect (define-function-macros-with-arity i)))))
 (define-function-macros)
 
 

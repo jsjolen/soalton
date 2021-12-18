@@ -8,7 +8,7 @@
              :node (cdr binding)
              :inferred-type (lookup-value-type env (car binding))))))
 
-(defgeneric check-node-type (node env)
+(cl-defgeneric check-node-type (node env)
   (:documentation "Check the type of a typed node erroring on invalid node types")
 
   (:method ((node typed-node-literal) env)

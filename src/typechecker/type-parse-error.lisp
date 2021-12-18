@@ -10,7 +10,7 @@
                        (coalton-parse-error-reason-control c)
                        (coalton-parse-error-reason-args c))))))
 
-(defun error-parsing-type (form reason-control &rest reason-args)
+(cl-defun error-parsing-type (form reason-control &rest reason-args)
   (error 'coalton-type-parse-error
          :form form
          :reason-control reason-control

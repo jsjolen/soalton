@@ -4,10 +4,7 @@
   (name :type symbol)
   (type :type t))
 
-#+sbcl
-(declaim (sb-ext:freeze-type struct-or-class-field))
-
-(defun struct-or-class (&key
+(cl-defun struct-or-class (&key
                           (classname (error "Class Name required"))
                           (constructor (error "Constructor required"))
                           (superclass nil)

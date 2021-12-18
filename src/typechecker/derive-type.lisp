@@ -13,7 +13,7 @@
     (string       (values tString       nil))
     (character    (values tChar         nil))))
 
-(defgeneric derive-expression-type (value env substs)
+(cl-defgeneric derive-expression-type (value env substs)
   (:documentation "Derive the TYPE and generate a TYPED-NODE for expression VALUE
 
 Returns (VALUES type predicate-list typed-node subs)")
@@ -257,7 +257,7 @@ Returns (VALUES type predicate-list typed-node subs)")
 ;;; Let Bindings
 ;;;
 
-(defun derive-bindings-type (impl-bindings expl-bindings expl-declarations env subs name-map &key (disable-monomorphism-restriction nil))
+(cl-defun derive-bindings-type (impl-bindings expl-bindings expl-declarations env subs name-map &key (disable-monomorphism-restriction nil))
   "IMPL-BINDINGS and EXPL-BINDIGNS are of form (SYMBOL . EXPR)
 EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
   (declare (type environment env)
@@ -341,7 +341,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                    typed-node))))
     (values typed-nodes preds subs)))
 
-(defun derive-impls-type (bindings env subs name-map &key (disable-monomorphism-restriction nil))
+(cl-defun derive-impls-type (bindings env subs name-map &key (disable-monomorphism-restriction nil))
   (declare (type binding-list bindings)
            (type environment env)
            (type substitution-list subs)
@@ -524,7 +524,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
 ;;; Patterns
 ;;;
 
-(defgeneric derive-pattern-type (pat env subs)
+(cl-defgeneric derive-pattern-type (pat env subs)
   (:documentation "derive the type and bindings of pattern PAT")
   (:method ((pat pattern-var) env subs)
     (declare (type environment env)
