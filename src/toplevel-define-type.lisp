@@ -23,7 +23,7 @@
   (declare (type environment env)
            (values type-definition-list))
 
-  (multiple-value-bind (parsed-deftypes parsed-docstrings)
+  (cl-multiple-value-bind (parsed-deftypes parsed-docstrings)
       (coalton-impl/typechecker::parse-type-definitions deftype-forms repr-table env)
     (dolist (parsed-deftype parsed-deftypes)
       (let* ((type-name (type-definition-name parsed-deftype))

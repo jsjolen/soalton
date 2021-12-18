@@ -160,7 +160,7 @@
            (type typed-node-let let-node)
            (values list))
 
-  (multiple-value-bind (functions variables)
+  (cl-multiple-value-bind (functions variables)
       (split-binding-definitions (typed-node-let-bindings let-node))
     (union functions (remove-inlinable-functions inlineable-functions variables) :key #'car)))
 

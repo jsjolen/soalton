@@ -7,7 +7,7 @@ NOTE: Just because a variable shows up in the list does *NOT* mean all occurrenc
   (declare (type node value)
            (values list))
   (let ((fv nil))
-    (labels ((analyze (expr bv)
+    (cl-labels ((analyze (expr bv)
                (etypecase expr
                  (node-literal
                   nil)

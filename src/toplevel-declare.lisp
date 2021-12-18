@@ -6,7 +6,7 @@ HASH-TABLE mapping from the names to the declared type"
   (declare (type environment env))
   (let ((table (make-hash-table)))
     (dolist (form decl-forms)
-      (multiple-value-bind (name declared-type)
+      (cl-multiple-value-bind (name declared-type)
           (parse-declaration form env)
         (setf (gethash name table) declared-type)))
     table))

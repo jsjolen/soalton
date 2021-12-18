@@ -28,7 +28,7 @@
              (coalton-parse-error-suberror c)
              (coalton-parse-error-context c)))))
 
-(defmacro with-parsing-context ((context &rest args) &body body)
+(defmacro with-parsing-context ((context &rest args) &rest body)
   `(handler-case
        (progn ,@body)
      (coalton-parse-error (c) (error 'coalton-parse-error-context

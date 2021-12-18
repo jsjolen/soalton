@@ -68,6 +68,8 @@ We have to replace this.
 (defun symbol-package (&rest a)
   nil)
 
+
+
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)
   (make-hash-table))
@@ -116,7 +118,7 @@ We have to replace this.
      (cond
       ((eq (car cmpt) :file)
        (print (cadr cmpt))
-       (byte-compile-file (concat default-directory pathname (cadr cmpt) ".lisp") t))
+       (load (concat default-directory pathname (cadr cmpt) ".lisp")))
       ((eq (car cmpt) :module)
        (print (concat pathname (cadr cmpt) "/"))
        (do-load (concat pathname (cadr cmpt) "/")

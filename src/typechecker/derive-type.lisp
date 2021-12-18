@@ -21,7 +21,7 @@ Returns (VALUES type predicate-list typed-node subs)")
     (declare (type substitution-list substs)
              (values ty ty-predicate-list typed-node substitution-list &optional))
     (let ((literal-value (node-literal-value value)))
-      (multiple-value-bind (type preds)
+      (cl-multiple-value-bind (type preds)
           (derive-literal-type literal-value)
         (values
          type
@@ -77,16 +77,16 @@ Returns (VALUES type predicate-list typed-node subs)")
       (when (null rands)
         (coalton-impl::coalton-bug "Invalid application with 0 arguments ~A." rator))
 
-      (multiple-value-bind (fun-ty fun-preds typed-rator substs)
+      (cl-multiple-value-bind (fun-ty fun-preds typed-rator substs)
           (derive-expression-type rator env substs)
         (unless (or (tvar-p fun-ty)
                     (function-type-p fun-ty))
           (error 'invalid-operator-type-error :type fun-ty))
         (let ((arg-preds nil))
-          (labels ((build-function (args)
+          (cl-labels ((build-function (args)
                      (if (null args)
                          ret-ty
-                         (multiple-value-bind (arg-ty arg-pred typed-rand new-substs-arg)
+                         (cl-multiple-value-bind (arg-ty arg-pred typed-rand new-substs-arg)
                              (derive-expression-type (car args) env substs)
                            (push typed-rand typed-rands)
                            (setf arg-preds (append arg-pred arg-preds))
@@ -114,9 +114,9 @@ Returns (VALUES type predicate-list typed-node subs)")
                      env
                      (mapcar (lambda (var) (cons var (to-scheme (qualify nil (make-variable)))))
                              vars))))
-      (multiple-value-bind (ret-ty ret-preds typed-subexpr new-substs)
+      (cl-multiple-value-bind (ret-ty ret-preds typed-subexpr new-substs)
           (derive-expression-type subexpr new-env substs)
-        (labels ((build-function (args)
+        (cl-labels ((build-function (args)
                    (if (null args)
                        ret-ty
                        (make-function-type (qualified-ty-type (fresh-inst (lookup-value-type new-env (car args))))
@@ -139,11 +139,11 @@ Returns (VALUES type predicate-list typed-node subs)")
              (type substitution-list subs)
              (values ty ty-predicate-list typed-node substitution-list &optional))
     (let ((bindings (node-let-bindings value)))
-      (multiple-value-bind (typed-bindings bindings-preds env subs sccs)
+      (cl-multiple-value-bind (typed-bindings bindings-preds env subs sccs)
           ;; NOTE: If we wanted explicit types in let bindings this
           ;;       would be the place to do it.
           (derive-bindings-type bindings nil nil env subs (node-let-name-map value))
-        (multiple-value-bind (type ret-preds typed-subexpr new-subs)
+        (cl-multiple-value-bind (type ret-preds typed-subexpr new-subs)
             (derive-expression-type (node-let-subexpr value) env subs)
           (let ((preds (append ret-preds bindings-preds)))
             (values type
@@ -162,10 +162,10 @@ Returns (VALUES type predicate-list typed-node subs)")
              (type substitution-list subs)
              (values ty ty-predicate-list typed-node substitution-list &optional))
     (let ((tvar (make-variable)))
-      (multiple-value-bind (ty preds typed-expr new-subs)
+      (cl-multiple-value-bind (ty preds typed-expr new-subs)
           (derive-expression-type (node-match-expr value) env subs)
         (with-type-context ("match on ~A" (node-unparsed (node-match-expr value)))
-          (multiple-value-bind (typed-branches match-preds new-subs)
+          (cl-multiple-value-bind (typed-branches match-preds new-subs)
               (derive-match-branches-type
                (make-function-type ty tvar)
                (node-match-branches value)
@@ -193,7 +193,7 @@ Returns (VALUES type predicate-list typed-node subs)")
 
 
       (loop :for elem :in initial-elements :do
-        (multiple-value-bind (tyvar preds_ node subs_)
+        (cl-multiple-value-bind (tyvar preds_ node subs_)
             (derive-expression-type elem env subs)
 
           (setf subs subs_)
@@ -204,7 +204,7 @@ Returns (VALUES type predicate-list typed-node subs)")
             (alexandria:simple-style-warning "Expression ~A in progn evaluates to a function. This may be intentional, but is also a common mistake in the event a function is accidentally curried."
                                              (node-unparsed elem)))))
 
-      (multiple-value-bind (tyvar preds_ node subs)
+      (cl-multiple-value-bind (tyvar preds_ node subs)
           (derive-expression-type last-element env subs)
         (setf preds (append preds preds_))
         (push node nodes)
@@ -227,7 +227,7 @@ Returns (VALUES type predicate-list typed-node subs)")
            (declared-type (qualified-ty-type declared-qualified))
            (declared-preds (qualified-ty-predicates declared-qualified)))
 
-      (multiple-value-bind (type preds node subs)
+      (cl-multiple-value-bind (type preds node subs)
           (derive-expression-type (node-the-subnode value) env subs)
 
         (let* ((subs_ (match (apply-substitution subs type) declared-type))
@@ -282,7 +282,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
         ;; Lookup all bindings in this scc
         (let ((scc-bindings (mapcar (lambda (b) (find b impl-bindings :key #'car)) scc)))
           ;; Derive the type of all parts of the scc together
-          (multiple-value-bind (typed-impl-bindings impl-preds new-env new-subs)
+          (cl-multiple-value-bind (typed-impl-bindings impl-preds new-env new-subs)
               (derive-impls-type scc-bindings env subs name-map
                                  :disable-monomorphism-restriction disable-monomorphism-restriction)
             ;; Update the current environment and substitutions
@@ -296,7 +296,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
       ;; check the explicit ones.
       (dolist (binding expl-bindings)
         ;; Derive the type of the binding
-        (multiple-value-bind (ty-scheme typed-expl-binding expl-preds new-env new-subs)
+        (cl-multiple-value-bind (ty-scheme typed-expl-binding expl-preds new-env new-subs)
             (derive-expl-type binding
                               (gethash (car binding) expl-declarations)
                               env subs name-map)
@@ -334,7 +334,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                  :for tvar :in tvars
                  :for expr :in exprs
                  :collect
-                 (multiple-value-bind (typed-node binding-preds new-subs)
+                 (cl-multiple-value-bind (typed-node binding-preds new-subs)
                      (derive-binding-type name tvar expr env subs name-map)
                    (setf subs new-subs)
                    (setf preds (append preds binding-preds))
@@ -359,7 +359,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
          (exprs (mapcar #'cdr bindings)))
 
     ;; Derive the type of each binding
-    (multiple-value-bind (typed-bindings local-preds local-subs)
+    (cl-multiple-value-bind (typed-bindings local-preds local-subs)
         (derive-binding-type-seq (mapcar #'car bindings) tvars exprs local-env subs name-map)
 
       (let* ((expr-types (apply-substitution local-subs tvars)) ; ts'
@@ -373,9 +373,9 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
              (local-tvars (set-difference expr-tvars
                                           env-tvars)) ; gs
              )
-        (multiple-value-bind (deferred-preds retained-preds)
+        (cl-multiple-value-bind (deferred-preds retained-preds)
             (split-context env env-tvars expr-preds)
-          (labels ((restricted (bindings)
+          (cl-labels ((restricted (bindings)
                      (some (lambda (b) (not (coalton-impl/ast::node-abstraction-p (cdr b))))
                            bindings)))
 
@@ -448,7 +448,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
 
     ;; Derive the type of the expression, unifying with the
     ;; declared type
-    (multiple-value-bind (typed-node preds local-subs)
+    (cl-multiple-value-bind (typed-node preds local-subs)
         (derive-binding-type
          (car binding)
          fresh-type
@@ -468,7 +468,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                                              (not (entail env expr-preds p)))
                                            (apply-substitution local-subs preds))))
 
-        (multiple-value-bind (deferred-preds retained-preds)
+        (cl-multiple-value-bind (deferred-preds retained-preds)
             (split-context env env-tvars reduced-preds)
 
           ;; Make sure the declared scheme is not too general
@@ -515,7 +515,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                       (coalton-impl::coalton-bug "Invalid state. Unable to find name in name map"))
                   name)))
     (with-type-context ("definition of ~A" name)
-      (multiple-value-bind (new-type preds typed-node new-subs)
+      (cl-multiple-value-bind (new-type preds typed-node new-subs)
           (derive-expression-type expr env subs)
         (values typed-node preds (unify new-subs type new-type))))))
 
@@ -551,7 +551,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
     (declare (type environment env)
              (type substitution-list subs)
              (values ty ty-predicate-list list substitution-list))
-    (multiple-value-bind (type preds)
+    (cl-multiple-value-bind (type preds)
         (derive-literal-type (node-literal-value (pattern-literal-value pat)))
       (values
        type
@@ -563,7 +563,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
     (declare (type environment env)
              (type substitution-list subs)
              (values ty ty-predicate-list list substitution-list))
-    (multiple-value-bind (tvars preds bindings subs)
+    (cl-multiple-value-bind (tvars preds bindings subs)
         (derive-patterns-type (pattern-constructor-patterns pat) env subs)
 
       ;; Check that the constructor is known and fully applied
@@ -597,7 +597,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
         (preds nil)
         (type-vars nil))
     (dolist (pat patterns)
-      (multiple-value-bind (tvars pat-preds new-bindings new-subs)
+      (cl-multiple-value-bind (tvars pat-preds new-bindings new-subs)
           (derive-pattern-type pat env subs)
         (setf type-vars (append type-vars (list tvars)))
         (setf preds (append preds pat-preds))
@@ -631,7 +631,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
         use ~/coalton-impl::sexp-fmt/ instead." var (list var))))
 
 
-  (multiple-value-bind (var pat-preds bindings new-subs)
+  (cl-multiple-value-bind (var pat-preds bindings new-subs)
       (derive-pattern-type pattern env subs)
     (let* ((bindings-schemes
              (mapcar (lambda (b)
@@ -640,7 +640,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                         (to-scheme (qualify nil (cdr b)))))
                      bindings))
            (new-env (push-value-environment env bindings-schemes)))
-      (multiple-value-bind (expr-type expr-preds typed-subexpr new-subs)
+      (cl-multiple-value-bind (expr-type expr-preds typed-subexpr new-subs)
           (derive-expression-type expr new-env new-subs)
         (values
          (make-function-type var expr-type)
@@ -671,7 +671,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
              (pattern (coalton-impl/ast::rewrite-pattern-vars pattern m)))
 
         (with-type-context ("branch ~A" pattern)
-          (multiple-value-bind (ty branch-preds typed-branch new-subs)
+          (cl-multiple-value-bind (ty branch-preds typed-branch new-subs)
               (derive-match-branch-type (match-branch-unparsed alt) (match-branch-pattern alt) (match-branch-subexpr alt) (match-branch-name-map alt) env subs)
             (setf subs new-subs)
             (setf types (append types (list ty)))

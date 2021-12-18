@@ -31,7 +31,7 @@ where all names and dependencies are symbols"
                                 :low-link 0
                                 :on-stack nil)))
 
-      (labels ((visit (vertex)
+      (cl-labels ((visit (vertex)
                  (let ((vertex-index (gethash vertex symbol-to-index)))
                    ;; If we have already visited the node then there
                    ;; is nothing to do.

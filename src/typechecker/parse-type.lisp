@@ -39,7 +39,7 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
            (values ty-scheme &optional))
 
   ;; Parse out the expression and quantify over non-disallowed type variables
-  (multiple-value-bind (parsed type-vars subs)
+  (cl-multiple-value-bind (parsed type-vars subs)
       (parse-qualified-type-expr env top-expr type-vars nil :additional-predicates additional-predicates)
     (apply-substitution subs
                         (quantify (remove-if
@@ -53,7 +53,7 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
            (type list type-vars)
            (values ty list substitution-list))
   (with-parsing-context ("type expression ~A" expr)
-    (labels ((find-tyvar-entry (name)
+    (cl-labels ((find-tyvar-entry (name)
                (find name type-vars :key #'car))
              (find-tyvar-entry-from-tvar (tvar)
                (find tvar type-vars :key #'cadr :test #'equalp))
@@ -138,7 +138,7 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
                                  (error-parsing-type expr "Malformed function type"))
 
                                ;; Parse the type, adding any new type variables to the context
-                               (multiple-value-bind (arg-type new-type-vars new-subs)
+                               (cl-multiple-value-bind (arg-type new-type-vars new-subs)
                                    (parse-type-expr env type type-vars subs)
                                  (setf type-vars new-type-vars
                                        subs new-subs)
@@ -160,14 +160,14 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
                                              (+ (length (rest expr)) (kind-arity output-kind))
                                              (length (rest expr))))
                            (ty-con-kind (make-kind-of-arity ty-con-arity))
-                           (ty-con (multiple-value-bind (tcon new-type-vars new-subs)
+                           (ty-con (cl-multiple-value-bind (tcon new-type-vars new-subs)
                                        (parse-type-expr env (first expr) type-vars subs ty-con-kind)
                                      (setf type-vars new-type-vars
                                            subs new-subs)
                                      (resolve-type-variables tcon ty-con-kind)))
                            (arg-tys
                              (loop :for e :in (rest expr)
-                                   :collect (multiple-value-bind (arg-type new-type-vars new-subs)
+                                   :collect (cl-multiple-value-bind (arg-type new-type-vars new-subs)
                                                 (parse-type-expr env e type-vars subs)
                                               (setf type-vars new-type-vars
                                                     subs new-subs)
@@ -202,21 +202,21 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
                  ;; If the first member of the predicates is a list then we can assume there are multiple to parse.
                  (let ((preds (if (listp (first (first subseqs)))
                                   (loop :for pred-expr :in (first subseqs)
-                                        :collect (multiple-value-bind (pred new-type-vars new-subs)
+                                        :collect (cl-multiple-value-bind (pred new-type-vars new-subs)
                                                      (parse-type-predicate env pred-expr type-vars subs
                                                                            :allow-unknown-classes allow-unknown-classes
                                                                            :additional-class-predicates additional-class-predicates)
                                                    (setf type-vars new-type-vars
                                                          subs new-subs)
                                                    pred))
-                                  (multiple-value-bind (pred new-type-vars new-subs)
+                                  (cl-multiple-value-bind (pred new-type-vars new-subs)
                                       (parse-type-predicate env (first subseqs) type-vars subs
                                                             :allow-unknown-classes allow-unknown-classes
                                                             :additional-class-predicates additional-class-predicates)
                                     (setf type-vars new-type-vars
                                           subs new-subs)
                                     (list pred))))
-                       (type (multiple-value-bind (type new-type-vars new-subs)
+                       (type (cl-multiple-value-bind (type new-type-vars new-subs)
                                  (parse-type-expr env (first (second subseqs)) type-vars subs)
                                (setf type-vars new-type-vars
                                      subs new-subs)
@@ -244,7 +244,7 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
                      (qualify reduced-preds type)))))
               ;; Otherwise parse as a type
               (t
-               (multiple-value-bind (type new-type-vars new-subs)
+               (cl-multiple-value-bind (type new-type-vars new-subs)
                    (parse-type-expr env expr type-vars subs)
                  (setf type-vars new-type-vars
                        subs new-subs)
@@ -280,13 +280,13 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
              (if class-pred-kinds
                  (loop :for pred-expr :in (cdr expr)
                        :for pred-kind :in class-pred-kinds
-                       :collect (multiple-value-bind (pred-type new-type-vars new-subs)
+                       :collect (cl-multiple-value-bind (pred-type new-type-vars new-subs)
                                     (parse-type-expr env pred-expr type-vars subs pred-kind)
                                   (setf subs new-subs)
                                   (setf type-vars (append type-vars new-type-vars))
                                   pred-type))
                  (loop :for pred-expr :in (cdr expr)
-                       :collect (multiple-value-bind (pred-type new-type-vars new-subs)
+                       :collect (cl-multiple-value-bind (pred-type new-type-vars new-subs)
                                     (parse-type-expr env pred-expr type-vars subs nil)
                                   (setf subs new-subs)
                                   (setf type-vars (append type-vars new-type-vars))

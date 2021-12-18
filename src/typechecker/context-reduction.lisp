@@ -46,7 +46,7 @@ Returns (PREDS FOUNDP)"
   (let* ((super (mapcan (lambda (p) (by-super env p)) preds))
         (value
           (or (true (member pred super :test #'equalp))
-              (true (multiple-value-bind (inst-preds found)
+              (true (cl-multiple-value-bind (inst-preds found)
                         (by-inst env pred)
                       (and found
                            (every (lambda (p) (entail env preds p)) inst-preds)))))))
@@ -62,7 +62,7 @@ Returns (PREDS FOUNDP)"
 
 (defun hnf-p (pred)
   "Is PRED in head-normal form?"
-  (labels ((hnf (ty)
+  (cl-labels ((hnf (ty)
              (etypecase ty
                (tvar t)
                (tcon nil)
@@ -75,7 +75,7 @@ Returns (PREDS FOUNDP)"
   "Simplify PRED to a list of head-normal predicates"
   (if (hnf-p pred)
       (list pred)
-      (multiple-value-bind (inst-preds found)
+      (cl-multiple-value-bind (inst-preds found)
           (by-inst env pred)
         (unless found
           (error 'context-reduction-failure :pred pred))
@@ -83,7 +83,7 @@ Returns (PREDS FOUNDP)"
 
 (defun simplify-context (env preds)
   "Simplify PREDS to head-normal form"
-  (labels ((simp-loop (rs ps)
+  (cl-labels ((simp-loop (rs ps)
              (if (endp ps)
                  rs
                  (if (entail env (append rs (rest ps)) (first ps))

@@ -29,7 +29,7 @@
 
   (with-parsing-context ("instance definition ~A" form)
     ;; Parse out the instance predicate and context
-    (multiple-value-bind (instance-context instance-predicate)
+    (cl-multiple-value-bind (instance-context instance-predicate)
         (parse-class-signature env (second form) nil nil)
 
       ;; Ensure that all type variables in the context appear in the instance predicate
@@ -49,7 +49,7 @@
                                              instance-predicate)))
 
         ;; Check the instance environment to make sure the context is resolvable
-        (labels ((find-instance-entry (instance-predicate instance-context)
+        (cl-labels ((find-instance-entry (instance-predicate instance-context)
                    (let* ((pred-class (ty-predicate-class instance-predicate))
                           (instances (lookup-class-instances env pred-class :no-error t)))
                      (fset:do-seq (instance instances)
@@ -80,7 +80,7 @@
             (let ((method-bindings nil))
               (loop :for method-definiton :in instance-method-defintions
                     :do
-                       (push (multiple-value-bind (method-name parsed-method-form)
+                       (push (cl-multiple-value-bind (method-name parsed-method-form)
                                  (coalton-impl::parse-define-form method-definiton)
 
                                ;; Disallow duplicate method definitions
@@ -108,7 +108,7 @@
                                         (quantify (type-variables
                                                    (apply-substitution instance-subs instance-method-qual-type))
                                                   (apply-substitution instance-subs instance-method-qual-type))))
-                                 (multiple-value-bind (scheme binding preds env subs qual-type)
+                                 (cl-multiple-value-bind (scheme binding preds env subs qual-type)
                                      (derive-expl-type (cons method-name parsed-method-form)
                                                        instance-method-type
                                                        env

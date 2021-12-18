@@ -8,7 +8,7 @@
       (push (cons sym entry) (gethash (symbol-package sym) sorted-by-package)))
 
     ;; Print out the entries for each package
-    (labels ((print-package (package entries)
+    (cl-labels ((print-package (package entries)
                (format t "[package ~A]~%~%" (package-name package))
                ;; Remove qualifications from package symbols
                (let ((*package* package))
@@ -33,7 +33,7 @@
 
     ;; Print out the entries for each package
 
-    (labels ((print-package (package entries)
+    (cl-labels ((print-package (package entries)
                (format t "[package ~A]~%~%" (package-name package))
                (loop :for (name . entry) :in entries :do
                  (format t "  ~A :: ~A~%"
@@ -56,7 +56,7 @@
 
     ;; Print out the entries for each package
 
-    (labels ((print-package (package entries)
+    (cl-labels ((print-package (package entries)
                (format t "[package ~A]~%~%" (package-name package))
                (let ((*package* package))
                  (loop :for (name . entry) :in entries :do
@@ -87,7 +87,7 @@
 
     ;; Print out the entries for each package
 
-    (labels ((print-package (package entries)
+    (cl-labels ((print-package (package entries)
                (format t "[package ~A]~%~%" (package-name package))
                (let ((*package* package))
                  (loop

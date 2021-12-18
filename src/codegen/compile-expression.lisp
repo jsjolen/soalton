@@ -122,7 +122,7 @@
            (type environment env)
            (values list &optional))
 
-  (labels ((compile-sccs (sccs)
+  (cl-labels ((compile-sccs (sccs)
              (if (null sccs)
                  (compile-expression subnode ctx env)
 
@@ -159,7 +159,7 @@
                              ;; them in the function namespace
                              (generate-function-scaffold (subsetp function-names variable-namespace :test #'equalp))
 
-                             (labels_ `(labels ,(mapcar
+                             (labels_ `(cl-labels ,(mapcar
                                                  (lambda (b)
                                                    (unless (null local-dynamic-extent-bindings)
                                                      (coalton-impl::coalton-bug "Functions should not be declared dynamic extent."))

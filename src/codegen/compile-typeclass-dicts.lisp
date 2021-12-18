@@ -50,7 +50,7 @@
 (defun lookup-dict (pred context env)
   "Lookup dictionary for predicate PRED"
   (or (lookup-in-context pred context env)
-      (multiple-value-bind (instance subs)
+      (cl-multiple-value-bind (instance subs)
           (lookup-class-instance env pred)
         (let* ((instance (coalton-impl/typechecker::apply-substitution subs instance))
                (instance-context (ty-class-instance-constraints instance)))
@@ -72,7 +72,7 @@
     (when context-pred
       (return-from lookup-in-context (cdr context-pred)))
 
-    (labels ((lookup-pred (pred ctx-pred method-accessor)
+    (cl-labels ((lookup-pred (pred ctx-pred method-accessor)
                "Try to match PRED to CTX-PRED or one of its superclasses. METHOD-ACCESSOR is the symbol to retrieve the "
                (let* ((ctx-class (lookup-class env (ty-predicate-class ctx-pred)))
                       ;; Find the substitutions to match our looked up class to the given CTX-PRED
@@ -96,7 +96,7 @@
       (loop :for (ctx-pred . ctx-sym) :in context :do
         (let ((super (lookup-pred pred ctx-pred ctx-sym)))
           (when super
-            (labels ((build-call (args)
+            (cl-labels ((build-call (args)
                        (if (null (cdr args))
                            (car args)
                            (list (car args)

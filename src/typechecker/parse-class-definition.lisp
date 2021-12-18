@@ -19,7 +19,7 @@
                    (eql 'coalton:define-class (first form)))
         (error "Malformed DEFINE-CLASS form ~A" form))
       ;; Parse out the type class signature to form dependency graph of superclasses
-      (multiple-value-bind (class-context class-predicate class-tyvars subs)
+      (cl-multiple-value-bind (class-context class-predicate class-tyvars subs)
           (parse-class-signature env (second form) nil nil :allow-unknown-classes t)
 
         (when (some (lambda (pred)
@@ -82,7 +82,7 @@
       ;; Now we can go through and re-parse and add classes to the environment
       (let ((classes (loop :for (class-name . form) :in sorted-forms
                            :collect
-                           (multiple-value-bind (class methods docstring)
+                           (cl-multiple-value-bind (class methods docstring)
                                (parse-class-definition form env)
 
 
@@ -125,7 +125,7 @@
     (error "Malformed DEFINE-CLASS form ~A" form))
 
   (with-parsing-context ("class definition ~A" form)
-    (multiple-value-bind (class-context class-predicate class-tyvars subs)
+    (cl-multiple-value-bind (class-context class-predicate class-tyvars subs)
         (parse-class-signature env (second form) nil nil)
 
       (let* ((class-name (ty-predicate-class class-predicate))
@@ -140,7 +140,7 @@
                                                      (symbolp (first form)))
                                           (error "Malformed DEFINE-CLASS method form ~A" form))
                                         (cons (first form)
-                                              (multiple-value-bind (parsed type-vars new-subs)
+                                              (cl-multiple-value-bind (parsed type-vars new-subs)
                                                   (parse-qualified-type-expr env (second form) class-tyvars subs :additional-class-predicates (list class-predicate))
                                                 (setf class-tyvars type-vars
                                                       subs new-subs)
@@ -211,17 +211,17 @@
        ;; If the first member of the predicates is a list then we can assume there are multiple to parse.
        (let* ((preds (if (listp (first (first subseqs)))
                          (loop :for pred-expr :in (first subseqs)
-                               :collect (multiple-value-bind (pred new-type-vars new-subs)
+                               :collect (cl-multiple-value-bind (pred new-type-vars new-subs)
                                             (parse-type-predicate env pred-expr type-vars subs :allow-unknown-classes allow-unknown-classes)
                                           (setf type-vars new-type-vars
                                                 subs new-subs)
                                           pred))
-                         (multiple-value-bind (pred new-type-vars new-subs)
+                         (cl-multiple-value-bind (pred new-type-vars new-subs)
                              (parse-type-predicate env (first subseqs) type-vars subs :allow-unknown-classes allow-unknown-classes)
                            (setf type-vars new-type-vars
                                  subs new-subs)
                            (list pred))))
-              (class-pred (multiple-value-bind (pred new-type-vars new-subs)
+              (class-pred (cl-multiple-value-bind (pred new-type-vars new-subs)
                               (parse-type-predicate env (first (second subseqs)) type-vars subs :allow-unknown-classes t)
                             (setf type-vars new-type-vars
                                   subs new-subs)
@@ -230,6 +230,6 @@
          (values preds class-pred type-vars subs))))
     ;; Otherwise parse as a type
     (t
-     (multiple-value-bind (class-pred type-vars subs)
+     (cl-multiple-value-bind (class-pred type-vars subs)
          (parse-type-predicate env top-expr type-vars subs :allow-unknown-classes t)
        (values nil class-pred type-vars subs)))))

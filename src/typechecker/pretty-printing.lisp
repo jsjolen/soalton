@@ -23,7 +23,7 @@
   ;; This is an awful awful hack
   (%make-tcon (%make-tycon :name (next-pprint-variable) :kind kind)))
 
-(defmacro with-pprint-variable-scope (() &body body)
+(defmacro with-pprint-variable-scope (() &rest body)
   "If there is no pretty printing variable scope then create one for BODY"
   `(if (boundp '*pprint-variable-symbol-code*)
        (let ((*pprint-variable-symbol-code* *pprint-variable-symbol-code*)

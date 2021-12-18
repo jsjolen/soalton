@@ -14,7 +14,7 @@
            (type symbol key)
            (type boolean no-error)
            (values fset:seq))
-  (multiple-value-bind (value present-p)
+  (cl-multiple-value-bind (value present-p)
       (fset:lookup (immutable-listmap-data m) key)
     (unless (or present-p no-error)
       (error "Undefined key ~a" key))

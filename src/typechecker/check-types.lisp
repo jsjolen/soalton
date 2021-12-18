@@ -13,7 +13,7 @@
 
   (:method ((node typed-node-literal) env)
     (let ((literal-value (typed-node-literal-value node)))
-      (multiple-value-bind (type preds)
+      (cl-multiple-value-bind (type preds)
           (derive-literal-type literal-value)
         (let ((scheme (to-scheme (qualify preds type))))
           (unless (type-scheme=

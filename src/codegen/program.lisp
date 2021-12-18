@@ -23,7 +23,7 @@
   ;;
   ;; Of important note, this function DOES NOT change the relative
   ;; ordering of things within each group.
-  (labels ((sub-struct-p (thing)
+  (cl-labels ((sub-struct-p (thing)
              (and (eq 'cl:defstruct (car thing))
                   (find ':INCLUDE (cdadr thing) :key #'car :test #'eq)))
            (setf-ltv-p (thing)
@@ -129,7 +129,7 @@
   (declare (type typed-binding-list toplevel-bindings)
            (type environment env)
            (values environment))
-  (multiple-value-bind (toplevel-functions toplevel-values)
+  (cl-multiple-value-bind (toplevel-functions toplevel-values)
       (split-binding-definitions toplevel-bindings)
     (loop :for (name . arity) :in toplevel-functions
           :do

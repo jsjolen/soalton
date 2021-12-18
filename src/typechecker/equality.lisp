@@ -8,7 +8,7 @@
   (declare (type ty type1 type2)
            (values boolean list))
   (let ((var-table nil))
-    (labels ((%type= (type1 type2)
+    (cl-labels ((%type= (type1 type2)
       (cond
         ;; Type variables
         ((and (tvar-p type1)  (tvar-p type2))
@@ -40,7 +40,7 @@
 
 (defun qualified-type= (qual-type1 qual-type2)
   ;; Check that the types are equal
-  (multiple-value-bind (types-equal-p var-table)
+  (cl-multiple-value-bind (types-equal-p var-table)
       (type= (qualified-ty-type qual-type1)
              (qualified-ty-type qual-type2))
     (unless types-equal-p

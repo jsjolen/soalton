@@ -202,7 +202,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                  form))
 
         ;; Build up the constructor function
-        (labels ((build-function (args)
+        (cl-labels ((build-function (args)
                    (if (car args)
                        (make-function-type (car args)
                                            (build-function (cdr args)))

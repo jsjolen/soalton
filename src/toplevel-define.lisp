@@ -77,7 +77,7 @@ Returns new environment, binding list of declared nodes, a DAG of dependencies, 
 
   (let* ((docstrings nil)
          (parsed (loop :for form :in def-forms
-                       :collect (multiple-value-bind (name node type args docstring)
+                       :collect (cl-multiple-value-bind (name node type args docstring)
                                     (parse-define-form form)
                                   (push (list name docstring type) docstrings)
                                   (list name node type args))))
@@ -99,7 +99,7 @@ Returns new environment, binding list of declared nodes, a DAG of dependencies, 
             expl-names)
 
     (coalton-impl/typechecker::with-type-context ("COALTON-TOPLEVEL")
-      (multiple-value-bind (typed-bindings preds new-env subs)
+      (cl-multiple-value-bind (typed-bindings preds new-env subs)
           (coalton-impl/typechecker::derive-bindings-type
            impl-bindings expl-bindings declared-types env nil nil
            :disable-monomorphism-restriction t)

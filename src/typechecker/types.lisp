@@ -121,7 +121,7 @@
   (%make-tapp tcon arg))
 
 (defun apply-type-argument-list (tcon args)
-  (labels ((%apply-type-argument-list (tcon args)
+  (cl-labels ((%apply-type-argument-list (tcon args)
              (if args
                  (apply-type-argument (%apply-type-argument-list tcon (cdr args))
                                       (car args))
@@ -216,7 +216,7 @@ This requires a valid PPRINT-VARIABLE-CONTEXT")
                           " -> ")
                       stream)
         ;; Avoid printing extra parenthesis on curried functions
-        (labels ((print-subfunction (to)
+        (cl-labels ((print-subfunction (to)
                    (cond
                      ((function-type-p to)
                       (pprint-ty stream (tapp-to (tapp-from to)))

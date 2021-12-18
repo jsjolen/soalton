@@ -21,33 +21,33 @@
 
 ;;; Top-Level Forms
 
-(define-coalton-editor-macro coalton:define (var-or-fun &body body)
+(define-coalton-editor-macro coalton:define (var-or-fun &rest body)
   "Define a variable or function. (Coalton top-level operator.)")
 
-(define-coalton-editor-macro coalton:define-type (name &body definition)
+(define-coalton-editor-macro coalton:define-type (name &rest definition)
   "Create a new algebraic data type named NAME. (Coalton top-level operator.)")
 
 (define-coalton-editor-macro coalton:declare (var type)
   "Declare the type of a variable. (Coalton top-level operator.)")
 
-(define-coalton-editor-macro coalton:define-class (class &body method-signatures)
+(define-coalton-editor-macro coalton:define-class (class &rest method-signatures)
   "Define a new type class. (Coalton top-level operator.")
 
-(define-coalton-editor-macro coalton:define-instance (instance &body method-definitions)
+(define-coalton-editor-macro coalton:define-instance (instance &rest method-definitions)
   "Define an instance of a type class. (Coalton top-level operator.)")
 
 
 ;;; Other Constructions
 
-(defmacro coalton:fn (vars &body form)
+(defmacro coalton:fn (vars &rest form)
   "A lambda abstraction callable within coalton."
   (construct-function-entry `(lambda ,vars ,@form) (length vars)))
 
-(define-coalton-editor-macro coalton:match (expr &body patterns)
+(define-coalton-editor-macro coalton:match (expr &rest patterns)
   "Pattern matching construct.")
 
-(define-coalton-editor-macro coalton:let (bindings &body form)
+(define-coalton-editor-macro coalton:let (bindings &rest form)
   "A lexical LET binding.")
 
-(define-coalton-editor-macro coalton:lisp (type vars &body lisp-expr)
+(define-coalton-editor-macro coalton:lisp (type vars &rest lisp-expr)
   "An escape from Coalton into the Lisp world.")

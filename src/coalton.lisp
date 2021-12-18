@@ -40,7 +40,7 @@
         (defclasses nil)
         (definstances nil)
         (repr-table (make-hash-table)))
-    (labels ((flatten (forms)
+    (cl-labels ((flatten (forms)
                (loop :for form :in forms
                      :append (cond
                                ((atom form) (list form))
@@ -109,14 +109,14 @@
 (defparameter *initial-environment* nil)
 
 ;;; Coalton Macros
-(defmacro coalton:coalton-toplevel (&body toplevel-forms)
+(defmacro coalton:coalton-toplevel (&rest toplevel-forms)
   "Top-level definitions for use within Coalton."
-  (multiple-value-bind (form env)
+  (cl-multiple-value-bind (form env)
       (process-coalton-toplevel toplevel-forms *global-environment*)
     (setf *global-environment* env)
     form))
 
-(defmacro coalton:coalton-codegen (&body toplevel-forms)
+(defmacro coalton:coalton-codegen (&rest toplevel-forms)
   "Returns the lisp code generated from coalton code. Intended for debugging."
   `(let ((old ,*emit-type-annotations*))
     (setf *emit-type-annotations* nil)
@@ -127,7 +127,7 @@
 (defmacro coalton:coalton (form)
   (let ((parsed-form (parse-form form (make-immutable-map) *package*)))
     (coalton-impl/typechecker::with-type-context ("COALTON")
-      (multiple-value-bind (type preds typed-node substs)
+      (cl-multiple-value-bind (type preds typed-node substs)
           (derive-expression-type parsed-form *global-environment* nil)
         (declare (ignore type))
         (let* ((env (coalton-impl/typechecker::apply-substitution substs *global-environment*))
@@ -142,16 +142,16 @@
 (cl-defun process-coalton-toplevel (toplevel-forms &optional (env *global-environment*))
   "Top-level definitions for use within Coalton."
 
-  (multiple-value-bind (type-defines declares defines class-defines instance-defines repr-table)
+  (cl-multiple-value-bind (type-defines declares defines class-defines instance-defines repr-table)
       (collect-toplevel-forms toplevel-forms)
 
-    (multiple-value-bind (defined-types env type-docstrings)
+    (cl-multiple-value-bind (defined-types env type-docstrings)
         (process-toplevel-type-definitions type-defines repr-table env)
 
       ;; Class definitions must be checked after types are defined
       ;; but before values are typechecked.
 
-      (multiple-value-bind (classes env)
+      (cl-multiple-value-bind (classes env)
           (parse-class-definitions class-defines env)
 
         ;; Methods need to be added to the environment before we can
@@ -159,7 +159,7 @@
         (setf env (predeclare-toplevel-instance-definitions instance-defines env))
 
         (let ((declared-types (process-toplevel-declarations declares env)))
-          (multiple-value-bind (env toplevel-bindings dag value-docstrings)
+          (cl-multiple-value-bind (env toplevel-bindings dag value-docstrings)
               (process-toplevel-value-definitions defines declared-types env)
 
             ;; Methods must be typechecker after the types of values

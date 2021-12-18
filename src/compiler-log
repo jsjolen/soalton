@@ -93,7 +93,7 @@ immutable-listmap.lisp:18:8: Warning: the function ‘fset:lookup’ is not know
     to be defined.
 immutable-listmap.lisp:17:25: Warning: the function ‘value’ is not known to be
     defined.
-immutable-listmap.lisp:17:4: Warning: the function ‘multiple-value-bind’ is
+immutable-listmap.lisp:17:4: Warning: the function ‘cl-multiple-value-bind’ is
     not known to be defined.
 Leaving directory ‘/home/johan/src/coalton-1/src/algorithm/’
 
@@ -810,7 +810,7 @@ context-reduction.lisp:52:29: Warning: the function ‘every’ is not known to 
     defined.
 context-reduction.lisp:49:43: Warning: the function ‘inst-preds’ is not known
     to be defined.
-context-reduction.lisp:49:22: Warning: the function ‘multiple-value-bind’ is
+context-reduction.lisp:49:22: Warning: the function ‘cl-multiple-value-bind’ is
     not known to be defined.
 context-reduction.lisp:48:48: Warning: the function ‘equalp’ is not known to
     be defined.
@@ -919,7 +919,7 @@ derive-type.lisp:152:46: Warning: reference to free variable ‘type’
 derive-type.lisp:131:43: Warning: lookup-value-type called with 2 arguments,
     but requires 4
 derive-type.lisp:253:19: Warning: ‘(build-function (args) (if (null args)
-    ret-ty (multiple-value-bind (arg-ty arg-pred typed-rand new-substs-arg)
+    ret-ty (cl-multiple-value-bind (arg-ty arg-pred typed-rand new-substs-arg)
 (derive-expression-type (car args) env substs) (push typed-rand typed-rands)
     (setf arg-preds (append arg-pred arg-preds)) (setf substs new-substs-arg)
 (make-function-type arg-ty (build-function (cdr args))))))’ is a malformed
@@ -1022,7 +1022,7 @@ check-types.lisp:32:10: Warning: the function ‘loop’ is not known to be
     defined.
 check-types.lisp:16:29: Warning: the function ‘type’ is not known to be
     defined.
-check-types.lisp:16:8: Warning: the function ‘multiple-value-bind’ is not
+check-types.lisp:16:8: Warning: the function ‘cl-multiple-value-bind’ is not
     known to be defined.
 
 Compiling file /home/johan/src/coalton-1/src/typechecker/debug.lisp at Sat Dec 18 22:42:57 2021
@@ -1588,7 +1588,7 @@ toplevel-define-type.lisp:27:8: Warning: the function
     defined.
 toplevel-define-type.lisp:26:25: Warning: the function ‘parsed-deftypes’ is
     not known to be defined.
-toplevel-define-type.lisp:26:4: Warning: the function ‘multiple-value-bind’ is
+toplevel-define-type.lisp:26:4: Warning: the function ‘cl-multiple-value-bind’ is
     not known to be defined.
 
 Compiling file /home/johan/src/coalton-1/src/toplevel-declare.lisp at Sat Dec 18 22:42:59 2021
@@ -1621,7 +1621,7 @@ toplevel-declare.lisp:16:4: Warning: the function ‘assert’ is not known to b
     defined.
 toplevel-declare.lisp:9:29: Warning: the function ‘name’ is not known to be
     defined.
-toplevel-declare.lisp:9:8: Warning: the function ‘multiple-value-bind’ is not
+toplevel-declare.lisp:9:8: Warning: the function ‘cl-multiple-value-bind’ is not
     known to be defined.
 
 Compiling file /home/johan/src/coalton-1/src/toplevel-define.lisp at Sat Dec 18 22:42:59 2021
@@ -1707,7 +1707,7 @@ coalton.lisp:130:29: Warning: the function ‘type’ is not known to be defined
 coalton.lisp:129:6: Warning: the function
     ‘coalton-impl/typechecker::with-type-context’ is not known to be defined.
 coalton.lisp:114:25: Warning: the function ‘form’ is not known to be defined.
-coalton.lisp:114:4: Warning: the function ‘multiple-value-bind’ is not known
+coalton.lisp:114:4: Warning: the function ‘cl-multiple-value-bind’ is not known
     to be defined.
 coalton.lisp:105:14: Warning: the function ‘flatten’ is not known to be
     defined.

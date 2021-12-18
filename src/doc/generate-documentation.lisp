@@ -135,7 +135,7 @@
                 (format stream "~%")))))))))
 
 (defun write-predicate-to-markdown (ctx pred)
-  (labels ((base-type (type)
+  (cl-labels ((base-type (type)
              (typecase type
                (coalton-impl/typechecker::tapp
                 (base-type (coalton-impl/typechecker::tapp-from type)))
@@ -161,7 +161,7 @@
     (fset:do-map (sym entry (immutable-map-data (coalton-impl/typechecker::environment-name-environment env)))
       ;; Only include exported symbols from our package
       (when (and (equalp (symbol-package sym) package)
-                 (multiple-value-bind (symbol status)
+                 (cl-multiple-value-bind (symbol status)
                      (find-symbol (symbol-name sym) package)
                    (declare (ignore symbol))
                    (eql :external status)))
@@ -185,7 +185,7 @@
     (fset:do-map (sym entry (immutable-map-data (coalton-impl/typechecker::environment-class-environment env)))
       ;; Only include exported symbols from our package
       (when (and (equalp (symbol-package sym) package)
-                 (multiple-value-bind (symbol status)
+                 (cl-multiple-value-bind (symbol status)
                      (find-symbol (symbol-name sym) package)
                    (declare (ignore symbol))
                    (eql :external status)))
@@ -205,7 +205,7 @@
     (fset:do-map (sym entry (immutable-map-data (coalton-impl/typechecker::environment-type-environment env)))
       ;; Only include exported symbols from our package
       (when (and (equalp (symbol-package sym) package)
-                 (multiple-value-bind (symbol status)
+                 (cl-multiple-value-bind (symbol status)
                      (find-symbol (symbol-name sym) package)
                    (declare (ignore symbol))
                    (eql :external status)))
@@ -231,7 +231,7 @@
                                     :append
                                     (when (some
                                            (lambda (pred-type)
-                                             (labels ((check (pred)
+                                             (cl-labels ((check (pred)
                                                         (typecase pred
                                                           (coalton-impl/typechecker::tapp
                                                            (check (coalton-impl/typechecker::tapp-from pred)))
