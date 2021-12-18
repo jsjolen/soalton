@@ -1,0 +1,1785 @@
+Leaving directory ‘/home/johan/src/coalton-1/’
+
+Compiling file /home/johan/src/coalton-1/src/package.lisp at Sat Dec 18 22:42:52 2021
+Entering directory ‘/home/johan/src/coalton-1/src/’
+
+Compiling file /home/johan/src/coalton-1/src/utilities.lisp at Sat Dec 18 22:42:52 2021
+utilities.lisp:48:19: Warning: Unknown defun property ‘ignore’ in sexp-fmt
+
+Compiling file /home/johan/src/coalton-1/src/global-lexical.lisp at Sat Dec 18 22:42:52 2021
+
+In end of data:
+global-lexical.lisp:16:40: Warning: the function ‘package-name’ is not known
+    to be defined.
+global-lexical.lisp:14:14: Warning: the function ‘alexandria:format-symbol’ is
+    not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/settings.lisp at Sat Dec 18 22:42:52 2021
+settings.lisp:27:1: Warning: value returned from (format t ";; COALTON
+    starting in release mode~%") is unused
+Leaving directory ‘/home/johan/src/coalton-1/src/’
+
+Compiling file /home/johan/src/coalton-1/src/algorithm/tarjan-scc.lisp at Sat Dec 18 22:42:52 2021
+Entering directory ‘/home/johan/src/coalton-1/src/algorithm/’
+tarjan-scc.lisp:8:20: Error: Wrong type argument: sequencep, edges
+
+Compiling file /home/johan/src/coalton-1/src/algorithm/immutable-map.lisp at Sat Dec 18 22:42:52 2021
+immutable-map.lisp:15:25: Warning: Unknown defun property ‘type’ in
+    immutable-map-lookup
+immutable-map.lisp:15:25: Warning: Unknown defun property ‘type’ in
+    immutable-map-lookup
+immutable-map.lisp:15:25: Warning: Unknown defun property ‘values’ in
+    immutable-map-lookup
+immutable-map.lisp:23:68: Warning: Unknown defun property ‘type’ in
+    immutable-map-set
+immutable-map.lisp:23:68: Warning: Unknown defun property ‘type’ in
+    immutable-map-set
+immutable-map.lisp:25:41: Error: Wrong type argument: sequencep, value
+
+Compiling file /home/johan/src/coalton-1/src/algorithm/immutable-listmap.lisp at Sat Dec 18 22:42:52 2021
+
+In immutable-listmap-lookup:
+immutable-listmap.lisp:19:17: Warning: reference to free variable ‘present-p’
+immutable-listmap.lisp:15:26: Warning: ‘error’ called with 1 args to fill 0
+    format field(s)
+immutable-listmap.lisp:18:47: Warning: reference to free variable ‘value’
+immutable-listmap.lisp:18:47: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-lookup
+immutable-listmap.lisp:18:47: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-lookup
+immutable-listmap.lisp:18:47: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-lookup
+immutable-listmap.lisp:18:47: Warning: Unknown defun property ‘values’ in
+    immutable-listmap-lookup
+immutable-listmap.lisp:30:90: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-push
+immutable-listmap.lisp:30:90: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-push
+immutable-listmap.lisp:30:90: Warning: Unknown defun property ‘values’ in
+    immutable-listmap-push
+immutable-listmap.lisp:39:90: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-replace
+immutable-listmap.lisp:39:90: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-replace
+immutable-listmap.lisp:39:90: Warning: Unknown defun property ‘type’ in
+    immutable-listmap-replace
+immutable-listmap.lisp:39:90: Warning: Unknown defun property ‘values’ in
+    immutable-listmap-replace
+
+In immutable-listmap-diff:
+immutable-listmap.lisp:50:71: Warning: reference to free variable ‘v1’
+immutable-listmap.lisp:47:13: Warning: reference to free variable ‘found’
+immutable-listmap.lisp:52:50: Warning: reference to free variable ‘k’
+immutable-listmap.lisp:54:50: Warning: reference to free variable ‘v2’
+
+In end of data:
+immutable-listmap.lisp:50:60: Warning: the function ‘fset:range’ is not known
+    to be defined.
+immutable-listmap.lisp:50:39: Warning: the function ‘fset:set-difference’ is
+    not known to be defined.
+immutable-listmap.lisp:49:30: Warning: the function ‘fset:convert’ is not
+    known to be defined.
+immutable-listmap.lisp:45:29: Warning: the function ‘v2’ is not known to be
+    defined.
+immutable-listmap.lisp:44:19: Warning: the function ‘k’ is not known to be
+    defined.
+immutable-listmap.lisp:44:6: Warning: the function ‘fset:do-map’ is not known
+    to be defined.
+immutable-listmap.lisp:30:52: Warning: the function ‘fset:with-first’ is not
+    known to be defined.
+immutable-listmap.lisp:30:33: Warning: the function ‘fset:with’ is not known
+    to be defined.
+immutable-listmap.lisp:18:8: Warning: the function ‘fset:lookup’ is not known
+    to be defined.
+immutable-listmap.lisp:17:25: Warning: the function ‘value’ is not known to be
+    defined.
+immutable-listmap.lisp:17:4: Warning: the function ‘multiple-value-bind’ is
+    not known to be defined.
+Leaving directory ‘/home/johan/src/coalton-1/src/algorithm/’
+
+Compiling file /home/johan/src/coalton-1/src/ast/pattern.lisp at Sat Dec 18 22:42:52 2021
+Entering directory ‘/home/johan/src/coalton-1/src/ast/’
+pattern.lisp:20:20: Warning: Missing value for option `symbol' of slot `id' in
+    struct pattern-var!
+pattern.lisp:20:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+pattern.lisp:33:20: Warning: Missing value for option `node-literal' of slot
+    `value' in struct pattern-literal!
+pattern.lisp:33:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+pattern.lisp:39:20: Warning: Missing value for option `symbol' of slot `name'
+    in struct pattern-constructor!
+pattern.lisp:39:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+pattern.lisp:39:20: Warning: Missing value for option `pattern-list' of slot
+    `patterns' in struct pattern-constructor!
+pattern.lisp:39:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In rewrite-pattern-vars:
+pattern.lisp:55:6: Warning: pattern-constructor called with 1 argument, but
+    requires 2
+pattern.lisp:66:12: Warning: Unknown defun property ‘type’ in
+    rewrite-pattern-vars
+pattern.lisp:66:12: Warning: Unknown defun property ‘type’ in
+    rewrite-pattern-vars
+pattern.lisp:66:12: Warning: Unknown defun property ‘values’ in
+    rewrite-pattern-vars
+
+In pattern-variables:
+pattern.lisp:76:6: Warning: pattern-constructor called with 1 argument, but
+    requires 2
+pattern.lisp:76:36: Warning: Unknown defun property ‘type’ in
+    pattern-variables
+
+In pprint-pattern:
+pattern.lisp:88:6: Warning: pattern-constructor called with 1 argument, but
+    requires 2
+pattern.lisp:88:6: Warning: Unknown defun property ‘type’ in pprint-pattern
+pattern.lisp:88:6: Warning: Unknown defun property ‘type’ in pprint-pattern
+pattern.lisp:88:6: Warning: Unknown defun property ‘ignore’ in pprint-pattern
+pattern.lisp:88:6: Warning: Unknown defun property ‘values’ in pprint-pattern
+pattern.lisp:95:1: Error: End of file during parsing
+
+Compiling file /home/johan/src/coalton-1/src/ast/node.lisp at Sat Dec 18 22:42:53 2021
+node.lisp:4:6: Warning: Missing value for option `t' of slot `unparsed' in
+    struct node!
+node.lisp:4:6: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:40:20: Warning: Missing value for option `literal-value' of slot
+    `value' in struct node-literal!
+node.lisp:40:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:47:20: Warning: Missing value for option `symbol' of slot `name' in
+    struct node-variable!
+node.lisp:47:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:54:20: Warning: Missing value for option `node' of slot `rator' in
+    struct node-application!
+node.lisp:54:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:54:20: Warning: Missing value for option `node-list' of slot `rands'
+    in struct node-application!
+node.lisp:54:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:61:20: Warning: Missing value for option `symbol-list' of slot
+    `vars' in struct node-abstraction!
+node.lisp:61:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:61:20: Warning: Missing value for option `node' of slot `subexpr' in
+    struct node-abstraction!
+node.lisp:61:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:61:20: Warning: Missing value for option `list' of slot `name-map'
+    in struct node-abstraction!
+node.lisp:61:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:69:20: Warning: Missing value for option `binding-list' of slot
+    `bindings' in struct node-let!
+node.lisp:69:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:69:20: Warning: Missing value for option `node' of slot `subexpr' in
+    struct node-let!
+node.lisp:69:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:69:20: Warning: Missing value for option `list' of slot `name-map'
+    in struct node-let!
+node.lisp:69:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:78:20: Warning: Missing value for option `t' of slot `type' in
+    struct node-lisp!
+node.lisp:78:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:78:20: Warning: Missing value for option `list' of slot `variables'
+    in struct node-lisp!
+node.lisp:78:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:78:20: Warning: Missing value for option `t' of slot `form' in
+    struct node-lisp!
+node.lisp:78:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:83:31: Warning: Missing value for option `t' of slot `unparsed' in
+    struct match-branch!
+node.lisp:83:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:83:31: Warning: Missing value for option `pattern' of slot `pattern'
+    in struct match-branch!
+node.lisp:83:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:83:31: Warning: Missing value for option `node' of slot `subexpr' in
+    struct match-branch!
+node.lisp:83:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:83:31: Warning: Missing value for option `list' of slot `name-map'
+    in struct match-branch!
+node.lisp:83:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:92:20: Warning: Missing value for option `node' of slot `expr' in
+    struct node-match!
+node.lisp:92:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:92:20: Warning: Missing value for option `list' of slot `branches'
+    in struct node-match!
+node.lisp:92:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:99:20: Warning: Missing value for option `node-list' of slot
+    `subnodes' in struct node-seq!
+node.lisp:99:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:105:20: Warning: Missing value for option `t' of slot `type' in
+    struct node-the!
+node.lisp:105:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+node.lisp:105:20: Warning: Missing value for option `node' of slot `subnode'
+    in struct node-the!
+node.lisp:105:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In end of data:
+node.lisp:17:28: Warning: the function ‘typep’ is not known to be defined.
+node.lisp:10:9: Warning: the function ‘every’ is not known to be defined.
+node.lisp:9:9: Warning: the function ‘alexandria:proper-list-p’ is not known
+    to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/ast/parse-error.lisp at Sat Dec 18 22:42:53 2021
+
+In with-parsing-context:
+parse-error.lisp:31:11: Warning: macro with-parsing-context used to take 0+
+    arguments, now takes 3
+parse-error.lisp:31:11: Error: Invalid lambda variable (context &rest args)
+
+Compiling file /home/johan/src/coalton-1/src/ast/parse-form.lisp at Sat Dec 18 22:42:53 2021
+
+In parse-form:
+parse-form.lisp:11:7: Warning: ‘(coalton:fn &rest args)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(coalton:λ &rest args)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(coalton:let &rest args)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(coalton:lisp &rest args)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(coalton:match expr_ &rest patterns)’ is a
+    malformed function
+parse-form.lisp:11:7: Warning: ‘(coalton:seq &rest subnodes)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(coalton:the &rest args)’ is a malformed
+    function
+parse-form.lisp:11:7: Warning: ‘(t &rest rands)’ is a malformed function
+parse-form.lisp:33:32: Warning: reference to free variable ‘args’
+parse-form.lisp:43:27: Warning: reference to free variable ‘expr_’
+parse-form.lisp:43:33: Warning: reference to free variable ‘patterns’
+parse-form.lisp:47:25: Warning: reference to free variable ‘subnodes’
+parse-form.lisp:56:18: Warning: reference to free variable ‘rands’
+parse-form.lisp:60:6: Warning: Unknown defun property ‘type’ in parse-form
+parse-form.lisp:60:6: Warning: Unknown defun property ‘values’ in parse-form
+parse-form.lisp:60:6: Warning: Unknown defun property ‘type’ in parse-form
+parse-form.lisp:62:22: Error: Wrong type argument: sequencep, value
+
+Compiling file /home/johan/src/coalton-1/src/ast/free-variables.lisp at Sat Dec 18 22:42:53 2021
+
+In free-variables:
+free-variables.lisp:3:24: Warning: ‘(analyze (expr bv) (etypecase expr
+    (node-literal nil) (node-variable (let ((name (node-variable-name expr)))
+(unless (member name bv) (push name fv)))) (node-abstraction (let ((vars
+    (node-abstraction-vars expr))) (analyze (node-abstraction-subexpr expr)
+(union bv vars)))) (node-let (let* ((bindings (node-let-bindings expr))
+    (subexpr (node-let-subexpr expr)) (vars (mapcar #'car bindings)) (vals
+    (mapcar
+#'cdr bindings)) (bv* (union bv vars))) (mapc (lambda (expr) (analyze expr
+    bv*)) (cons subexpr vals)))) (node-lisp nil) (node-application (let
+    ((rator
+(node-application-rator expr)) (rands (node-application-rands expr))) (mapc
+    (lambda (expr) (analyze expr bv)) (cons rator rands)))) (node-match (let
+((value (node-match-expr expr)) (branches (node-match-branches expr)))
+    (analyze value bv) (dolist (branch branches) (analyze
+    (match-branch-subexpr
+branch) (union bv (pattern-variables (match-branch-pattern branch)))))))
+    (node-seq (dolist (subnode (node-seq-subnodes expr)) (analyze subnode
+    bv)))
+(node-the (analyze (node-the-subnode expr) bv))))’ is a malformed function
+free-variables.lisp:55:7: Warning: Unknown defun property ‘type’ in
+    free-variables
+free-variables.lisp:55:7: Warning: Unknown defun property ‘values’ in
+    free-variables
+free-variables.lisp:57:25: Error: Wrong type argument: sequencep, val
+Leaving directory ‘/home/johan/src/coalton-1/src/ast/’
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/kinds.lisp at Sat Dec 18 22:42:53 2021
+Entering directory ‘/home/johan/src/coalton-1/src/typechecker/’
+kinds.lisp:11:1: Warning: global/dynamic var ‘kstar’ lacks a prefix
+kinds.lisp:16:20: Warning: Missing value for option `kind' of slot `from' in
+    struct kfun!
+kinds.lisp:16:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+kinds.lisp:16:20: Warning: Missing value for option `kind' of slot `to' in
+    struct kfun!
+kinds.lisp:16:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In simple-kind-p:
+kinds.lisp:26:6: Warning: kfun called with 1 argument, but requires 2
+kinds.lisp:27:17: Warning: Unknown defun property ‘type’ in simple-kind-p
+kinds.lisp:27:17: Warning: Unknown defun property ‘values’ in simple-kind-p
+kinds.lisp:35:33: Warning: Unknown defun property ‘type’ in kind-arity
+kinds.lisp:35:33: Warning: Unknown defun property ‘values’ in kind-arity
+
+In make-kind-of-arity:
+kinds.lisp:42:15: Warning: reference to free variable ‘kStar’
+kinds.lisp:43:16: Warning: reference to free variable ‘i’
+kinds.lisp:45:5: Warning: Unknown defun property ‘type’ in make-kind-of-arity
+kinds.lisp:45:5: Warning: Unknown defun property ‘values’ in
+    make-kind-of-arity
+
+In pprint-kind:
+kinds.lisp:51:51: Warning: value returned from (format stream "(") is unused
+kinds.lisp:51:51: Warning: value returned from (format stream ")") is unused
+kinds.lisp:51:51: Warning: value returned from (format stream " -> ") is
+    unused
+kinds.lisp:51:51: Warning: value returned from (format stream "(") is unused
+kinds.lisp:60:6: Warning: kfun called with 1 argument, but requires 2
+kinds.lisp:75:18: Warning: Unknown defun property ‘type’ in pprint-kind
+kinds.lisp:75:18: Warning: Unknown defun property ‘type’ in pprint-kind
+kinds.lisp:75:18: Warning: Unknown defun property ‘ignore’ in pprint-kind
+kinds.lisp:75:18: Warning: Unknown defun property ‘ignore’ in pprint-kind
+kinds.lisp:75:18: Warning: Unknown defun property ‘values’ in pprint-kind
+
+In end of data:
+kinds.lisp:44:27: Warning: the function ‘kFun’ is not known to be defined.
+kinds.lisp:41:4: Warning: the function ‘assert’ is not known to be defined.
+kinds.lisp:33:4: Warning: the function ‘loop’ is not known to be defined.
+kinds.lisp:25:6: Warning: the function ‘kstar’ is not known to be defined.
+kinds.lisp:24:4: Warning: the function ‘etypecase’ is not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/types.lisp at Sat Dec 18 22:42:54 2021
+types.lisp:45:32: Warning: Missing value for option `symbol' of slot `name' in
+    struct tycon!
+types.lisp:45:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+types.lisp:45:32: Warning: Missing value for option `kind' of slot `kind' in
+    struct tycon!
+types.lisp:45:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+types.lisp:94:1: Warning: global/dynamic var ‘tBoolean’ lacks a prefix
+types.lisp:95:1: Warning: global/dynamic var ‘tChar’ lacks a prefix
+types.lisp:96:1: Warning: global/dynamic var ‘tI32’ lacks a prefix
+types.lisp:97:1: Warning: global/dynamic var ‘tI64’ lacks a prefix
+types.lisp:98:1: Warning: global/dynamic var ‘tU8’ lacks a prefix
+types.lisp:99:1: Warning: global/dynamic var ‘tU32’ lacks a prefix
+types.lisp:100:1: Warning: global/dynamic var ‘tU64’ lacks a prefix
+types.lisp:101:1: Warning: global/dynamic var ‘tInteger’ lacks a prefix
+types.lisp:106:1: Warning: global/dynamic var ‘tString’ lacks a prefix
+types.lisp:110:1: Warning: global/dynamic var ‘tArrow’ lacks a prefix
+types.lisp:116:20: Warning: Unknown defun property ‘type’ in
+    apply-type-argument
+types.lisp:116:20: Warning: Unknown defun property ‘type’ in
+    apply-type-argument
+types.lisp:116:20: Warning: Unknown defun property ‘values’ in
+    apply-type-argument
+
+In apply-type-argument-list:
+types.lisp:123:39: Warning: ‘(%apply-type-argument-list (tcon args) (if args
+    (apply-type-argument (%apply-type-argument-list tcon (cdr args)) (car
+args)) tcon))’ is a malformed function
+
+In make-function-type:
+types.lisp:135:81: Warning: ‘error’ called with 2 args to fill 0 format
+    field(s)
+types.lisp:137:79: Warning: ‘error’ called with 2 args to fill 0 format
+    field(s)
+types.lisp:138:27: Warning: Unknown defun property ‘type’ in
+    make-function-type
+types.lisp:138:27: Warning: Unknown defun property ‘values’ in
+    make-function-type
+types.lisp:147:59: Warning: Unknown defun property ‘type’ in
+    make-function-type*
+types.lisp:147:59: Warning: Unknown defun property ‘type’ in
+    make-function-type*
+types.lisp:147:59: Warning: Unknown defun property ‘values’ in
+    make-function-type*
+types.lisp:149:1: Warning: ‘defgeneric’ is an obsolete macro (as of 25.1); use
+    ‘cl-defgeneric’ instead.
+types.lisp:158:23: Warning: Unknown defun property ‘type’ in
+    function-type-from
+types.lisp:162:12: Warning: Unknown defun property ‘type’ in function-type-to
+types.lisp:169:1: Warning: ‘defgeneric’ is an obsolete macro (as of 25.1); use
+    ‘cl-defgeneric’ instead.
+types.lisp:177:1: Warning: ‘defgeneric’ is an obsolete macro (as of 25.1); use
+    ‘cl-defgeneric’ instead.
+
+In pprint-ty:
+types.lisp:195:47: Warning: ‘(print-subfunction (to) (cond ((function-type-p
+    to) (pprint-ty stream (tapp-to (tapp-from to))) (write-string (if
+*coalton-print-unicode* " → " " -> ") stream) (print-subfunction (tapp-to
+    to))) (t (pprint-ty stream to))))’ is a malformed function
+types.lisp:253:6: Warning: Unknown defun property ‘type’ in pprint-ty
+types.lisp:253:6: Warning: Unknown defun property ‘type’ in pprint-ty
+types.lisp:253:6: Warning: Unknown defun property ‘ignore’ in pprint-ty
+types.lisp:253:6: Warning: Unknown defun property ‘ignore’ in pprint-ty
+types.lisp:253:6: Warning: Unknown defun property ‘values’ in pprint-ty
+
+In end of data:
+types.lisp:253:6: Warning: the function ‘tgen’ is not known to be defined.
+types.lisp:233:28: Warning: the function ‘loop’ is not known to be defined.
+types.lisp:219:19: Warning: the function ‘print-subfunction’ is not known to
+    be defined.
+types.lisp:223:24: Warning: the function ‘write-string’ is not known to be
+    defined.
+types.lisp:209:6: Warning: the function ‘tapp’ is not known to be defined.
+types.lisp:242:32: Warning: the function ‘tcon’ is not known to be defined.
+types.lisp:202:6: Warning: the function ‘tvar’ is not known to be defined.
+types.lisp:201:4: Warning: the function ‘etypecase’ is not known to be
+    defined.
+types.lisp:124:13: Warning: the function ‘%apply-type-argument-list’ is not
+    known to be defined.
+types.lisp:124:4: Warning: the function ‘labels’ is not known to be defined.
+types.lisp:119:12: Warning: the function ‘equalp’ is not known to be defined.
+types.lisp:67:6: Warning: the function ‘incf’ is not known to be defined.
+types.lisp:36:11: Warning: the function ‘required’ is not known to be defined.
+types.lisp:18:28: Warning: the function ‘typep’ is not known to be defined.
+types.lisp:11:9: Warning: the function ‘every’ is not known to be defined.
+types.lisp:10:9: Warning: the function ‘alexandria:proper-list-p’ is not known
+    to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/pretty-printing.lisp at Sat Dec 18 22:42:54 2021
+
+In next-pprint-variable-as-tvar:
+pretty-printing.lisp:21:57: Warning: reference to free variable ‘kStar’
+pretty-printing.lisp:26:11: Error: Invalid lambda variable nil
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/substitutions.lisp at Sat Dec 18 22:42:54 2021
+
+In pprint-substution:
+substitutions.lisp:75:56: Warning: value returned from (format stream "#T~a"
+    (progn (or (progn (and (memq (type-of (progn (or (progn (and (memq
+(type-of sub) cl-struct-substitution-tags) t)) (signal 'wrong-type-argument
+    (list 'substitution sub))) (aref sub 1))) cl-struct-tyvar-tags) t))
+(signal 'wrong-type-argument (list 'tyvar (progn (or (progn (and (memq
+    (type-of sub) cl-struct-substitution-tags) t)) (signal
+    'wrong-type-argument
+(list 'substitution sub))) (aref sub 1))))) (aref (progn (or (progn (and (memq
+    (type-of sub) cl-struct-substitution-tags) t)) (signal
+'wrong-type-argument (list 'substitution sub))) (aref sub 1)) 1))) is unused
+substitutions.lisp:75:56: Warning: value returned from (format stream " +-> ")
+    is unused
+substitutions.lisp:75:56: Warning: value returned from (format stream "~a"
+    (progn (or (progn (and (memq (type-of sub) cl-struct-substitution-tags)
+    t))
+(signal 'wrong-type-argument (list 'substitution sub))) (aref sub 2))) is
+    unused
+substitutions.lisp:81:3: Warning: Unknown defun property ‘ignore’ in
+    pprint-substution
+substitutions.lisp:81:3: Warning: Unknown defun property ‘ignore’ in
+    pprint-substution
+
+In end of data:
+substitutions.lisp:64:6: Warning: the function ‘remove-duplicates’ is not
+    known to be defined.
+substitutions.lisp:42:19: Warning: the function ‘find’ is not known to be
+    defined.
+substitutions.lisp:24:10: Warning: the function ‘concatenate’ is not known to
+    be defined.
+substitutions.lisp:20:71: Warning: the function ‘equalp’ is not known to be
+    defined.
+substitutions.lisp:20:19: Warning: the function ‘intersection’ is not known to
+    be defined.
+substitutions.lisp:13:28: Warning: the function ‘typep’ is not known to be
+    defined.
+substitutions.lisp:13:9: Warning: the function ‘every’ is not known to be
+    defined.
+substitutions.lisp:12:9: Warning: the function ‘alexandria:proper-list-p’ is
+    not known to be defined.
+substitutions.lisp:9:10: Warning: the function ‘required’ is not known to be
+    defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/predicate.lisp at Sat Dec 18 22:42:54 2021
+predicate.lisp:9:20: Warning: Missing value for option `symbol' of slot
+    `class' in struct ty-predicate!
+predicate.lisp:9:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+predicate.lisp:9:20: Warning: Missing value for option `ty-list' of slot
+    `types' in struct ty-predicate!
+predicate.lisp:9:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+predicate.lisp:30:20: Warning: Missing value for option `ty-predicate-list' of
+    slot `predicates' in struct qualified-ty!
+predicate.lisp:30:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+predicate.lisp:30:20: Warning: Missing value for option `ty' of slot `type' in
+    struct qualified-ty!
+predicate.lisp:30:20: Warning: I'll take `:type' to be an option rather than a
+    default value.
+predicate.lisp:39:28: Warning: Unknown defun property ‘type’ in qualify
+predicate.lisp:39:28: Warning: Unknown defun property ‘type’ in qualify
+predicate.lisp:39:28: Warning: Unknown defun property ‘values’ in qualify
+predicate.lisp:46:1: Warning: ‘defmethod’ is an obsolete macro (as of 25.1);
+    use ‘cl-defmethod’ instead.
+predicate.lisp:46:1: Warning: ‘defgeneric’ is an obsolete macro (as of 25.1);
+    use ‘cl-defgeneric’ instead.
+predicate.lisp:50:43: Error: Invalid lambda variable (type ty-predicate)
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/scheme.lisp at Sat Dec 18 22:42:55 2021
+scheme.lisp:7:32: Warning: Missing value for option `list' of slot `kinds' in
+    struct ty-scheme!
+scheme.lisp:7:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+scheme.lisp:7:32: Warning: Missing value for option `qualified-ty' of slot
+    `type' in struct ty-scheme!
+scheme.lisp:7:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In quantify:
+scheme.lisp:33:52: Warning: reference to free variable ‘var’
+scheme.lisp:32:28: Warning: reference to free variable ‘id’
+scheme.lisp:87:1: Error: Attempt to set a constant symbol: nil
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/typed-node.lisp at Sat Dec 18 22:42:55 2021
+typed-node.lisp:7:32: Warning: Missing value for option `ty-scheme' of slot
+    `type' in struct typed-node!
+typed-node.lisp:7:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+typed-node.lisp:7:32: Warning: Missing value for option `t' of slot `unparsed'
+    in struct typed-node!
+typed-node.lisp:7:32: Warning: I'll take `:type' to be an option rather than a
+    default value.
+typed-node.lisp:28:20: Warning: Missing value for option `literal-value' of
+    slot `value' in struct typed-node-literal!
+typed-node.lisp:28:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:34:20: Warning: Missing value for option `symbol' of slot
+    `name' in struct typed-node-variable!
+typed-node.lisp:34:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:41:20: Warning: Missing value for option `typed-node' of slot
+    `rator' in struct typed-node-application!
+typed-node.lisp:41:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:41:20: Warning: Missing value for option `typed-node-list' of
+    slot `rands' in struct typed-node-application!
+typed-node.lisp:41:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:51:20: Warning: Missing value for option `ty-scheme' of slot
+    `rator-type' in struct typed-node-direct-application!
+typed-node.lisp:51:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:51:20: Warning: Missing value for option `symbol' of slot
+    `rator' in struct typed-node-direct-application!
+typed-node.lisp:51:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:51:20: Warning: Missing value for option `typed-node-list' of
+    slot `rands' in struct typed-node-direct-application!
+typed-node.lisp:51:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:67:20: Warning: Missing value for option `scheme-binding-list'
+    of slot `vars' in struct typed-node-abstraction!
+typed-node.lisp:67:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:67:20: Warning: Missing value for option `typed-node' of slot
+    `subexpr' in struct typed-node-abstraction!
+typed-node.lisp:67:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:67:20: Warning: Missing value for option `list' of slot
+    `name-map' in struct typed-node-abstraction!
+typed-node.lisp:67:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:81:20: Warning: Missing value for option `typed-binding-list'
+    of slot `bindings' in struct typed-node-let!
+typed-node.lisp:81:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:81:20: Warning: Missing value for option `typed-node' of slot
+    `subexpr' in struct typed-node-let!
+typed-node.lisp:81:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:81:20: Warning: Missing value for option `list' of slot
+    `sorted-bindings' in struct typed-node-let!
+typed-node.lisp:81:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:81:20: Warning: Missing value for option `symbol-list' of slot
+    `dynamic-extent-bindings' in struct typed-node-let!
+typed-node.lisp:81:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:81:20: Warning: Missing value for option `list' of slot
+    `name-map' in struct typed-node-let!
+typed-node.lisp:81:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:101:20: Warning: Missing value for option `list' of slot
+    `variables' in struct typed-node-lisp!
+typed-node.lisp:101:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:101:20: Warning: Missing value for option `t' of slot `form'
+    in struct typed-node-lisp!
+typed-node.lisp:101:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:110:20: Warning: Missing value for option `t' of slot
+    `unparsed' in struct typed-match-branch!
+typed-node.lisp:110:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:110:20: Warning: Missing value for option `pattern' of slot
+    `pattern' in struct typed-match-branch!
+typed-node.lisp:110:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:110:20: Warning: Missing value for option `typed-node' of slot
+    `subexpr' in struct typed-match-branch!
+typed-node.lisp:110:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:110:20: Warning: Missing value for option
+    `scheme-binding-list' of slot `bindings' in struct typed-match-branch!
+typed-node.lisp:110:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:110:20: Warning: Missing value for option `list' of slot
+    `name-map' in struct typed-match-branch!
+typed-node.lisp:110:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:127:20: Warning: Missing value for option `typed-node' of slot
+    `expr' in struct typed-node-match!
+typed-node.lisp:127:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:127:20: Warning: Missing value for option
+    `typed-match-branch-list' of slot `branches' in struct typed-node-match!
+typed-node.lisp:127:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:134:20: Warning: Missing value for option `typed-node-list' of
+    slot `subnodes' in struct typed-node-seq!
+typed-node.lisp:134:20: Warning: I'll take `:type' to be an option rather than
+    a default value.
+typed-node.lisp:383:66: Warning: Unknown defun property ‘type’ in
+    collect-variable-namespace
+typed-node.lisp:383:66: Warning: Unknown defun property ‘values’ in
+    collect-variable-namespace
+typed-node.lisp:400:19: Error: Wrong type argument: sequencep, node
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/type-errors.lisp at Sat Dec 18 22:42:55 2021
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/unify.lisp at Sat Dec 18 22:42:55 2021
+
+In unify:
+unify.lisp:7:28: Warning: ‘(coalton-type-error (lambda (c) (error
+    'coalton-type-error-context :context-form "unification of types ~A and ~A"
+:context-args (list (apply-substitution substs type1) (apply-substitution
+    substs type2)) :suberror c)))’ is a malformed function
+
+In predicate-mgu:
+unify.lisp:85:69: Warning: reference to free variable ‘pred-type1’
+unify.lisp:86:69: Warning: reference to free variable ‘pred-type2’
+unify.lisp:88:6: Warning: Unknown defun property ‘type’ in predicate-mgu
+
+In predicate-match:
+unify.lisp:104:71: Warning: reference to free variable ‘pred-type1’
+unify.lisp:105:69: Warning: reference to free variable ‘pred-type2’
+unify.lisp:107:6: Warning: Unknown defun property ‘type’ in predicate-match
+
+In end of data:
+unify.lisp:88:6: Warning: the function ‘coalton-type-error’ is not known to be
+    defined.
+unify.lisp:81:18: Warning: the function ‘loop’ is not known to be defined.
+unify.lisp:80:10: Warning: the function ‘reduce’ is not known to be defined.
+unify.lisp:78:4: Warning: the function ‘handler-case’ is not known to be
+    defined.
+unify.lisp:39:7: Warning: the function ‘find’ is not known to be defined.
+unify.lisp:27:10: Warning: the function ‘equalp’ is not known to be defined.
+unify.lisp:7:28: Warning: the function ‘handler-bind’ is not known to be
+    defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/equality.lisp at Sat Dec 18 22:42:55 2021
+
+In type=:
+equality.lisp:7:21: Warning: ‘(%type= (type1 type2) (cond ((and (tvar-p type1)
+    (tvar-p type2)) (let* ((pair1 (find type1 var-table :key #'car :test
+#'equalp)) (pair2 (find type2 var-table :key #'car :test #'equalp))) (cond
+    ((and (null pair1) (null pair2)) (pushnew (cons type1 type2) var-table
+    :key
+#'car :test #'equalp) (pushnew (cons type2 type1) var-table :key #'car :test
+    #'equalp) t) ((or (null pair1) (null pair2)) nil) (t (and (eql (car
+pair1) (cdr pair2)) (eql (cdr pair1) (car pair2))))))) ((and (tcon-p type1)
+    (tcon-p type2)) (equalp type1 type2)) ((and (tapp-p type1) (tapp-p type2))
+(and (%type= (tapp-from type1) (tapp-from type2)) (%type= (tapp-to type1)
+    (tapp-to type2)))) (t nil)))’ is a malformed function
+equality.lisp:39:17: Warning: Unknown defun property ‘type’ in type=
+equality.lisp:37:12: Warning: Unknown defun property ‘values’ in type=
+
+In qualified-type=:
+equality.lisp:52:30: Warning: reference to free variable ‘var-table’
+equality.lisp:61:52: Warning: reference to free variable ‘types-equal-p’
+equality.lisp:65:24: Warning: reference to free variable ‘qualified-type=’
+equality.lisp:61:18: Warning: reference to free variable ‘pred’
+equality.lisp:62:18: Warning: ‘member’ called with 4 args, but requires 2
+equality.lisp:62:18: Warning: member called with 4 arguments, but accepts only
+    2
+equality.lisp:64:33: Warning: ‘member’ called with 4 args, but requires 2
+equality.lisp:64:33: Warning: member called with 4 arguments, but accepts only
+    2
+equality.lisp:74:1: Warning: ‘defmethod’ is an obsolete macro (as of 25.1);
+    use ‘cl-defmethod’ instead.
+equality.lisp:74:1: Warning: ‘defgeneric’ is an obsolete macro (as of 25.1);
+    use ‘cl-defgeneric’ instead.
+equality.lisp:75:21: Error: Invalid lambda variable (y ty-scheme)
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/environment.lisp at Sat Dec 18 22:42:56 2021
+environment.lisp:10:1: Warning: ‘defmethod’ is an obsolete macro (as of 25.1);
+    use ‘cl-defmethod’ instead.
+environment.lisp:10:1: Warning: ‘defgeneric’ is an obsolete macro (as of
+    25.1); use ‘cl-defgeneric’ instead.
+environment.lisp:12:51: Error: Invalid lambda variable (env value-environment)
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/context-reduction.lisp at Sat Dec 18 22:42:56 2021
+
+In by-super:
+context-reduction.lisp:14:18: Warning: lookup-class called with 2 arguments,
+    but requires 4
+context-reduction.lisp:19:13: Warning: reference to free variable
+    ‘super-class-pred’
+context-reduction.lisp:22:42: Warning: Unknown defun property ‘type’ in
+    by-super
+context-reduction.lisp:22:42: Warning: Unknown defun property ‘type’ in
+    by-super
+context-reduction.lisp:22:42: Warning: Unknown defun property ‘values’ in
+    by-super
+
+In by-inst:
+context-reduction.lisp:35:73: Warning: reference to free variable ‘inst’
+context-reduction.lisp:36:24: Warning: reference to free variable ‘by-inst’
+context-reduction.lisp:38:15: Warning: Unknown defun property ‘type’ in
+    by-inst
+context-reduction.lisp:38:15: Warning: Unknown defun property ‘type’ in
+    by-inst
+context-reduction.lisp:38:15: Warning: Unknown defun property ‘values’ in
+    by-inst
+
+In entail:
+context-reduction.lisp:48:22: Warning: ‘member’ called with 4 args, but
+    requires 2
+context-reduction.lisp:48:22: Warning: member called with 4 arguments, but
+    accepts only 2
+context-reduction.lisp:51:28: Warning: reference to free variable ‘found’
+context-reduction.lisp:52:65: Warning: reference to free variable ‘inst-preds’
+context-reduction.lisp:52:65: Warning: Unknown defun property ‘type’ in entail
+context-reduction.lisp:52:65: Warning: Unknown defun property ‘type’ in entail
+context-reduction.lisp:52:65: Warning: Unknown defun property ‘type’ in entail
+context-reduction.lisp:52:65: Warning: Unknown defun property ‘values’ in
+    entail
+
+In super-entail:
+context-reduction.lisp:61:10: Warning: ‘member’ called with 4 args, but
+    requires 2
+context-reduction.lisp:61:10: Warning: member called with 4 arguments, but
+    accepts only 2
+context-reduction.lisp:61:75: Warning: Unknown defun property ‘type’ in
+    super-entail
+context-reduction.lisp:61:75: Warning: Unknown defun property ‘type’ in
+    super-entail
+context-reduction.lisp:61:75: Warning: Unknown defun property ‘type’ in
+    super-entail
+context-reduction.lisp:61:75: Warning: Unknown defun property ‘values’ in
+    super-entail
+
+In hnf-p:
+context-reduction.lisp:63:15: Warning: ‘(hnf (ty) (etypecase ty (tvar t) (tcon
+    nil) (tapp (hnf (tapp-from ty)))))’ is a malformed function
+
+In to-hnf:
+context-reduction.lisp:80:17: Warning: reference to free variable ‘found’
+context-reduction.lisp:82:41: Warning: reference to free variable ‘inst-preds’
+
+In simplify-context:
+context-reduction.lisp:84:30: Warning: ‘(simp-loop (rs ps) (if (endp ps) rs
+    (if (entail env (append rs (rest ps)) (first ps)) (simp-loop rs (rest ps))
+(simp-loop (append (list (first ps)) rs) (rest ps)))))’ is a malformed
+    function
+
+In split-context:
+context-reduction.lisp:107:16: Warning: reference to free variable ‘p’
+context-reduction.lisp:108:36: Warning: ‘member’ called with 4 args, but
+    requires 2
+context-reduction.lisp:108:36: Warning: member called with 4 arguments, but
+    accepts only 2
+context-reduction.lisp:113:36: Warning: reference to free variable ‘deferred’
+context-reduction.lisp:112:30: Warning: reference to free variable ‘retained’
+context-reduction.lisp:113:45: Warning: Unknown defun property ‘values’ in
+    split-context
+
+In end of data:
+context-reduction.lisp:113:21: Warning: the function ‘return’ is not known to
+    be defined.
+context-reduction.lisp:86:13: Warning: the function ‘simp-loop’ is not known
+    to be defined.
+context-reduction.lisp:71:15: Warning: the function ‘hnf’ is not known to be
+    defined.
+context-reduction.lisp:65:4: Warning: the function ‘labels’ is not known to be
+    defined.
+context-reduction.lisp:52:29: Warning: the function ‘every’ is not known to be
+    defined.
+context-reduction.lisp:49:43: Warning: the function ‘inst-preds’ is not known
+    to be defined.
+context-reduction.lisp:49:22: Warning: the function ‘multiple-value-bind’ is
+    not known to be defined.
+context-reduction.lisp:48:48: Warning: the function ‘equalp’ is not known to
+    be defined.
+context-reduction.lisp:49:16: Warning: the function ‘true’ is not known to be
+    defined.
+context-reduction.lisp:37:8: Warning: the function
+    ‘predicate-unification-error’ is not known to be defined.
+context-reduction.lisp:36:33: Warning: the function ‘values’ is not known to
+    be defined.
+context-reduction.lisp:36:12: Warning: the function ‘return-from’ is not known
+    to be defined.
+context-reduction.lisp:32:6: Warning: the function ‘handler-case’ is not known
+    to be defined.
+context-reduction.lisp:31:17: Warning: the function ‘inst’ is not known to be
+    defined.
+context-reduction.lisp:31:4: Warning: the function ‘fset:do-seq’ is not known
+    to be defined.
+context-reduction.lisp:18:7: Warning: the function ‘loop’ is not known to be
+    defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/type-parse-error.lisp at Sat Dec 18 22:42:56 2021
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/parse-type.lisp at Sat Dec 18 22:42:56 2021
+
+In parse-and-resolve-type:
+parse-type.lisp:44:25: Warning: reference to free variable ‘subs’
+parse-type.lisp:43:8: Warning: parse-qualified-type-expr called with 6
+    arguments, but requires 8
+parse-type.lisp:46:49: Warning: ‘member’ called with 4 args, but requires 2
+parse-type.lisp:46:49: Warning: member called with 4 arguments, but accepts
+    only 2
+parse-type.lisp:47:62: Warning: reference to free variable ‘parsed’
+parse-type.lisp:47:62: Warning: Unknown defun property ‘type’ in
+    parse-and-resolve-type
+parse-type.lisp:47:62: Warning: Unknown defun property ‘values’ in
+    parse-and-resolve-type
+parse-type.lisp:50:1: Error: Invalid function: (lambda ((context &rest args) &body body) (list 'handler-case (cons 'progn body) (list
+'coalton-parse-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons (cons 'format (cons nil (cons context args)))
+'(:suberror c)))))) (list 'coalton-impl/typechecker::coalton-type-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons
+(cons 'format (cons nil (cons context args))) '(:suberror c))))))))
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/parse-type-definition.lisp at Sat Dec 18 22:42:56 2021
+parse-type-definition.lisp:8:31: Warning: Missing value for option `symbol' of
+    slot `name' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:8:31: Warning: Missing value for option `ty' of
+    slot `type' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:8:31: Warning: Missing value for option `t' of slot
+    `runtime-type' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:8:31: Warning: Missing value for option `boolean'
+    of slot `enum-repr' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:8:31: Warning: Missing value for option `boolean'
+    of slot `newtype' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:8:31: Warning: Missing value for option
+    `constructor-entry-list' of slot `constructors' in struct type-definition!
+parse-type-definition.lisp:8:31: Warning: I'll take `:type' to be an option
+    rather than a default value.
+parse-type-definition.lisp:27:1: Error: Invalid function: (lambda ((context &rest args) &body body) (list 'handler-case (cons 'progn body) (list
+'coalton-parse-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons (cons 'format (cons nil (cons context args)))
+'(:suberror c)))))) (list 'coalton-impl/typechecker::coalton-type-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons
+(cons 'format (cons nil (cons context args))) '(:suberror c))))))))
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/parse-class-definition.lisp at Sat Dec 18 22:42:56 2021
+parse-class-definition.lisp:7:39: Error: Wrong type argument: sequencep, form
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/parse-instance-definition.lisp at Sat Dec 18 22:42:56 2021
+parse-instance-definition.lisp:7:31: Warning: Missing value for option
+    `symbol' of slot `class-name' in struct instance-definition!
+parse-instance-definition.lisp:7:31: Warning: I'll take `:type' to be an
+    option rather than a default value.
+parse-instance-definition.lisp:7:31: Warning: Missing value for option
+    `ty-predicate' of slot `predicate' in struct instance-definition!
+parse-instance-definition.lisp:7:31: Warning: I'll take `:type' to be an
+    option rather than a default value.
+parse-instance-definition.lisp:7:31: Warning: Missing value for option
+    `ty-predicate-list' of slot `context' in struct instance-definition!
+parse-instance-definition.lisp:7:31: Warning: I'll take `:type' to be an
+    option rather than a default value.
+parse-instance-definition.lisp:7:31: Warning: Missing value for option
+    `typed-binding-list' of slot `methods' in struct instance-definition!
+parse-instance-definition.lisp:7:31: Warning: I'll take `:type' to be an
+    option rather than a default value.
+parse-instance-definition.lisp:7:31: Warning: Missing value for option
+    `symbol' of slot `codegen-sym' in struct instance-definition!
+parse-instance-definition.lisp:7:31: Warning: I'll take `:type' to be an
+    option rather than a default value.
+parse-instance-definition.lisp:21:1: Error: Invalid function: (lambda ((context &rest args) &body body) (list 'handler-case (cons 'progn body) (list
+'coalton-parse-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons (cons 'format (cons nil (cons context args)))
+'(:suberror c)))))) (list 'coalton-impl/typechecker::coalton-type-error '(c) (cons 'error (cons ''coalton-parse-error-context (cons ':context (cons
+(cons 'format (cons nil (cons context args))) '(:suberror c))))))))
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/derive-type.lisp at Sat Dec 18 22:42:56 2021
+derive-type.lisp:14:27: Warning: Unknown defun property ‘values’ in
+    derive-literal-type
+derive-type.lisp:150:21: Warning: reference to free variable ‘preds’
+derive-type.lisp:152:46: Warning: reference to free variable ‘type’
+derive-type.lisp:131:43: Warning: lookup-value-type called with 2 arguments,
+    but requires 4
+derive-type.lisp:253:19: Warning: ‘(build-function (args) (if (null args)
+    ret-ty (multiple-value-bind (arg-ty arg-pred typed-rand new-substs-arg)
+(derive-expression-type (car args) env substs) (push typed-rand typed-rands)
+    (setf arg-preds (append arg-pred arg-preds)) (setf substs new-substs-arg)
+(make-function-type arg-ty (build-function (cdr args))))))’ is a malformed
+    function
+derive-type.lisp:96:35: Warning: reference to free variable ‘fun-preds’
+derive-type.lisp:103:24: Warning: reference to free variable ‘typed-rator’
+derive-type.lisp:81:35: Warning: reference to free variable ‘fun-ty’
+derive-type.lisp:100:24: Warning: ‘(build-function (args) (if (null args)
+    ret-ty (make-function-type (qualified-ty-type (fresh-inst
+    (lookup-value-type
+new-env (car args)))) (build-function (cdr args)))))’ is a malformed function
+derive-type.lisp:148:32: Warning: reference to free variable ‘ret-preds’
+derive-type.lisp:155:22: Warning: reference to free variable ‘typed-subexpr’
+derive-type.lisp:135:21: Warning: reference to free variable ‘new-substs’
+derive-type.lisp:131:69: Warning: lookup-value-type called with 2 arguments,
+    but requires 4
+derive-type.lisp:148:42: Warning: reference to free variable ‘bindings-preds’
+derive-type.lisp:155:36: Warning: reference to free variable ‘sccs’
+derive-type.lisp:183:16: Warning: reference to free variable ‘new-subs’
+derive-type.lisp:209:22: Warning: reference to free variable ‘typed-bindings’
+derive-type.lisp:187:38: Warning: ‘(coalton-type-error (lambda (c) (error
+    'coalton-type-error-context :context-form "match on ~A" :context-args
+    (list
+(node-unparsed (node-match-expr value))) :suberror c)))’ is a malformed
+    function
+derive-type.lisp:181:17: Warning: reference to free variable ‘typed-expr’
+derive-type.lisp:174:40: Warning: reference to free variable ‘match-preds’
+derive-type.lisp:170:17: Warning: reference to free variable ‘ty’
+derive-type.lisp:170:17: Warning: reference to free variable ‘typed-branches’
+derive-type.lisp:195:18: Warning: reference to free variable ‘elem’
+derive-type.lisp:207:35: Warning: reference to free variable ‘preds_’
+derive-type.lisp:207:35: Warning: reference to free variable ‘node’
+derive-type.lisp:233:17: Warning: reference to free variable ‘subs_’
+derive-type.lisp:215:35: Warning: reference to free variable ‘tyvar’
+derive-type.lisp:243:21: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In derive-bindings-type:
+derive-type.lisp:293:33: Warning: reference to free variable ‘impl-preds’
+derive-type.lisp:299:71: Warning: reference to free variable ‘new-env’
+derive-type.lisp:299:79: Warning: reference to free variable ‘new-subs’
+derive-type.lisp:311:38: Warning: reference to free variable
+    ‘typed-impl-bindings’
+derive-type.lisp:308:17: Warning: reference to free variable
+    ‘typed-expl-binding’
+derive-type.lisp:309:37: Warning: reference to free variable ‘expl-preds’
+derive-type.lisp:313:8: Warning: Unknown defun property ‘type’ in
+    derive-bindings-type
+derive-type.lisp:313:8: Warning: Unknown defun property ‘type’ in
+    derive-bindings-type
+derive-type.lisp:313:8: Warning: Unknown defun property ‘type’ in
+    derive-bindings-type
+derive-type.lisp:313:8: Warning: Unknown defun property ‘values’ in
+    derive-bindings-type
+derive-type.lisp:315:39: Error: Wrong type argument: sequencep, node
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/check-types.lisp at Sat Dec 18 22:42:57 2021
+
+In check-binding-node-types:
+check-types.lisp:9:30: Warning: lookup-value-type called with 2 arguments, but
+    requires 4
+check-types.lisp:9:14: Warning: lookup-value-type called with 2 arguments, but
+    requires 4
+check-types.lisp:18:43: Warning: reference to free variable ‘preds’
+check-types.lisp:24:35: Warning: reference to free variable ‘type’
+check-types.lisp:39:42: Warning: lookup-value-type called with 2 arguments,
+    but requires 4
+check-types.lisp:35:51: Warning: reference to free variable ‘env-pred’
+check-types.lisp:33:20: Warning: reference to free variable ‘node-pred’
+check-types.lisp:36:51: Warning: lookup-value-type called with 2 arguments,
+    but requires 4
+
+In check-application-node-type:
+check-types.lisp:134:16: Warning: reference to free variable ‘rand-type’
+check-types.lisp:155:24: Warning: Unknown defun property ‘type’ in
+    check-application-node-type
+check-types.lisp:155:24: Warning: Unknown defun property ‘type’ in
+    check-application-node-type
+check-types.lisp:155:24: Warning: Unknown defun property ‘type’ in
+    check-application-node-type
+
+In sub-ty-scheme-p:
+check-types.lisp:175:24: Warning: reference to free variable ‘sub-ty-scheme-p’
+check-types.lisp:171:16: Warning: reference to free variable ‘pred’
+
+In end of data:
+check-types.lisp:175:12: Warning: the function ‘return-from’ is not known to
+    be defined.
+check-types.lisp:169:19: Warning: the function ‘coalton-type-error’ is not
+    known to be defined.
+check-types.lisp:167:17: Warning: the function ‘handler-case’ is not known to
+    be defined.
+check-types.lisp:136:10: Warning: the function ‘coalton-impl::coalton-bug’ is
+    not known to be defined.
+check-types.lisp:73:47: Warning: the function ‘remove-if-not’ is not known to
+    be defined.
+check-types.lisp:32:34: Warning: the function ‘remove-duplicates’ is not known
+    to be defined.
+check-types.lisp:32:10: Warning: the function ‘loop’ is not known to be
+    defined.
+check-types.lisp:16:29: Warning: the function ‘type’ is not known to be
+    defined.
+check-types.lisp:16:8: Warning: the function ‘multiple-value-bind’ is not
+    known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/typechecker/debug.lisp at Sat Dec 18 22:42:57 2021
+
+In print-value-db:
+debug.lisp:3:8: Warning: function print-value-db used to take 0-1 arguments,
+    now takes 1-2
+debug.lisp:3:38: Warning: ‘(print-package (package entries) (format t
+    "[package ~A]~%~%" (package-name package)) (let ((*package* package))
+    (loop :for
+(name . type) :in entries :do (format t " ~A :: ~A~%" name type))) (format t
+    "~%"))’ is a malformed function
+debug.lisp:8:23: Warning: reference to free variable ‘entry’
+debug.lisp:8:55: Warning: reference to free variable ‘sym’
+debug.lisp:24:28: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In print-type-db:
+debug.lisp:27:8: Warning: function print-type-db used to take 0-1 arguments,
+    now takes 1-2
+debug.lisp:27:37: Warning: ‘(print-package (package entries) (format t
+    "[package ~A]~%~%" (package-name package)) (loop :for (name . entry) :in
+entries :do (format t " ~A :: ~A~%" name (kind-of entry))) (format t "~%"))’
+    is a malformed function
+debug.lisp:32:23: Warning: reference to free variable ‘entry’
+debug.lisp:32:55: Warning: reference to free variable ‘sym’
+debug.lisp:47:28: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In print-class-db:
+debug.lisp:50:8: Warning: function print-class-db used to take 0-1 arguments,
+    now takes 1-2
+debug.lisp:50:38: Warning: ‘(print-package (package entries) (format t
+    "[package ~A]~%~%" (package-name package)) (let ((*package* package))
+    (loop
+:for (name . entry) :in entries :do (with-pprint-variable-context nil (let
+    ((class-pred (ty-class-predicate entry))) (format t " [~S (~A :: ~A)]~%"
+(ty-predicate-class class-pred) (ty-predicate-types class-pred) (mapcar
+    #'kind-of (ty-predicate-types class-pred)))) (loop :for (method-name .
+method-type) :in (ty-class-unqualified-methods entry) :do (format t " ~S ::
+    ~A~%" method-name method-type))) (format t "~%"))) (format t "~%"))’ is
+a malformed function
+debug.lisp:55:23: Warning: reference to free variable ‘entry’
+debug.lisp:55:55: Warning: reference to free variable ‘sym’
+debug.lisp:77:28: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In print-instance-db:
+debug.lisp:80:8: Warning: function print-instance-db used to take 0-1
+    arguments, now takes 1-2
+debug.lisp:80:41: Warning: ‘(print-package (package entries) (format t
+    "[package ~A]~%~%" (package-name package)) (let ((*package* package))
+    (loop
+:for (entry . instances) :in entries :when (not (null instances)) :do
+    (with-pprint-variable-context nil (let* ((class-pred (ty-class-predicate
+entry))) (format t " [~S (~A :: ~A)]~%" (ty-predicate-class class-pred)
+    (ty-predicate-types class-pred) (mapcar #'kind-of (ty-predicate-types
+class-pred))))) (fset:do-seq (instance instances) (format t " ")
+    (with-pprint-variable-context nil (let* ((instance-constraints
+(ty-class-instance-constraints instance)) (instance-predicate
+    (ty-class-instance-predicate instance))) (cond ((= 0 (length
+    instance-constraints))
+(format t "~A~%" instance-predicate)) ((= 1 (length instance-constraints))
+    (format t "~A ~A ~A~%" (first instance-constraints) (if
+*coalton-print-unicode* "⇒" "=>") instance-predicate)) (t (format t "~A ~A
+    ~A~%" instance-constraints (if *coalton-print-unicode* "⇒" "=>")
+instance-predicate)))))) (format t "~%"))) (format t "~%"))’ is a malformed
+    function
+debug.lisp:94:26: Warning: reference to free variable ‘entry’
+debug.lisp:86:38: Warning: reference to free variable ‘sym’
+debug.lisp:130:28: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In end of data:
+debug.lisp:24:14: Warning: the function ‘print-package’ is not known to be
+    defined.
+debug.lisp:11:6: Warning: the function ‘labels’ is not known to be defined.
+debug.lisp:7:19: Warning: the function ‘sym’ is not known to be defined.
+debug.lisp:7:6: Warning: the function ‘fset:do-map’ is not known to be
+    defined.
+Leaving directory ‘/home/johan/src/coalton-1/src/typechecker/’
+
+Compiling file /home/johan/src/coalton-1/src/codegen/utilities.lisp at Sat Dec 18 22:42:57 2021
+Entering directory ‘/home/johan/src/coalton-1/src/codegen/’
+utilities.lisp:3:31: Warning: Missing value for option `symbol' of slot `name'
+    in struct struct-or-class-field!
+utilities.lisp:3:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+utilities.lisp:3:31: Warning: Missing value for option `t' of slot `type' in
+    struct struct-or-class-field!
+utilities.lisp:3:31: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In struct-or-class:
+utilities.lisp:21:6: Warning: ‘:struct’ called as a function
+utilities.lisp:42:60: Warning: reference to free variable ‘field’
+utilities.lisp:46:76: Warning: reference to free variable ‘name’
+utilities.lisp:50:37: Warning: reference to free variable ‘type’
+utilities.lisp:50:30: Warning: ‘:class’ called as a function
+utilities.lisp:46:50: Warning: reference to free variable ‘package’
+utilities.lisp:51:41: Warning: reference to free variable ‘accessor’
+utilities.lisp:55:43: Warning: Unknown defun property ‘type’ in
+    struct-or-class
+utilities.lisp:55:43: Warning: Unknown defun property ‘type’ in
+    struct-or-class
+utilities.lisp:55:43: Warning: Unknown defun property ‘type’ in
+    struct-or-class
+utilities.lisp:55:43: Warning: Unknown defun property ‘type’ in
+    struct-or-class
+utilities.lisp:55:43: Warning: Unknown defun property ‘type’ in
+    struct-or-class
+
+In end of data:
+utilities.lisp:46:25: Warning: the function ‘alexandria:format-symbol’ is not
+    known to be defined.
+utilities.lisp:35:8: Warning: the function ‘:class’ is not known to be
+    defined.
+utilities.lisp:41:14: Warning: the function ‘loop’ is not known to be defined.
+utilities.lisp:22:8: Warning: the function ‘:struct’ is not known to be
+    defined.
+utilities.lisp:21:6: Warning: the function ‘ecase’ is not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/lisp-types.lisp at Sat Dec 18 22:42:57 2021
+lisp-types.lisp:22:23: Warning: lookup-type called with 2 arguments, but
+    requires 4
+
+Compiling file /home/johan/src/coalton-1/src/codegen/function-entry.lisp at Sat Dec 18 22:42:57 2021
+function-entry.lisp:5:33: Warning: Missing value for option `fixnum' of slot
+    `arity' in struct function-entry!
+function-entry.lisp:5:33: Warning: I'll take `:type' to be an option rather
+    than a default value.
+function-entry.lisp:5:33: Warning: Missing value for option `function' of slot
+    `function' in struct function-entry!
+function-entry.lisp:5:33: Warning: I'll take `:type' to be an option rather
+    than a default value.
+function-entry.lisp:5:33: Warning: Missing value for option `function' of slot
+    `curried' in struct function-entry!
+function-entry.lisp:5:33: Warning: I'll take `:type' to be an option rather
+    than a default value.
+
+In A1:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A1
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A1
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A1
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F1
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F1
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F1
+
+In A2:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A2
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A2
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A2
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F2
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F2
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F2
+
+In A3:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A3
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A3
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A3
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F3
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F3
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F3
+
+In A4:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A4
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A4
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A4
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F4
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F4
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F4
+
+In A5:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A5
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A5
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A5
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F5
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F5
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F5
+
+In A6:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A6
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A6
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A6
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F6
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F6
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F6
+
+In A7:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A7
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A7
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A7
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F7
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F7
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F7
+
+In A8:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A8
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A8
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A8
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F8
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F8
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F8
+
+In A9:
+function-entry.lisp:66:1: Warning: reference to free variable ‘fixnum’
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in A9
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in A9
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in A9
+function-entry.lisp:66:1: Warning: Unknown defun property ‘type’ in F9
+function-entry.lisp:66:1: Warning: Unknown defun property ‘optimize’ in F9
+function-entry.lisp:66:1: Warning: Unknown defun property ‘values’ in F9
+
+In construct-function-entry:
+function-entry.lisp:83:13: Warning: ‘error’ called with 1 args to fill 0
+    format field(s)
+
+In apply-function-entry:
+function-entry.lisp:91:8: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+
+In end of data:
+function-entry.lisp:66:1: Warning: the function ‘A~D’ is not known to be
+    defined.
+function-entry.lisp:66:1: Warning: the function ‘the’ is not known to be
+    defined.
+function-entry.lisp:66:1: Warning: the function ‘function-entry’ is not known
+    to be defined.
+function-entry.lisp:66:1: Warning: the function ‘etypecase’ is not known to be
+    defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/optimizer.lisp at Sat Dec 18 22:42:58 2021
+optimizer.lisp:4:46: Warning: Missing value for option `environment' of slot
+    `env' in struct optimizer!
+optimizer.lisp:4:46: Warning: I'll take `:type' to be an option rather than a
+    default value.
+optimizer.lisp:4:46: Warning: Missing value for option `list' of slot
+    `toplevel-functions' in struct optimizer!
+optimizer.lisp:4:46: Warning: I'll take `:type' to be an option rather than a
+    default value.
+
+In make-optimizer:
+optimizer.lisp:8:8: Warning: function make-optimizer used to take 0+
+    arguments, now takes 1
+optimizer.lisp:8:8: Warning: function ‘make-optimizer’ defined multiple times
+    in this file
+optimizer.lisp:11:4: Warning: Unknown defun property ‘type’ in make-optimizer
+optimizer.lisp:11:4: Warning: Unknown defun property ‘values’ in
+    make-optimizer
+
+In optimize-node:
+optimizer.lisp:25:25: Warning: reference to free variable
+    ‘coalton-impl:*interaction-mode*’
+optimizer.lisp:29:17: Warning: Unknown defun property ‘type’ in optimize-node
+optimizer.lisp:29:17: Warning: Unknown defun property ‘type’ in optimize-node
+optimizer.lisp:29:17: Warning: Unknown defun property ‘values’ in
+    optimize-node
+optimizer.lisp:37:37: Error: Wrong type argument: sequencep, node
+
+Compiling file /home/johan/src/coalton-1/src/codegen/direct-application.lisp at Sat Dec 18 22:42:58 2021
+direct-application.lisp:34:10: Warning: typed-node-variable called with 1
+    argument, but requires 3
+direct-application.lisp:154:58: Warning: ‘t’ called as a function
+
+In update-inlineable-functions:
+direct-application.lisp:165:71: Warning: reference to free variable
+    ‘variables’
+direct-application.lisp:165:6: Warning: reference to free variable ‘functions’
+direct-application.lisp:165:89: Warning: Unknown defun property ‘type’ in
+    update-inlineable-functions
+direct-application.lisp:165:89: Warning: Unknown defun property ‘type’ in
+    update-inlineable-functions
+direct-application.lisp:165:89: Warning: Unknown defun property ‘values’ in
+    update-inlineable-functions
+direct-application.lisp:172:4: Warning: Unknown defun property ‘type’ in
+    remove-inlinable-functions
+direct-application.lisp:172:4: Warning: Unknown defun property ‘type’ in
+    remove-inlinable-functions
+direct-application.lisp:174:35: Error: Wrong type argument: sequencep, node
+
+Compiling file /home/johan/src/coalton-1/src/codegen/match-constructor-lift.lisp at Sat Dec 18 22:42:58 2021
+match-constructor-lift.lisp:6:47: Warning: Unknown defun property ‘type’ in
+    match-constructor-lift-transform
+match-constructor-lift.lisp:6:47: Warning: Unknown defun property ‘type’ in
+    match-constructor-lift-transform
+match-constructor-lift.lisp:135:6: Warning: Unknown defun property ‘type’ in
+    generate-lifted-constructor
+
+In end of data:
+match-constructor-lift.lisp:95:15: Warning: the function
+    ‘coalton-impl/ast::pattern-var-p’ is not known to be defined.
+match-constructor-lift.lisp:94:13: Warning: the function ‘notany’ is not known
+    to be defined.
+match-constructor-lift.lisp:88:13: Warning: the function
+    ‘coalton-impl/typechecker::typed-node-direct-application-p’ is not known
+    to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/pointfree-transform.lisp at Sat Dec 18 22:42:58 2021
+pointfree-transform.lisp:120:38: Error: Wrong type argument: sequencep, type
+
+Compiling file /home/johan/src/coalton-1/src/codegen/compile-pattern.lisp at Sat Dec 18 22:42:59 2021
+compile-pattern.lisp:18:20: Warning: lookup-constructor called with 2
+    arguments, but requires 4
+compile-pattern.lisp:19:19: Warning: lookup-type called with 2 arguments, but
+    requires 4
+compile-pattern.lisp:36:66: Warning: reference to free variable ‘field’
+compile-pattern.lisp:37:87: Warning: reference to free variable ‘i’
+compile-pattern.lisp:36:35: Warning: reference to free variable ‘subpattern’
+compile-pattern.lisp:38:42: Warning: reference to free variable ‘accessor’
+
+In end of data:
+compile-pattern.lisp:37:48: Warning: the function ‘alexandria:format-symbol’
+    is not known to be defined.
+compile-pattern.lisp:34:25: Warning: the function ‘loop’ is not known to be
+    defined.
+compile-pattern.lisp:30:15: Warning: the function ‘coalton-impl::coalton-bug’
+    is not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/compile-typeclass-dicts.lisp at Sat Dec 18 22:42:59 2021
+
+In compile-typeclass-dicts:
+compile-typeclass-dicts.lisp:10:14: Warning: reference to free variable ‘pred’
+compile-typeclass-dicts.lisp:20:40: Warning: Unknown defun property ‘type’ in
+    compile-typeclass-dicts
+compile-typeclass-dicts.lisp:20:40: Warning: Unknown defun property ‘type’ in
+    compile-typeclass-dicts
+compile-typeclass-dicts.lisp:20:40: Warning: Unknown defun property ‘type’ in
+    compile-typeclass-dicts
+compile-typeclass-dicts.lisp:20:40: Warning: Unknown defun property ‘values’
+    in compile-typeclass-dicts
+
+In make-dict-plist:
+compile-typeclass-dicts.lisp:29:14: Warning: reference to free variable ‘pred’
+compile-typeclass-dicts.lisp:44:45: Warning: Unknown defun property ‘type’ in
+    make-dict-plist
+compile-typeclass-dicts.lisp:44:45: Warning: Unknown defun property ‘type’ in
+    make-dict-plist
+compile-typeclass-dicts.lisp:44:45: Warning: Unknown defun property ‘values’
+    in make-dict-plist
+
+In lookup-dict:
+compile-typeclass-dicts.lisp:55:72: Warning: reference to free variable ‘subs’
+compile-typeclass-dicts.lisp:54:12: Warning: lookup-class-instance called with
+    2 arguments, but requires 4
+compile-typeclass-dicts.lisp:55:77: Warning: reference to free variable
+    ‘instance’
+
+In lookup-in-context:
+compile-typeclass-dicts.lisp:66:40: Warning: ‘(lookup-pred (pred ctx-pred
+    method-accessor) "Try to match PRED to CTX-PRED or one of its
+    superclasses.
+METHOD-ACCESSOR is the symbol to retrieve the " (let* ((ctx-class
+    (lookup-class env (ty-predicate-class ctx-pred))) (subs
+(coalton-impl/typechecker::predicate-match (ty-class-predicate ctx-class)
+    ctx-pred)) (ctx-class (coalton-impl/typechecker::apply-substitution subs
+ctx-class))) (cond ((equalp pred ctx-pred) (list method-accessor)) (t (let
+    ((superclass-ret (some (lambda (super-dict-entry) (let* ((superclass-pred
+(car super-dict-entry)) (superclass-accessor (cdr super-dict-entry))
+    (superclass-accessor-symbol (alexandria:format-symbol (symbol-package
+superclass-accessor) "CLASS/~A-~A" (ty-predicate-class ctx-pred)
+    superclass-accessor))) (lookup-pred pred superclass-pred
+superclass-accessor-symbol))) (ty-class-superclass-dict ctx-class)))) (when
+    superclass-ret (cons method-accessor superclass-ret)))))))’ is a malformed
+function
+compile-typeclass-dicts.lisp:66:40: Error: Wrong type argument: sequencep, ctx-sym
+
+Compiling file /home/johan/src/coalton-1/src/codegen/compile-expression.lisp at Sat Dec 18 22:42:59 2021
+
+In compile-binding-list:
+compile-expression.lisp:115:97: Warning: ‘(compile-sccs (sccs) (if (null sccs)
+    (compile-expression subnode ctx env) (let* ((scc (car sccs))
+(scc-typed-bindings (mapcar (lambda (b) (find b typed-bindings :key #'car))
+    scc)) (local-dynamic-extent-bindings (mapcan (lambda (b) (when (member b
+dynamic-extent-bindings :test #'equalp) (list b))) scc))) (cond ((every
+    #'coalton-impl/typechecker::typed-node-abstraction-p (mapcar #'cdr
+scc-typed-bindings)) (let* ((function-names (mapcar #'car scc-typed-bindings))
+    (variable-namespace (append
+(coalton-impl/typechecker::collect-variable-namespace subnode) (mapcan
+    #'coalton-impl/typechecker::collect-variable-namespace (mapcar #'cdr
+typed-bindings)))) (generate-function-scaffold (subsetp function-names
+    variable-namespace :test #'equalp)) (labels_ `(labels ,(mapcar (lambda (b)
+(unless (null local-dynamic-extent-bindings) (coalton-impl::coalton-bug
+    "Functions should not be declared dynamic extent.")) (let* ((type
+(typed-node-type (cdr b))) (preds (reduce-preds-for-codegen (scheme-predicates
+    type) env)) (dict-context (mapcar (lambda (pred) (cons pred (gensym)))
+preds)) (dict-types (mapcar (lambda (dict-context) (cons (ty-class-codegen-sym
+    (lookup-class env (ty-predicate-class (car dict-context)))) (cdr
+dict-context))) dict-context))) `(,(car b) (,@(mapcar #'cdr dict-context)
+    ,@(mapcar #'car (typed-node-abstraction-vars (cdr b)))) (declare
+    (ignorable
+,@(mapcar #'cdr dict-context) ,@(mapcar #'car (typed-node-abstraction-vars
+    (cdr b)))) ,@(when *emit-type-annotations* `(,@(mapcar (lambda (var)
+    `(type
+,(lisp-type (cdr var) env) ,(car var))) (typed-node-abstraction-vars (cdr b)))
+    ,@(mapcar (lambda (dict) `(type ,(car dict) ,(cdr dict))) dict-types)
+(values ,(lisp-type (typed-node-type (typed-node-abstraction-subexpr (cdr b)))
+    env) &optional)))) ,(compile-expression (typed-node-abstraction-subexpr
+(cdr b)) (append dict-context ctx) env)))) scc-typed-bindings) ,@(when
+    generate-function-scaffold `((setf ,@(mapcan (lambda (b) (let* ((type
+(typed-node-type (cdr b))) (preds (reduce-preds-for-codegen (scheme-predicates
+    type) env))) `(,(car b) ,(construct-function-entry `#',(car b) (+
+(length (typed-node-abstraction-vars (cdr b))) (length preds))))))
+    scc-typed-bindings)))) ,(compile-sccs (cdr sccs))))) (if
+    generate-function-scaffold
+`(let ,(mapcar (lambda (v) `(,(car v) ,(construct-function-entry `(lambda nil
+    (error "")) 1))) scc-typed-bindings) (declare (ignorable ,@(mapcar #'car
+scc-typed-bindings)) ,@(when (not (null local-dynamic-extent-bindings))
+    `((dynamic-extent ,@local-dynamic-extent-bindings)))) ,labels_) labels_)))
+((and (= 1 (length scc-typed-bindings)) t) (let* ((binding (car
+    scc-typed-bindings)) (name (car binding)) (node (cdr binding)) (type
+    (typed-node-type
+node)) (preds (reduce-preds-for-codegen (scheme-predicates type) env))
+    (dict-context (mapcar (lambda (pred) (cons pred (gensym))) preds))) (if
+    (not (=
+0 (length dict-context))) (let ((function-constructor (gethash (length
+    dict-context) *function-constructor-functions*))) (progn (unless (null
+local-dynamic-extent-bindings) (coalton-impl::coalton-bug "Functions should
+    not be declared dynamic extent.")) `(let ((,name (,function-constructor
+(lambda ,(mapcar #'cdr dict-context) ,(compile-expression node (append
+    dict-context ctx) env))))) ,(compile-sccs (cdr sccs))))) `(let ,(mapcar
+    (lambda
+(b) `(,(car b) ,(compile-expression (cdr b) ctx env))) scc-typed-bindings)
+    (declare (ignorable ,@(mapcar #'car scc-typed-bindings)) ,@(when
+*emit-type-annotations* `(,@(mapcar (lambda (var) `(type ,(lisp-type (cdr var)
+    env) ,(car var))) scc-typed-bindings))) ,@(when (not (null
+local-dynamic-extent-bindings)) `((dynamic-extent
+    ,@local-dynamic-extent-bindings)))) ,(compile-sccs (cdr sccs)))))) (t
+    (coalton-impl::coalton-bug
+"Invalid SCC detected in codegen."))))))’ is a malformed function
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘type’ in
+    compile-binding-list
+compile-expression.lisp:261:19: Warning: Unknown defun property ‘values’ in
+    compile-binding-list
+
+In end of data:
+compile-expression.lisp:261:6: Warning: the function ‘compile-sccs’ is not
+    known to be defined.
+compile-expression.lisp:257:21: Warning: the function ‘subsetp’ is not known
+    to be defined.
+compile-expression.lisp:254:35: Warning: the function ‘copy-list’ is not known
+    to be defined.
+compile-expression.lisp:125:4: Warning: the function ‘labels’ is not known to
+    be defined.
+compile-expression.lisp:37:15: Warning: the function
+    ‘coalton-impl/typechecker::typed-node-variable-p’ is not known to be
+    defined.
+compile-expression.lisp:34:10: Warning: the function
+    ‘coalton-impl::coalton-bug’ is not known to be defined.
+compile-expression.lisp:24:30: Warning: the function
+    ‘coalton-impl/typechecker::typed-node-application-p’ is not known to be
+    defined.
+compile-expression.lisp:29:33: Warning: the function ‘equalp’ is not known to
+    be defined.
+compile-expression.lisp:26:25: Warning: the function ‘remove-duplicates’ is
+    not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/compile-type-definition.lisp at Sat Dec 18 22:42:59 2021
+
+In compile-type-definition:
+compile-type-definition.lisp:64:58: Warning: reference to free variable
+    ‘constructor’
+compile-type-definition.lisp:25:20: Warning: reference to free variable
+    ‘coalton-impl::*interaction-mode*’
+compile-type-definition.lisp:55:34: Warning: reference to free variable
+    ‘classname’
+compile-type-definition.lisp:57:35: Warning: reference to free variable
+    ‘superclass’
+compile-type-definition.lisp:56:36: Warning: reference to free variable
+    ‘constructor-name’
+compile-type-definition.lisp:58:31: Warning: reference to free variable
+    ‘fields’
+compile-type-definition.lisp:40:49: Warning: reference to free variable
+    ‘field’
+compile-type-definition.lisp:45:41: Warning: reference to free variable ‘type’
+compile-type-definition.lisp:41:30: Warning: reference to free variable ‘i’
+compile-type-definition.lisp:42:30: Warning: reference to free variable ‘name’
+compile-type-definition.lisp:78:95: Warning: reference to free variable
+    ‘field-names’
+
+In end of data:
+compile-type-definition.lisp:42:39: Warning: the function
+    ‘alexandria:format-symbol’ is not known to be defined.
+compile-type-definition.lisp:39:20: Warning: the function ‘loop’ is not known
+    to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/codegen/program.lisp at Sat Dec 18 22:42:59 2021
+
+In reshuffle-definitions:
+program.lisp:3:31: Warning: ‘(sub-struct-p (thing) (and (eq 'cl:defstruct (car
+    thing)) (find ':INCLUDE (cdadr thing) :key #'car :test #'eq)))’ is a
+malformed function
+program.lisp:67:26: Warning: reference to free variable ‘thing’
+program.lisp:74:43: Warning: reference to free variable ‘defsubstructs’
+program.lisp:70:43: Warning: reference to free variable ‘defstructs’
+program.lisp:69:29: Warning: reference to free variable ‘declaims-inline’
+program.lisp:78:29: Warning: reference to free variable ‘declaims-other’
+program.lisp:62:26: Warning: ‘member’ called with 4 args, but requires 2
+program.lisp:62:26: Warning: member called with 4 arguments, but accepts only
+    2
+program.lisp:63:40: Warning: reference to free variable ‘deflex-stubs’
+program.lisp:65:40: Warning: reference to free variable ‘setfs-ltv’
+program.lisp:67:38: Warning: reference to free variable ‘others’
+
+In codegen-program:
+program.lisp:95:22: Warning: reference to free variable ‘type’
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+program.lisp:109:35: Warning: Unknown defun property ‘type’ in codegen-program
+
+In compile-docstring-forms:
+program.lisp:121:58: Warning: reference to free variable ‘docstring’
+program.lisp:126:47: Warning: reference to free variable ‘type’
+program.lisp:119:14: Warning: ‘:variable’ called as a function
+program.lisp:123:41: Warning: reference to free variable ‘name’
+program.lisp:124:59: Warning: ‘:function’ called as a function
+program.lisp:126:41: Warning: ‘:type’ called as a function
+program.lisp:128:47: Error: Wrong type argument: sequencep, arity
+Leaving directory ‘/home/johan/src/coalton-1/src/codegen/’
+
+Compiling file /home/johan/src/coalton-1/src/toplevel-define-type.lisp at Sat Dec 18 22:42:59 2021
+Entering directory ‘/home/johan/src/coalton-1/src/’
+
+In process-toplevel-type-definitions:
+toplevel-define-type.lisp:70:33: Warning: reference to free variable
+    ‘parsed-docstrings’
+toplevel-define-type.lisp:70:13: Warning: reference to free variable
+    ‘parsed-deftypes’
+toplevel-define-type.lisp:58:62: Warning: reference to free variable
+    ‘*compile-file-pathname*’
+toplevel-define-type.lisp:58:86: Warning: reference to free variable
+    ‘*load-truename*’
+toplevel-define-type.lisp:70:6: Warning: Unknown defun property ‘type’ in
+    process-toplevel-type-definitions
+toplevel-define-type.lisp:70:6: Warning: Unknown defun property ‘type’ in
+    process-toplevel-type-definitions
+
+In end of data:
+toplevel-define-type.lisp:70:6: Warning: the function ‘values’ is not known to
+    be defined.
+toplevel-define-type.lisp:27:8: Warning: the function
+    ‘coalton-impl/typechecker::parse-type-definitions’ is not known to be
+    defined.
+toplevel-define-type.lisp:26:25: Warning: the function ‘parsed-deftypes’ is
+    not known to be defined.
+toplevel-define-type.lisp:26:4: Warning: the function ‘multiple-value-bind’ is
+    not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/toplevel-declare.lisp at Sat Dec 18 22:42:59 2021
+
+In process-toplevel-declarations:
+toplevel-declare.lisp:11:36: Warning: reference to free variable
+    ‘declared-type’
+toplevel-declare.lisp:10:35: Warning: reference to free variable ‘name’
+toplevel-declare.lisp:12:5: Warning: Unknown defun property ‘type’ in
+    process-toplevel-declarations
+
+In parse-declaration:
+toplevel-declare.lisp:24:14: Warning: reference to free variable
+    ‘coalton-impl/typechecker::kstar’
+toplevel-declare.lisp:26:6: Warning: Unknown defun property ‘type’ in
+    parse-declaration
+
+In end of data:
+toplevel-declare.lisp:26:6: Warning: the function ‘values’ is not known to be
+    defined.
+toplevel-declare.lisp:23:15: Warning: the function
+    ‘coalton-impl/typechecker::kind-of’ is not known to be defined.
+toplevel-declare.lisp:22:14: Warning: the function ‘equalp’ is not known to be
+    defined.
+toplevel-declare.lisp:20:21: Warning: the function ‘third’ is not known to be
+    defined.
+toplevel-declare.lisp:19:17: Warning: the function ‘second’ is not known to be
+    defined.
+toplevel-declare.lisp:16:4: Warning: the function ‘assert’ is not known to be
+    defined.
+toplevel-declare.lisp:9:29: Warning: the function ‘name’ is not known to be
+    defined.
+toplevel-declare.lisp:9:8: Warning: the function ‘multiple-value-bind’ is not
+    known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/toplevel-define.lisp at Sat Dec 18 22:42:59 2021
+toplevel-define.lisp:45:8: Warning: Unknown defun property ‘type’ in
+    parse-define-form
+toplevel-define.lisp:45:8: Warning: Unknown defun property ‘values’ in
+    parse-define-form
+toplevel-define.lisp:58:11: Warning: Unknown defun property ‘type’ in
+    parse-define-form-variable
+toplevel-define.lisp:58:11: Warning: Unknown defun property ‘type’ in
+    parse-define-form-variable
+toplevel-define.lisp:58:11: Warning: Unknown defun property ‘values’ in
+    parse-define-form-variable
+toplevel-define.lisp:70:11: Warning: Unknown defun property ‘type’ in
+    parse-define-form-function
+toplevel-define.lisp:70:11: Warning: Unknown defun property ‘type’ in
+    parse-define-form-function
+toplevel-define.lisp:70:11: Warning: Unknown defun property ‘type’ in
+    parse-define-form-function
+toplevel-define.lisp:70:11: Warning: Unknown defun property ‘values’ in
+    parse-define-form-function
+
+In process-toplevel-value-definitions:
+toplevel-define.lisp:72:69: Warning: ‘"COALTON-TOPLEVEL"’ is a malformed
+    function
+toplevel-define.lisp:72:69: Error: Wrong type argument: sequencep, node
+
+Compiling file /home/johan/src/coalton-1/src/toplevel-define-instance.lisp at Sat Dec 18 22:43:00 2021
+toplevel-define-instance.lisp:8:4: Warning: Unknown defun property ‘values’ in
+    process-toplevel-instance-definitions
+toplevel-define-instance.lisp:10:1: Error: Attempt to set a constant symbol: nil
+
+Compiling file /home/johan/src/coalton-1/src/coalton.lisp at Sat Dec 18 22:43:00 2021
+
+In collect-toplevel-forms:
+coalton.lisp:24:32: Warning: ‘(flatten (forms) (loop :for form :in forms
+    :append (cond ((atom form) (list form)) ((member (first form)
+**toplevel-operators**) (flatten (rest form))) (t (list form)))))’ is a
+    malformed function
+
+In coalton:coalton-toplevel:
+coalton.lisp:116:32: Warning: reference to free variable ‘env’
+coalton.lisp:116:11: Warning: reference to free variable ‘form’
+
+In coalton:coalton:
+coalton.lisp:127:28: Warning: ‘"COALTON"’ is a malformed function
+coalton.lisp:128:60: Warning: reference to free variable ‘*package*’
+coalton.lisp:134:17: Warning: reference to free variable ‘preds’
+coalton.lisp:136:17: Warning: reference to free variable ‘typed-node’
+coalton.lisp:136:74: Warning: reference to free variable ‘substs’
+
+In process-coalton-toplevel:
+coalton.lisp:161:62: Warning: reference to free variable ‘declares’
+coalton.lisp:163:51: Warning: reference to free variable ‘defines’
+coalton.lisp:155:36: Warning: reference to free variable ‘class-defines’
+coalton.lisp:159:61: Warning: reference to free variable ‘instance-defines’
+coalton.lisp:149:57: Warning: reference to free variable ‘repr-table’
+coalton.lisp:180:40: Warning: reference to free variable ‘type-docstrings’
+coalton.lisp:149:10: Warning: reference to free variable ‘type-defines’
+coalton.lisp:170:48: Warning: reference to free variable ‘toplevel-bindings’
+coalton.lisp:177:32: Warning: reference to free variable ‘dag’
+coalton.lisp:181:40: Warning: reference to free variable ‘value-docstrings’
+coalton.lisp:174:32: Warning: reference to free variable ‘defined-types’
+coalton.lisp:174:32: Warning: reference to free variable ‘classes’
+
+In end of data:
+coalton.lisp:185:28: Warning: the function ‘equalp’ is not known to be
+    defined.
+coalton.lisp:163:59: Warning: the function ‘env’ is not known to be defined.
+coalton.lisp:178:32: Warning: the function ‘classes’ is not known to be
+    defined.
+coalton.lisp:148:27: Warning: the function ‘defined-types’ is not known to be
+    defined.
+coalton.lisp:149:44: Warning: the function ‘type-defines’ is not known to be
+    defined.
+coalton.lisp:140:12: Warning: the function
+    ‘coalton-impl/codegen::compile-expression’ is not known to be defined.
+coalton.lisp:135:24: Warning: the function
+    ‘coalton-impl/typechecker::reduce-context’ is not known to be defined.
+coalton.lisp:136:29: Warning: the function
+    ‘coalton-impl/typechecker::apply-substitution’ is not known to be defined.
+coalton.lisp:130:29: Warning: the function ‘type’ is not known to be defined.
+coalton.lisp:129:6: Warning: the function
+    ‘coalton-impl/typechecker::with-type-context’ is not known to be defined.
+coalton.lisp:114:25: Warning: the function ‘form’ is not known to be defined.
+coalton.lisp:114:4: Warning: the function ‘multiple-value-bind’ is not known
+    to be defined.
+coalton.lisp:105:14: Warning: the function ‘flatten’ is not known to be
+    defined.
+coalton.lisp:104:22: Warning: the function ‘assert’ is not known to be
+    defined.
+coalton.lisp:88:63: Warning: the function ‘second’ is not known to be defined.
+coalton.lisp:101:30: Warning: the function ‘rest’ is not known to be defined.
+coalton.lisp:54:22: Warning: the function ‘values’ is not known to be defined.
+coalton.lisp:53:22: Warning: the function ‘endp’ is not known to be defined.
+coalton.lisp:68:33: Warning: the function ‘forms’ is not known to be defined.
+coalton.lisp:50:15: Warning: the function ‘walk’ is not known to be defined.
+coalton.lisp:43:6: Warning: the function ‘labels’ is not known to be defined.
+
+Compiling file /home/johan/src/coalton-1/src/debug.lisp at Sat Dec 18 22:43:00 2021
+
+In print-value-db:
+debug.lisp:3:8: Warning: function print-value-db used to take 1-2 arguments,
+    now takes 0-1
+
+In print-type-db:
+debug.lisp:7:8: Warning: function print-type-db used to take 1-2 arguments,
+    now takes 0-1
+
+In print-class-db:
+debug.lisp:11:8: Warning: function print-class-db used to take 1-2 arguments,
+    now takes 0-1
+
+In print-instance-db:
+debug.lisp:15:8: Warning: function print-instance-db used to take 1-2
+    arguments, now takes 0-1
+
+In end of data:
+debug.lisp:25:82: Warning: the function ‘coalton-impl::lookup-type’ is not
+    known to be defined.
+debug.lisp:25:39: Warning: the function
+    ‘coalton-impl/typechecker::type-entry-type’ is not known to be defined.
+debug.lisp:25:4: Warning: the function ‘coalton-impl/typechecker::kind-of’ is
+    not known to be defined.
+debug.lisp:21:4: Warning: the function ‘coalton-impl::lookup-value-type’ is
+    not known to be defined.
+debug.lisp:17:4: Warning: the function
+    ‘coalton-impl/typechecker::print-instance-db’ is not known to be defined.
+debug.lisp:13:4: Warning: the function
+    ‘coalton-impl/typechecker::print-class-db’ is not known to be defined.
+debug.lisp:9:4: Warning: the function
+    ‘coalton-impl/typechecker::print-type-db’ is not known to be defined.
+debug.lisp:5:4: Warning: the function
+    ‘coalton-impl/typechecker::print-value-db’ is not known to be defined.
+Leaving directory ‘/home/johan/src/coalton-1/src/’
+
+Compiling file /home/johan/src/coalton-1/src/doc/generate-documentation.lisp at Sat Dec 18 22:43:00 2021
+Entering directory ‘/home/johan/src/coalton-1/src/doc/’
+generate-documentation.lisp:3:1: Error: Attempt to set a constant symbol: nil
+Leaving directory ‘/home/johan/src/coalton-1/src/doc/’
+
+Compiling file /home/johan/src/coalton-1/src/faux-macros.lisp at Sat Dec 18 22:43:00 2021
+Entering directory ‘/home/johan/src/coalton-1/src/’
+
+In error-coalton-only:
+faux-macros.lisp:9:28: Warning: ‘error’ called with 1 args to fill 0 format
+    field(s)
+faux-macros.lisp:24:63: Warning: Unknown macro property ignore in
+    coalton:define
+faux-macros.lisp:27:62: Warning: Unknown macro property ignore in
+    coalton:define-type
+faux-macros.lisp:30:51: Warning: Unknown macro property ignore in
+    coalton:declare
+faux-macros.lisp:33:64: Warning: Unknown macro property ignore in
+    coalton:define-class
+faux-macros.lisp:36:70: Warning: Unknown macro property ignore in
+    coalton:define-instance
+faux-macros.lisp:46:56: Warning: Unknown macro property ignore in
+    coalton:match
+faux-macros.lisp:49:58: Warning: Unknown macro property ignore in coalton:let
+faux-macros.lisp:52:60: Warning: Unknown macro property ignore in coalton:lisp

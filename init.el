@@ -116,7 +116,7 @@ We have to replace this.
      (cond
       ((eq (car cmpt) :file)
        (print (cadr cmpt))
-       (load (concat default-directory pathname (cadr cmpt) ".lisp")))
+       (byte-compile-file (concat default-directory pathname (cadr cmpt) ".lisp") t))
       ((eq (car cmpt) :module)
        (print (concat pathname (cadr cmpt) "/"))
        (do-load (concat pathname (cadr cmpt) "/")
