@@ -2,7 +2,7 @@
 
 (defvar *emit-type-annotations* t)
 
-(defgeneric compile-expression (expr ctx env)
+(cl-defgeneric compile-expression (expr ctx env)
   (:documentation "Compile coalton expression into lisp code")
 
   (:method ((expr typed-node-literal) ctx env)

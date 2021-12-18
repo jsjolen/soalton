@@ -1,6 +1,6 @@
 (in-package #:coalton-impl/codegen)
 
-(defgeneric compile-pattern (pattern env)
+(cl-defgeneric compile-pattern (pattern env)
   (:method ((pattern pattern-var) env)
     (declare (type coalton-impl/typechecker::environment env)
              (ignore env))

@@ -5,7 +5,7 @@
            (type optimizer optimizer))
   (match-constructor-lift node (optimizer-env optimizer)))
 
-(defgeneric match-constructor-lift (node env)
+(cl-defgeneric match-constructor-lift (node env)
   (:documentation "Mark variables which are constructed in a match
   expression as dynamic-extent to avoid unnecissary allocation.")
 

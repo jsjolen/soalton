@@ -3,7 +3,7 @@
 (defun pointfree-transform (node optimizer)
   (pointfree node (optimizer-env optimizer)))
 
-(defgeneric pointfree (node env)
+(cl-defgeneric pointfree (node env)
   (:documentation "Transform pointfree definitions to their equivelent
   pointful style to reduce currying at runtime. This transform is only
   run on toplevel bindings and let bindings.")
@@ -160,7 +160,7 @@
   (:method ((node typed-node) env)
     (pointfree-traverse node env)))
 
-(defgeneric pointfree-traverse (node env)
+(cl-defgeneric pointfree-traverse (node env)
   (:method ((node typed-node-application) env)
     (typed-node-application
      (typed-node-type node)

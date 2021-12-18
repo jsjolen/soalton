@@ -13,9 +13,9 @@
 (defmacro define-function-macros ()
   (cl-labels ((define-function-macros-with-arity (arity)
              (declare (type fixnum arity))
-             (let ((constructor-sym (alexandria:format-symbol t "F~D" arity))
-                   (application-sym (alexandria:format-symbol t "A~D" arity))
-                   (sub-application-sym (alexandria:format-symbol t "A~D" (1- arity)))
+             (let ((constructor-sym (format-symbol "F%d" arity))
+                   (application-sym (format-symbol "A%d" arity))
+                   (sub-application-sym (format-symbol "A~D" (1- arity)))
                    (function-sym (alexandria:make-gensym "F"))
                    (applied-function-sym (alexandria:make-gensym "F"))
                    (arg-syms (alexandria:make-gensym-list arity)))
@@ -50,7 +50,7 @@
 
                     (declaim (inline ,constructor-sym))
                     (defun ,constructor-sym (,function-sym)
-                      (declare (type (function ,(loop :for i :below arity :collect 't) t) ,function-sym)
+                      (declare (type (function ,(cl-loop for i below arity collect 't) t) ,function-sym)
                                (optimize (speed 3) (safety 0))
                                (values function-entry))
                       (make-function-entry

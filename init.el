@@ -58,15 +58,33 @@ We have to replace this.
 
 (defmacro alexandria:define-constant (&rest args)
   `(defconst ,(car args) ,(cadr args)))
+(defun alexandria:make-gensym (x)
+  (gensym x))
+(cl-defun alexandria:make-gensym-list (len &optional (g "G"))
+  (cl-loop for i from 0 upto (1- len) collect (alexandria:make-gensym g)))
 
 (defun find-package (&rest a)
   nil) 
 (defun symbol-package (&rest a)
   nil)
 
-(cl-defun alexandria:format-symbol (package control &rest arguments)
-  (intern (cl-format control arguments)))
+;; TODO: What is default? FSet docs
+(cl-defun fset:empty-map (&optional default)
+  (make-hash-table))
+(cl-defmacro fset:map (&rest init)
+  `(let ((m (fset:empty-map)))
+    ,@(cl-loop for (k v) in init collect
+      `(setf (gethash ,k m) ,v))
+    m))
 
+(defun format-symbol (str &rest args)
+  (intern (apply 'format str args)))
+
+;; TODO: Diff between the two?
+(defmacro define-global-var (name value)
+  `(defvar ,name ,value))
+(defmacro defparameter (name value)
+  `(defvar ,name ,value))
 
 (defmacro asdf:defsystem (name &rest args)
   "Basic linear loading of a system"

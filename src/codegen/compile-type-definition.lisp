@@ -1,4 +1,4 @@
-(in-package #:coalton-impl/codegen)
+(in-package :coalton-impl/codegen)
 
 (defun compile-type-definition (def env)
   (let ((package (symbol-package (type-definition-name def))))
@@ -92,7 +92,4 @@
                                      ,(constructor-entry-name constructor)
                                    ,entry))))))
 
-         ,@(when (eql coalton-impl::*interaction-mode* ':release)
-             (list
-              #+sbcl
-              `(declaim (sb-ext:freeze-type ,(type-definition-name def))))))))))
+         )))))

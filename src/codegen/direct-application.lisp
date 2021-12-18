@@ -5,7 +5,7 @@
                       (optimizer-toplevel-functions optimizer)
                       (optimizer-env optimizer)))
 
-(defgeneric direct-application (node inlineable-functions env)
+(cl-defgeneric direct-application (node inlineable-functions env)
   (:documentation "Mark fully applied function calls to statically
   known functions as such to avoid symbol lookups and the curring
   machinery. This also enables further optimisations.")
