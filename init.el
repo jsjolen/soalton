@@ -84,6 +84,19 @@ We have to replace this.
 (cl-defun char (str n)
   (aref str n))
 
+;(defmacro cl:defmacro (&rest args)
+;  `(cl-defmacro ,@args))
+
+;(defmacro cl:labels (&rest args)
+;  `(cl-labels ,@args))
+
+;(defmacro cl:if (&rest args)
+;  `(if ,@args))
+
+;(defun cl:null (x) (null x))
+
+;(defun cl:cdr (x) (cdr x))
+
 (defun format-symbol (str &rest args)
   (intern (apply 'format str args)))
 
@@ -191,23 +204,24 @@ We have to replace this.
                 :serial t
                 :components ((:file "generate-documentation")))
                (:file "faux-macros")
-               (:module "library"
-                :serial t
-                :components ((:file "macros")
-                             (:file "types")
-                             (:file "classes")
-                             (:file "boolean")
-                             (:file "builtin")
-                             (:file "fraction")
-                             (:file "arith")
-                             (:file "char")
-                             (:file "string")
-                             (:file "optional")
-                             (:file "list")
-                             (:file "tuple")
-                             (:file "result")
-                             (:file "functions")
-                             (:file "cell")
-                             (:file "vector")
-                             (:file "graph")))
-               (:file "toplevel-environment"))))
+               ;; (:module "library"
+               ;;  :serial t
+               ;;  :components ((:file "macros")
+               ;;               (:file "types")
+               ;;               (:file "classes")
+               ;;               (:file "boolean")
+               ;;               (:file "builtin")
+               ;;               (:file "fraction")
+               ;;               (:file "arith")
+               ;;               (:file "char")
+               ;;               (:file "string")
+               ;;               (:file "optional")
+               ;;               (:file "list")
+               ;;               (:file "tuple")
+               ;;               (:file "result")
+               ;;               (:file "functions")
+               ;;               (:file "cell")
+               ;;               (:file "vector")
+               ;;               (:file "graph")))
+               ;; (:file "toplevel-environment")
+               )))
