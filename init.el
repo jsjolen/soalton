@@ -76,6 +76,13 @@ We have to replace this.
     ,@(cl-loop for (k v) in init collect
       `(setf (gethash ,k m) ,v))
     m))
+(cl-defun fset:empty-seq (&rest args)
+  nil)
+
+(cl-defun char= (a b)
+  (char-equal a b))
+(cl-defun char (str n)
+  (aref str n))
 
 (defun format-symbol (str &rest args)
   (intern (apply 'format str args)))

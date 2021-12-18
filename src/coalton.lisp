@@ -139,7 +139,7 @@
           (setf *global-environment* env)
           (coalton-impl/codegen::compile-expression typed-node nil *global-environment*))))))
 
-(defun process-coalton-toplevel (toplevel-forms &optional (env *global-environment*))
+(cl-defun process-coalton-toplevel (toplevel-forms &optional (env *global-environment*))
   "Top-level definitions for use within Coalton."
 
   (multiple-value-bind (type-defines declares defines class-defines instance-defines repr-table)

@@ -4,7 +4,7 @@
 ;;;; co.) macro, that aren't actually valid as a toplevel form in
 ;;;; Lisp.
 
-(in-package #:coalton-impl)
+(in-package :coalton-impl)
 
 (defun error-coalton-only (name)
   (error "The operator ~S is only valid in a Coalton expression." name))
@@ -14,7 +14,7 @@
   (check-type docstring string)
   `(defmacro ,name ,lambda-list
      ,docstring
-     (declare (ignore ,@(remove-if (lambda (sym) (char= #\& (char (symbol-name sym) 0)))
+     (declare (ignore ,@(cl-remove-if (lambda (sym) (char= ?& (char (symbol-name sym) 0)))
                                    lambda-list)))
      (error-coalton-only ',name)))
 
