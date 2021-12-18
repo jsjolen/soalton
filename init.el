@@ -223,5 +223,5 @@ We have to replace this.
                ;;               (:file "cell")
                ;;               (:file "vector")
                ;;               (:file "graph")))
-               ;; (:file "toplevel-environment")
+                (:file "toplevel-environment")
                )))
