@@ -34,6 +34,11 @@ We have to replace this.
 (defmacro deftype (&rest args)
   `(cl-deftype ,@args))
 
+(defun walk (f form)
+  nil)
+(defmacro loop (&rest args)
+  nil)
+
 
 ;;;; Conditions
 
@@ -111,6 +116,12 @@ We have to replace this.
 (defmacro asdf:defsystem (name &rest args)
   "Basic linear loading of a system"
   `(do-load ,(plist-get args :pathname) ',(plist-get args :components)))
+
+(defun endp (list)
+  (null list))
+
+(defmacro values (&rest args)
+  `(cl-values ,@args))
 
 (defun do-load (pathname components)
   (mapcar
