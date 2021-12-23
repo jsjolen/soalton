@@ -29,13 +29,13 @@
                         (coalton-type-error-context-args c))))))))
 
 (cl-defmacro with-type-context ((context &rest args) &body body)
-  `(handler-bind ((coalton-type-error
-                    (lambda (c)
-                      (error 'coalton-type-error-context
-                             :context-form ,context
-                             :context-args (list ,@args)
-                             :suberror c))))
-       (progn ,@body)))
+  `(condition-case c
+       (progn ,@body)
+     ((coalton-type-error)
+      (signal 'coalton-type-error-context
+              (list :context-form ,context
+                    :context-args (list ,@args)
+                    :suberror c)))))
 
 (define-condition unknown-binding-error (coalton-type-error)
   ((symbol :initarg :symbol
