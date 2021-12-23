@@ -11,11 +11,11 @@ Stuff that's difficult:
 We have to replace this.
 "
 
-(package-install 'cl-format)
+;(package-install 'cl-format)
 
 (defmacro TODO (&rest args)
   "Don't know what to do? TODO it!"
-  (print (cl-format nil "TODO: ~a" args))
+  (print (format "TODO: %s" args))
   `(progn))
 
 ;;;; PACKAGES
@@ -33,11 +33,27 @@ We have to replace this.
 
 (defmacro deftype (&rest args)
   `(cl-deftype ,@args))
-
 (defun walk (f form)
   nil)
 (defmacro loop (&rest args)
-  nil)
+  `(cl-loop ,@(cl-loop for x in args
+                     collect (if (and (symbolp x) (char= (aref (symbol-name x) 0) ?:))
+                                 (intern (substring (symbol-name x) 1))
+                               x))))
+
+(defun coalton-impl/typechecker::parse-type-definitions (&rest args)
+  (apply 'parse-type-definitions args))
+(defun coalton-impl/typechecker::derive-bindings-type (&rest args)
+  (apply 'derive-bindings-type args))
+(defun coalton-impl/typechecker::apply-substitution (&rest args)
+  (apply 'apply-substitution args))
+
+
+(defmacro coalton-impl/typechecker::with-type-context (&rest args)
+  `(with-type-context ,@args))
+(defun make-array (len)
+  (make-vector len nil))
+
 
 
 ;;;; Conditions
@@ -67,9 +83,13 @@ We have to replace this.
   (gensym x))
 (cl-defun alexandria:make-gensym-list (len &optional (g "G"))
   (cl-loop for i from 0 upto (1- len) collect (alexandria:make-gensym g)))
+(defun alexandria:hash-table-keys (ht)
+  (let (ks)
+    (maphash (lambda (k v) (push k ks)) ht)
+    ks))
 
 (defun find-package (&rest a)
-  nil) 
+  nil)
 (defun symbol-package (&rest a)
   nil)
 
