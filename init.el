@@ -105,6 +105,10 @@ We have to replace this.
   nil)
 (defun symbol-package (&rest a)
   nil)
+(defun copy-list (&rest args)
+  (apply 'cl-copy-list args))
+(defun intersection (&rest args)
+  (apply 'cl-intersection args))
 
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)
