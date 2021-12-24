@@ -62,8 +62,20 @@ We have to replace this.
   `(define-error ',name ,(format "COALTON ERROR %s" name) ',(first superclass)))
 
 ;;;; Utils
-(defun first (cons)
-  (car cons))
+(defun first (list) (car list))
+(defun second (list) (car (cdr list)))
+(defun third (list) (car (cddr list)))
+(defun fourth (list) (car (cdddr list)))
+(defun fifth (list) (car (cddddr list)))
+(defun sixth (list) (car (cdr (cddddr list))))
+(defun seventh (list) (car (cddr (cddddr list))))
+(defun eighth (list) (car (cdddr (cddddr list))))
+(defun ninth (list) (car (cddddr (cddddr list))))
+(defun tenth (list) (car (cdr (cddddr (cddddr list)))))
+(defun endp (list)
+  (null list))
+(defun rest (list)
+  (cdr list))
 
 (defun uiop:getenv (env-var)
   (getenv env-var))
@@ -137,8 +149,8 @@ We have to replace this.
   "Basic linear loading of a system"
   `(do-load ,(plist-get args :pathname) ',(plist-get args :components)))
 
-(defun endp (list)
-  (null list))
+(defmacro assert (&rest args)
+  `(cl-assert ,@args))
 
 (defmacro values (&rest args)
   `(cl-values ,@args))
