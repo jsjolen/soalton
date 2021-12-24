@@ -31,10 +31,10 @@
                      (coalton-parse-error-reason-args c)))))
 
 (defun error-parsing (form reason-control &rest reason-args)
-  (error 'coalton-parse-error
-         :form form
-         :reason-control reason-control
-         :reason-args reason-args))
+  (signal 'coalton-parse-error
+          (list :form form
+                :reason-control reason-control
+                :reason-args reason-args)))
 
 (defun sexp-fmt (stream object &optional colon-modifier at-modifier)
   "A formatter for qualified S-expressions. Use like

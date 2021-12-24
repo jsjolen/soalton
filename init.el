@@ -107,7 +107,7 @@ We have to replace this.
   nil)
 
 (cl-defun char= (a b)
-  (char-equal a b))
+  (char-equal a b)) 
 (cl-defun char (str n)
   (aref str n))
 

@@ -28,6 +28,9 @@
                         (coalton-type-error-context-form c)
                         (coalton-type-error-context-args c))))))))
 
+;; NOT correct!
+;; The handler-bind signals an error in the SAME dynamic context as previously
+;; But do we care???
 (cl-defmacro with-type-context ((context &rest args) &body body)
   `(condition-case c
        (progn ,@body)
