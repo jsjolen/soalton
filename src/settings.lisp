@@ -6,7 +6,7 @@
 (in-package #:coalton-impl)
 
 (deftype interaction-mode ()
-  `(member :development :release))
+  `(cl-member :development :release))
 (declaim (type interaction-mode *interaction-mode*))
 
 

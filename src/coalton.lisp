@@ -44,7 +44,7 @@
                (loop :for form :in forms
                      :append (cond
                                ((atom form) (list form))
-                               ((member (first form) **toplevel-operators**)
+                               ((cl-member (first form) **toplevel-operators**)
                                 (flatten (rest form)))
                                (t (list form)))))
              (walk (forms)
@@ -60,7 +60,7 @@
                      repr-table))
 
                    ((or (atom next-form)
-                        (not (member (first next-form) **special-operators**)))
+                        (not (cl-member (first next-form) **special-operators**)))
                     (error-parsing next-form "This can't show up at the top-level."))
 
                    ((eql 'coalton:define-type (first next-form))

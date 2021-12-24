@@ -318,7 +318,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
 
   (loop :for (name . node) :in bindings :do
     (unless (typed-node-abstraction-p node)
-      (when (member name (collect-variable-namespace node) :test #'equalp)
+      (when (cl-member name (collect-variable-namespace node) :test #'equalp)
         (error 'self-recursive-variable-definition :name name)))))
 
 (defun derive-binding-type-seq (names tvars exprs env subs name-map)
@@ -424,7 +424,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                                     (node-preds (qualified-ty-predicates node-qual-type))
                                     (new-preds (remove-if
                                                 (lambda (p)
-                                                  (member p deferred-preds :test #'equalp))
+                                                  (cl-member p deferred-preds :test #'equalp))
                                                 node-preds)))
                                (cons (car b)
                                      (replace-node-type node (to-scheme (qualify new-preds node-type)))
@@ -491,7 +491,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                                            (to-scheme (qualified-ty
                                                        (append
                                                         (remove-if-not (lambda (p)
-                                                                         (member p expr-preds :test #'equalp))
+                                                                         (cl-member p expr-preds :test #'equalp))
                                                                        (apply-substitution local-subs preds))
                                                         (remove-if-not (lambda (p)
                                                                          (not (super-entail env expr-preds p)))

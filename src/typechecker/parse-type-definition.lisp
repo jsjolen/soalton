@@ -65,7 +65,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                 (type-vars (loop :for i :below (length tyvar-names)
                                  :collect (make-variable))))
 
-            ;; If there is a docstring it should occur as the first member of ctors. Pull this out
+            ;; If there is a docstring it should occur as the first cl-member of ctors. Pull this out
             (when (stringp (car ctors))
               (push (list tycon-name (car ctors) :type) parsed-docstrings)
               (setf ctors (cdr ctors)))
@@ -140,7 +140,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                                          (make-type-definition
                                           :name tycon-name
                                           :type tcon
-                                          :runtime-type `(member ,@(mapcar 'constructor-entry-compressed-repr parsed-ctors))
+                                          :runtime-type `(cl-member ,@(mapcar 'constructor-entry-compressed-repr parsed-ctors))
                                           :enum-repr t
                                           :newtype nil
                                           :constructors parsed-ctors)))

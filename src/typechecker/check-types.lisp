@@ -70,7 +70,7 @@
 
            (local-vars (type-variables function-type))
            (expected-type (quantify local-vars
-                                    (qualify (remove-if-not (lambda (x) (member x local-vars))
+                                    (qualify (remove-if-not (lambda (x) (cl-member x local-vars))
                                                             (collect-type-predicates node))
                                              function-type))))
       (unless (sub-ty-scheme-p (typed-node-type node)

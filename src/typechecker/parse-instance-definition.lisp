@@ -84,7 +84,7 @@
                                  (coalton-impl::parse-define-form method-definiton)
 
                                ;; Disallow duplicate method definitions
-                               (when (member method-name method-bindings :key #'car)
+                               (when (cl-member method-name method-bindings :key #'car)
                                  (error "Duplicate method definition for method ~S" method-name))
 
                                (let* (;;

@@ -82,13 +82,14 @@ We have to replace this.
 
 (defmacro check-type (&rest args)
   (progn))
-
+(defmacro etypecase (&rest args)
+  `(cl-etypecase ,@args))
 (defmacro defstruct (&rest args)
   `(cl-defstruct ,@args))
+
 (defmacro serapeum:defstruct-read-only (&rest args)
   "This definition works in immutable-map.lisp"
   `(cl-defstruct ,@args))
-
 (defmacro alexandria:define-constant (&rest args)
   `(defconst ,(car args) ,(cadr args)))
 (defun alexandria:make-gensym (x)
@@ -104,8 +105,6 @@ We have to replace this.
   nil)
 (defun symbol-package (&rest a)
   nil)
-
-
 
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)

@@ -14,7 +14,7 @@ NOTE: Just because a variable shows up in the list does *NOT* mean all occurrenc
 
                  (node-variable
                   (let ((name (node-variable-name expr)))
-                    (unless (member name bv)
+                    (unless (cl-member name bv)
                       (push name fv))))
 
                  (node-abstraction

@@ -60,7 +60,7 @@
                                (mapcan (lambda (dep)
                                          (cond
                                            ;; If the dep is part of the current definitions then allow it
-                                           ((member dep class-deps :key #'car)
+                                           ((cl-member dep class-deps :key #'car)
                                             (list dep))
                                            ;; Else if we know about this class in the environment then remove it
                                            ((lookup-class env dep :no-error t)
@@ -146,7 +146,7 @@
                                                       subs new-subs)
                                                 (apply-substitution subs
                                                                     (quantify (remove-if
-                                                                               (lambda (x) (member x (type-variables (apply-substitution subs disallowed-type-vars)) :test #'equalp))
+                                                                               (lambda (x) (cl-member x (type-variables (apply-substitution subs disallowed-type-vars)) :test #'equalp))
                                                                                (type-variables (mapcar #'cadr class-tyvars)))
                                                                               parsed)))))
                                       (if docstring
@@ -181,7 +181,7 @@
                                     ;; Ensure that the class type variables
                                     ;; do not occur in the method constraint
                                     (dolist (tyvar class-tyvars)
-                                      (when (member (tvar-tyvar (cadr tyvar))
+                                      (when (cl-member (tvar-tyvar (cadr tyvar))
                                                     (type-variables (qualified-ty-predicates fresh-method-type))
                                                     :test #'equalp)
                                         (coalton-impl/ast::error-parsing form "class type variable ~S cannot appear in method constraints" (car tyvar))))
@@ -208,7 +208,7 @@
        (unless (and (= 2 (length subseqs))
                     (= 1 (length (second subseqs))))
          (error-parsing-type top-expr "Malformed constrained type class"))
-       ;; If the first member of the predicates is a list then we can assume there are multiple to parse.
+       ;; If the first cl-member of the predicates is a list then we can assume there are multiple to parse.
        (let* ((preds (if (listp (first (first subseqs)))
                          (loop :for pred-expr :in (first subseqs)
                                :collect (cl-multiple-value-bind (pred new-type-vars new-subs)

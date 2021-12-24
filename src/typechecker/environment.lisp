@@ -306,7 +306,7 @@
 
 (serapeum:defstruct-read-only name-entry
   (name :type symbol)
-  (type :type (member :value :method :constructor))
+  (type :type (cl-member :value :method :constructor))
   (docstring :type (or null string))
   (location :type t))
 

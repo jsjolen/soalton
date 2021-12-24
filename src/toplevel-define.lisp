@@ -88,13 +88,13 @@ Returns new environment, binding list of declared nodes, a DAG of dependencies, 
     ;; Sort our bindings into implicit and explicit
     (loop :for binding :in parsed
           :do
-             (if (member (car binding) expl-names :test #'eql)
+             (if (cl-member (car binding) expl-names :test #'eql)
                  (push (cons (first binding) (second binding)) expl-bindings)
                  (push (cons (first binding) (second binding)) impl-bindings)))
 
     ;; Assert that there are no orphan declares
     (mapcar (lambda (name)
-              (assert (member name expl-bindings :key #'car)
+              (assert (cl-member name expl-bindings :key #'car)
                       () "Orphan type declaration for variable ~A" name))
             expl-names)
 

@@ -45,7 +45,7 @@ Returns (PREDS FOUNDP)"
            (values boolean))
   (let* ((super (mapcan (lambda (p) (by-super env p)) preds))
         (value
-          (or (true (member pred super :test #'equalp))
+          (or (true (cl-member pred super :test #'equalp))
               (true (cl-multiple-value-bind (inst-preds found)
                         (by-inst env pred)
                       (and found
@@ -58,7 +58,7 @@ Returns (PREDS FOUNDP)"
            (type ty-predicate-list preds)
            (type ty-predicate pred)
            (values boolean))
-  (true (member pred (mapcan (lambda (p) (by-super env p)) preds) :test #'equalp)))
+  (true (cl-member pred (mapcan (lambda (p) (by-super env p)) preds) :test #'equalp)))
 
 (defun hnf-p (pred)
   "Is PRED in head-normal form?"
@@ -105,7 +105,7 @@ Returns (VALUES deferred-preds retained-preds)"
   (declare (values ty-predicate-list ty-predicate-list))
   (let* ((reduced-preds (reduce-context env preds)))
     (loop :for p :in reduced-preds
-          :if (every (lambda (tv) (member tv fixed-vars :test #'equalp))
+          :if (every (lambda (tv) (cl-member tv fixed-vars :test #'equalp))
                      (type-variables p))
             :collect p :into deferred
           :else

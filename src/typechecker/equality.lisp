@@ -53,13 +53,13 @@
 
       ;; Now check that all constraints in type1 exist in type2, mapping type variables
       (loop :for pred :in (qualified-ty-predicates qual-type1) :do
-        (unless (member (apply-substitution subs-list pred)
+        (unless (cl-member (apply-substitution subs-list pred)
                         (qualified-ty-predicates qual-type2)
                         :test #'equalp)
           (return-from qualified-type= nil)))
       ;; And do the same for constraints in type2
       (loop :for pred :in (qualified-ty-predicates qual-type2) :do
-        (unless (member (apply-substitution subs-list pred)
+        (unless (cl-member (apply-substitution subs-list pred)
                         (qualified-ty-predicates qual-type1)
                         :test #'equalp)
           (return-from qualified-type= nil)))))

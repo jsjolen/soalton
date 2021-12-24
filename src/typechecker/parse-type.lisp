@@ -43,7 +43,7 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
       (parse-qualified-type-expr env top-expr type-vars nil :additional-predicates additional-predicates)
     (apply-substitution subs
                         (quantify (remove-if
-                                   (lambda (x) (member x disallowed-type-vars :test #'equalp))
+                                   (lambda (x) (cl-member x disallowed-type-vars :test #'equalp))
                                    (type-variables (mapcar #'cadr type-vars)))
                                   parsed))))
 
@@ -199,7 +199,7 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
                  (unless (and (= 2 (length subseqs))
                               (= 1 (length (second subseqs))))
                    (error-parsing-type expr "Malformed constrained type"))
-                 ;; If the first member of the predicates is a list then we can assume there are multiple to parse.
+                 ;; If the first cl-member of the predicates is a list then we can assume there are multiple to parse.
                  (let ((preds (if (listp (first (first subseqs)))
                                   (loop :for pred-expr :in (first subseqs)
                                         :collect (cl-multiple-value-bind (pred new-type-vars new-subs)
@@ -226,7 +226,7 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
                    (let ((tyvars (type-variables type)))
                      (dolist (pred preds)
                        (dolist (pred-tyvar (type-variables (apply-substitution subs pred)))
-                         (unless (member pred-tyvar tyvars :test #'equalp)
+                         (unless (cl-member pred-tyvar tyvars :test #'equalp)
                            (error-parsing-type expr "Type variable ~S appears in predicates but not in type"
                                                (car (find pred-tyvar
                                                           type-vars
@@ -308,7 +308,7 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
   :documentation "Allowed double arrows in coalton type constraint expressions.")
 
 (defun arrow-p (symbol valid-symbols)
-  (or (and (member symbol valid-symbols) t)
+  (or (and (cl-member symbol valid-symbols) t)
       (and (symbolp symbol)
            ;; Throw an error if a non-coalton arrow is used.
            ;; NOTE: This disallows users to declare types with the same name as coalton arrows.
