@@ -15,45 +15,45 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
        (literal-value
         (parse-atom expr))))
     ((alexandria:proper-list-p expr)
-     (alexandria:destructuring-case expr
+     (pcase expr
        ;; Abstraction
-       ((coalton:fn &rest args)
+       (`(coalton:fn . ,args)
         (unless (= 2 (length args))
           (error-parsing expr "Invalid fn expression.."))
         (parse-abstraction expr (first args) (second args) m package))
-       ((coalton:λ &rest args)
+       (`(coalton:λ . ,args)
         (unless (= 2 (length args))
           (error-parsing expr "Invalid fn expression.."))
         (parse-abstraction expr (first args) (second args) m package))
 
        ;; Let
-       ((coalton:let &rest args)
+       (`(coalton:let . ,args)
         (unless (= 2 (length args))
           (error-parsing expr "Invalid let expression."))
         (parse-let expr (first args) (second args) m package))
 
        ;; Lisp
-       ((coalton:lisp &rest args)
+       (`(coalton:lisp . ,args)
         (unless (= 3 (length args))
           (error-parsing expr "Invalid lisp expression."))
         (parse-lisp expr (first args) (second args) (third args) m))
 
        ;; Match
-       ((coalton:match expr_ &rest patterns)
+       (`(coalton:match ,expr_ . ,patterns)
         (parse-match expr expr_ patterns m package))
 
        ;; Seq
-       ((coalton:seq &rest subnodes)
+       (`(coalton:seq . ,subnodes)
         (parse-seq expr subnodes m package))
 
        ;; The
-       ((coalton:the  &rest args)
+       (`(coalton:the  . ,args)
         (unless (= 2 (length args))
           (error-parsing expr "Invalid the exprssion."))
         (parse-the expr (first args) (second args) m package))
 
        ;; Application
-       ((t &rest rands)
+       (`(,f . ,rands)
         (if (null rands)
             (parse-application expr (first expr) `(coalton-library:Unit) m package)
             (parse-application expr (first expr) rands m package)))))
