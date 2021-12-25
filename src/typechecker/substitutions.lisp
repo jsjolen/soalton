@@ -20,14 +20,14 @@
   (let ((overlap (intersection s1 s2 :key #'substitution-from :test #'equalp)))
     (if (every (lambda (x)
                  (equalp (apply-substitution s1 (%make-tvar x)) (apply-substitution s2 (%make-tvar x))))
-               (mapcar #'substitution-from overlap))
+               (cl-mapcar #'substitution-from overlap))
         (concatenate 'list s1 s2)
         (error 'coalton-type-error))))
 
 (defun compose-substitution-lists (s1 s2)
   "Compose substitution lists S1 and S2 together, applying S1 to S2."
   (append
-   (mapcar
+   (cl-mapcar
     (lambda (s)
       (%make-substitution
        (substitution-from s)
@@ -52,7 +52,7 @@
     type)
   ;; Allow for calling on lists
   (:method (subst-list (type-list list))
-    (mapcar (lambda (x) (apply-substitution subst-list x)) type-list)))
+    (cl-mapcar (lambda (x) (apply-substitution subst-list x)) type-list)))
 
 (cl-defgeneric type-variables (type)
   (:documentation "Get a list containing the type variables in TYPE.")

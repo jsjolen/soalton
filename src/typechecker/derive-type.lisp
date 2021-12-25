@@ -112,7 +112,7 @@ Returns (VALUES type predicate-list typed-node subs)")
            (vars (node-abstraction-vars value))
            (new-env (push-value-environment
                      env
-                     (mapcar (lambda (var) (cons var (to-scheme (qualify nil (make-variable)))))
+                     (cl-mapcar (lambda (var) (cons var (to-scheme (qualify nil (make-variable)))))
                              vars))))
       (cl-multiple-value-bind (ret-ty ret-preds typed-subexpr new-substs)
           (derive-expression-type subexpr new-env substs)
@@ -127,7 +127,7 @@ Returns (VALUES type predicate-list typed-node subs)")
                     (typed-node-abstraction
                      (to-scheme (qualified-ty (apply-substitution new-substs ret-preds) ret-ty))
                      (node-unparsed value)
-                     (mapcar (lambda (var)
+                     (cl-mapcar (lambda (var)
                                (cons var (lookup-value-type new-env var)))
                              vars)
                      typed-subexpr
@@ -266,7 +266,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
            (values typed-binding-list ty-predicate-list environment substitution-list list &optional))
 
   ;; Push all the explicit type declarations on to the environment
-  (let* ((expl-binds (mapcar (lambda (b)
+  (let* ((expl-binds (cl-mapcar (lambda (b)
                                (cons (car b)
                                      (gethash (car b) expl-declarations)))
                              expl-bindings))
@@ -280,7 +280,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
     (let ((sccs (reverse (tarjan-scc (bindings-to-dag impl-bindings)))))
       (dolist (scc sccs)
         ;; Lookup all bindings in this scc
-        (let ((scc-bindings (mapcar (lambda (b) (find b impl-bindings :key #'car)) scc)))
+        (let ((scc-bindings (cl-mapcar (lambda (b) (find b impl-bindings :key #'car)) scc)))
           ;; Derive the type of all parts of the scc together
           (cl-multiple-value-bind (typed-impl-bindings impl-preds new-env new-subs)
               (derive-impls-type scc-bindings env subs name-map
@@ -348,19 +348,19 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
            (type list name-map)
            (values typed-binding-list ty-predicate-list environment substitution-list))
   (let* (;; Generate fresh tvars and schemes for each binding
-         (tvars (mapcar (lambda (_)
+         (tvars (cl-mapcar (lambda (_)
                           (declare (ignore _))
                           (make-variable))
                         bindings))
-         (schemes (mapcar (lambda (b) (to-scheme (qualify nil b))) tvars))
+         (schemes (cl-mapcar (lambda (b) (to-scheme (qualify nil b))) tvars))
 
-         (new-bindings (mapcar (lambda (b sch) (cons (first b) sch)) bindings schemes))
+         (new-bindings (cl-mapcar (lambda (b sch) (cons (first b) sch)) bindings schemes))
          (local-env (push-value-environment env new-bindings))
-         (exprs (mapcar #'cdr bindings)))
+         (exprs (cl-mapcar #'cdr bindings)))
 
     ;; Derive the type of each binding
     (cl-multiple-value-bind (typed-bindings local-preds local-subs)
-        (derive-binding-type-seq (mapcar #'car bindings) tvars exprs local-env subs name-map)
+        (derive-binding-type-seq (cl-mapcar #'car bindings) tvars exprs local-env subs name-map)
 
       (let* ((expr-types (apply-substitution local-subs tvars)) ; ts'
              (expr-preds (apply-substitution local-subs local-preds)) ; ps'
@@ -385,23 +385,23 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
             (if (and (not disable-monomorphism-restriction) (restricted bindings))
                 (let* ((allowed-tvars (set-difference local-tvars (type-variables retained-preds)))
                        ;; Quantify local type variables
-                       (output-schemes (mapcar (lambda (type)
+                       (output-schemes (cl-mapcar (lambda (type)
                                                  (quantify allowed-tvars (qualified-ty nil type)))
                                                expr-types))
 
                        ;; Build new env
                        (output-env (push-value-environment
                                     env
-                                    (mapcar (lambda (b sch)
+                                    (cl-mapcar (lambda (b sch)
                                               (cons (first b) sch))
                                             bindings output-schemes))))
                   (values
-                   (mapcar (lambda (b typed) (cons (car b) typed)) bindings typed-bindings)
+                   (cl-mapcar (lambda (b typed) (cons (car b) typed)) bindings typed-bindings)
                    (append deferred-preds retained-preds)
                    output-env
                    local-subs))
                 (let* (;; Quantify local type variables
-                       (output-schemes (mapcar (lambda (type)
+                       (output-schemes (cl-mapcar (lambda (type)
                                                  ;; Here we need to manually qualify the
                                                  ;; type (without calling QUALIFY) since the
                                                  ;; substitutions have not been fully applied yet.
@@ -411,14 +411,14 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
                        ;; Build new env
                        (output-env (push-value-environment
                                     env
-                                    (mapcar (lambda (b sch)
+                                    (cl-mapcar (lambda (b sch)
                                               (cons (first b) sch))
                                             bindings output-schemes))))
                   (values
                    ;; Strip off any retained predicates from bindings
                    ;; so that bindings don't have unnecessary parameters
                    ;; for predicates
-                   (mapcar (lambda (b node)
+                   (cl-mapcar (lambda (b node)
                              (let* ((node-qual-type (fresh-inst (typed-node-type node)))
                                     (node-type (qualified-ty-type node-qual-type))
                                     (node-preds (qualified-ty-predicates node-qual-type))
@@ -634,7 +634,7 @@ EXPL-DECLARATIONS is a HASH-TABLE from SYMBOL to SCHEME"
   (cl-multiple-value-bind (var pat-preds bindings new-subs)
       (derive-pattern-type pattern env subs)
     (let* ((bindings-schemes
-             (mapcar (lambda (b)
+             (cl-mapcar (lambda (b)
                        (cons
                         (car b)
                         (to-scheme (qualify nil (cdr b)))))

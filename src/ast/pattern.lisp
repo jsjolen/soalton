@@ -55,7 +55,7 @@
     (pattern-constructor
      (pattern-constructor
       (pattern-constructor-name pattern)
-      (mapcar
+      (cl-mapcar
        (lambda (pattern)
          (rewrite-pattern-vars pattern m))
        (pattern-constructor-patterns pattern))))

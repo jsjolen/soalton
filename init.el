@@ -109,6 +109,10 @@ We have to replace this.
   (apply 'cl-copy-list args))
 (defun intersection (&rest args)
   (apply 'cl-intersection args))
+(defun find (&rest args)
+  (apply 'cl-find args))
+(defmacro incf (&rest args)
+  `(cl-incf ,@args))
 
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)

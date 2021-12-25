@@ -47,7 +47,7 @@
       (return-from qualified-type= nil))
 
     ;; Create a substitution list from the variables
-    (let ((subs-list (mapcar (lambda (s)
+    (let ((subs-list (cl-mapcar (lambda (s)
                                (%make-substitution (tvar-tyvar (car s)) (cdr s)))
                              var-table)))
 

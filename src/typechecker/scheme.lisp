@@ -27,7 +27,7 @@
   (let* ((vars (remove-if
                 (lambda (x) (not (find x tyvars :test #'equalp)))
                 (type-variables type)))
-         (kinds (mapcar #'kind-of vars))
+         (kinds (cl-mapcar #'kind-of vars))
          (subst (loop :for var :in vars
                       :for id :from 0
                       :collect (%make-substitution var (%make-tgen id)))))
@@ -46,10 +46,10 @@
   (:method (types (type ty))
     type)
   (:method (types (type list))
-    (mapcar (lambda (type) (instantiate types type)) type)))
+    (cl-mapcar (lambda (type) (instantiate types type)) type)))
 
 (defun fresh-inst (ty-scheme)
-  (let ((types (mapcar (lambda (k) (make-variable k))
+  (let ((types (cl-mapcar (lambda (k) (make-variable k))
                        (ty-scheme-kinds ty-scheme))))
     (instantiate types (ty-scheme-type ty-scheme))))
 
@@ -95,7 +95,7 @@
      (format stream "~A" (ty-scheme-type scheme)))
     (t
      (with-pprint-variable-scope ()
-       (let* ((types (mapcar (lambda (k) (next-pprint-variable-as-tvar k))
+       (let* ((types (cl-mapcar (lambda (k) (next-pprint-variable-as-tvar k))
                              (ty-scheme-kinds scheme)))
               (new-type (instantiate types (ty-scheme-type scheme))))
          (format stream "~A~{ ~A~}. ~A"

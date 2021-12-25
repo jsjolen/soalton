@@ -65,7 +65,7 @@
                        (format t "  [~S (~A :: ~A)]~%"
                                (ty-predicate-class class-pred)
                                (ty-predicate-types class-pred)
-                               (mapcar #'kind-of (ty-predicate-types class-pred))))
+                               (cl-mapcar #'kind-of (ty-predicate-types class-pred))))
                      (loop :for (method-name . method-type) :in (ty-class-unqualified-methods entry) :do
                        (format t "    ~S :: ~A~%" method-name method-type)))
                    (format t "~%")))
@@ -99,7 +99,7 @@
                              (format t "  [~S (~A :: ~A)]~%"
                                      (ty-predicate-class class-pred)
                                      (ty-predicate-types class-pred)
-                                     (mapcar #'kind-of (ty-predicate-types class-pred)))))
+                                     (cl-mapcar #'kind-of (ty-predicate-types class-pred)))))
 
                          (fset:do-seq (instance instances)
                            (format t "    ")

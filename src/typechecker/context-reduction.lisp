@@ -31,7 +31,7 @@ Returns (PREDS FOUNDP)"
   (fset:do-seq (inst (lookup-class-instances env (ty-predicate-class pred) :no-error t))
     (handler-case
         (let* ((subs (predicate-match (ty-class-instance-predicate inst) pred))
-               (resulting-preds (mapcar (lambda (p) (apply-substitution subs p))
+               (resulting-preds (cl-mapcar (lambda (p) (apply-substitution subs p))
                                          (ty-class-instance-constraints inst))))
           (return-from by-inst (values resulting-preds t)))
       (predicate-unification-error () nil)))

@@ -58,10 +58,10 @@
     (let ((env (push-value-environment env (typed-node-abstraction-vars node))))
       (check-node-type (typed-node-abstraction-subexpr node) env))
 
-    (let* ((arg-qual-types (mapcar (lambda (b)
+    (let* ((arg-qual-types (cl-mapcar (lambda (b)
                                      (fresh-inst (cdr b)))
                                    (typed-node-abstraction-vars node)))
-           (arg-types (mapcar #'qualified-ty-type arg-qual-types))
+           (arg-types (cl-mapcar #'qualified-ty-type arg-qual-types))
 
            (ret-qual-type (fresh-inst (typed-node-type (typed-node-abstraction-subexpr node))))
            (ret-type (qualified-ty-type ret-qual-type))
@@ -83,7 +83,7 @@
 
   (:method ((node typed-node-let) env)
     (let ((env (push-value-environment env
-                                       (mapcar (lambda (b)
+                                       (cl-mapcar (lambda (b)
                                                  (cons (car b) (typed-node-type (cdr b))))
                                                (typed-node-let-bindings node)))))
       (dolist (binding (typed-node-let-bindings node))
@@ -126,8 +126,8 @@
          (rator-type (qualified-ty-type rator-qual-type))
          (rator-preds (qualified-ty-predicates rator-qual-type))
 
-         (rands-qual-types (mapcar (lambda (r) (fresh-inst (typed-node-type r))) rands))
-         (rands-types (mapcar (lambda (r) (qualified-ty-type r)) rands-qual-types))
+         (rands-qual-types (cl-mapcar (lambda (r) (fresh-inst (typed-node-type r))) rands))
+         (rands-types (cl-mapcar (lambda (r) (qualified-ty-type r)) rands-qual-types))
          (rands-preds (mapcan (lambda (r) (qualified-ty-predicates r)) rands-qual-types))
 
          (preds (append rands-preds rator-preds)))

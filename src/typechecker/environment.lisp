@@ -237,12 +237,12 @@
   (ty-class (ty-class-name class)
             (apply-substitution subst-list (ty-class-predicate class))
             (apply-substitution subst-list (ty-class-superclasses class))
-            (mapcar (lambda (entry)
+            (cl-mapcar (lambda (entry)
                       (cons (car entry)
                             (apply-substitution subst-list (cdr entry))))
                     (ty-class-unqualified-methods class))
             (ty-class-codegen-sym class)
-            (mapcar (lambda (entry)
+            (cl-mapcar (lambda (entry)
                       (cons (apply-substitution subst-list (car entry))
                             (cdr entry)))
                     (ty-class-superclass-dict class))
@@ -693,7 +693,7 @@
 ;;;
 
 (defun directly-applicable-functions (env)
-  (mapcar
+  (cl-mapcar
    (lambda (f) (cons (function-env-entry-name f) (function-env-entry-arity f)))
    (fset:convert 'list (fset:range (immutable-map-data (environment-function-environment env))))))
 

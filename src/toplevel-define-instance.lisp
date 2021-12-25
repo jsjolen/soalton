@@ -2,7 +2,7 @@
 
 (defun process-toplevel-instance-definitions (definstance-forms env)
   (declare (values instance-definition-list))
-  (mapcar
+  (cl-mapcar
    (lambda (form)
      (parse-instance-definition form env))
    definstance-forms))
@@ -13,7 +13,7 @@
            (type environment env)
            (values environment))
   (let ((parsed-instances
-          (mapcar (lambda (form)
+          (cl-mapcar (lambda (form)
                     (unless (and (listp form)
                                  (<= 2 (length form))
                                  (eql 'coalton:define-instance (first form)))

@@ -93,7 +93,7 @@ Returns new environment, binding list of declared nodes, a DAG of dependencies, 
                  (push (cons (first binding) (second binding)) impl-bindings)))
 
     ;; Assert that there are no orphan declares
-    (mapcar (lambda (name)
+    (cl-mapcar (lambda (name)
               (assert (cl-member name expl-bindings :key #'car)
                       () "Orphan type declaration for variable ~A" name))
             expl-names)
@@ -108,7 +108,7 @@ Returns new environment, binding list of declared nodes, a DAG of dependencies, 
 
         ;; Apply output substitutions
         (setf typed-bindings
-              (mapcar (lambda (binding)
+              (cl-mapcar (lambda (binding)
                         (cons
                          (car binding)
                          (coalton-impl/typechecker::apply-substitution subs (cdr binding))))

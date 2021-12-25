@@ -30,7 +30,7 @@
                              class-info-by-file)))
 
 
-      (let ((filenames (mapcar (lambda (file)
+      (let ((filenames (cl-mapcar (lambda (file)
                                  (file-namestring (asdf:component-relative-pathname file)))
                                (asdf:component-children component))))
 
@@ -151,7 +151,7 @@
               ctx
               class class
               (loop :for type :in types
-                    :for base-type :in (mapcar #'base-type types)
+                    :for base-type :in (cl-mapcar #'base-type types)
                     :collect (format nil "[`~A`](#~A)" type base-type))))))
 
 (defun get-doc-value-info (env package)
@@ -167,7 +167,7 @@
                    (eql :external status)))
         (push (cons sym entry) values)))
 
-    (mapcar
+    (cl-mapcar
      (lambda (e)
        (list (car e)
              (lookup-value-type env (car e))
@@ -191,7 +191,7 @@
                    (eql :external status)))
         (push entry values)))
 
-    (mapcar (lambda (e)
+    (cl-mapcar (lambda (e)
               (list e
                     (fset:convert 'list (lookup-class-instances env (ty-class-name e) :no-error t))
                     (coalton-impl/typechecker::ty-class-docstring e)))
@@ -219,7 +219,7 @@
                           (coalton-impl/typechecker::instance-environment-data
                            (coalton-impl/typechecker::environment-instance-environment env)))))
 
-      (mapcar (lambda (e)
+      (cl-mapcar (lambda (e)
                 (let ((ctors (remove-if-not (lambda (ctor)
                                               (eql (constructor-entry-constructs (cdr ctor))
                                                    (car e)))

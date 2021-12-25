@@ -44,7 +44,7 @@ Optional ADDITIONAL-PREDICATES specifys additional predicates to qualify the res
     (apply-substitution subs
                         (quantify (remove-if
                                    (lambda (x) (cl-member x disallowed-type-vars :test #'equalp))
-                                   (type-variables (mapcar #'cadr type-vars)))
+                                   (type-variables (cl-mapcar #'cadr type-vars)))
                                   parsed))))
 
 (defun parse-type-expr (env expr type-vars subs &optional output-kind)
@@ -273,7 +273,7 @@ Optional ALLOW-UNKNOWN-CLASSES allows classes to appear in the type expression t
                              (and class-entry
                                   (ty-class-predicate class-entry)))))
            (class-pred-kinds (and class-pred
-                                  (mapcar #'kind-of (ty-predicate-types class-pred))))
+                                  (cl-mapcar #'kind-of (ty-predicate-types class-pred))))
 
            (pred-types
              ;; We need two loops so that we can do with or without the kinds

@@ -29,7 +29,7 @@
           (error 'cyclic-class-definitions-error :classes (list (ty-predicate-class class-predicate))))
 
         (let* ((class-name (ty-predicate-class class-predicate))
-               (superclass-names (mapcar #'ty-predicate-class class-context))
+               (superclass-names (cl-mapcar #'ty-predicate-class class-context))
                (docstring? (stringp (third form)))
                ;; Also parse out constraints of all methods
                (class-method-deps
@@ -43,7 +43,7 @@
                          (if docstring?
                              (cdddr form)
                              (cddr form))))
-               (class-method-dep-names (mapcar #'ty-predicate-class class-method-deps)))
+               (class-method-dep-names (cl-mapcar #'ty-predicate-class class-method-deps)))
           ;; Add the dependency group to the DAG
           (push (append (list class-name) superclass-names class-method-dep-names)
                 class-deps)
@@ -131,10 +131,10 @@
       (let* ((class-name (ty-predicate-class class-predicate))
              (class-codegen-sym (alexandria:format-symbol (symbol-package class-name) "CLASS/~A" class-name)))
 
-        (let* ((disallowed-type-vars (mapcar #'cadr class-tyvars))
+        (let* ((disallowed-type-vars (cl-mapcar #'cadr class-tyvars))
                (docstring (and (stringp (third form))
                                (third form)))
-               (class-methods (mapcar (lambda (form)
+               (class-methods (cl-mapcar (lambda (form)
                                         (unless (and (listp form)
                                                      (= 2 (length form))
                                                      (symbolp (first form)))
@@ -147,7 +147,7 @@
                                                 (apply-substitution subs
                                                                     (quantify (remove-if
                                                                                (lambda (x) (cl-member x (type-variables (apply-substitution subs disallowed-type-vars)) :test #'equalp))
-                                                                               (type-variables (mapcar #'cadr class-tyvars)))
+                                                                               (type-variables (cl-mapcar #'cadr class-tyvars)))
                                                                               parsed)))))
                                       (if docstring
                                           (cdddr form)

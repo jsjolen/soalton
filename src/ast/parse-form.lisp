@@ -94,7 +94,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
          (new-m (immutable-map-set-multiple m binding-local-names)))
     (node-abstraction
      unparsed
-     (mapcar #'cdr binding-local-names)
+     (cl-mapcar #'cdr binding-local-names)
      (parse-form subexpr new-m package)
      (invert-alist binding-local-names))))
 
@@ -105,7 +105,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
            (type immutable-map m)
            (type package package)
            (values node-let))
-  (let* ((binding-names (mapcar #'car bindings))
+  (let* ((binding-names (cl-mapcar #'car bindings))
          (binding-local-names (make-local-vars binding-names package))
          (new-m (immutable-map-set-multiple m binding-local-names)))
 
@@ -142,7 +142,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
      (node-application
       unparsed
       (parse-form rator m package)
-      (mapcar
+      (cl-mapcar
        (lambda (rand)
          (parse-form rand m package))
        rands)))))
@@ -169,7 +169,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
            (type package package))
   (let ((parsed-expr (parse-form expr m package))
         (parsed-branches
-          (mapcar
+          (cl-mapcar
            (lambda (branch)
              (parse-match-branch branch m package))
            branches)))
@@ -187,7 +187,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
     ((listp pattern)
      (let ((ctor (first pattern))
            (args (rest pattern)))
-       (pattern-constructor ctor (mapcar #'parse-pattern args))))))
+       (pattern-constructor ctor (cl-mapcar #'parse-pattern args))))))
 
 (defun parse-atom (atom)
   (node-literal atom atom))
@@ -201,7 +201,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
           ()  "Seq form must have at least one node")
   (node-seq
    expr
-   (mapcar (lambda (node)
+   (cl-mapcar (lambda (node)
              (parse-form node m package))
            subnodes)))
 

@@ -24,8 +24,8 @@ NOTE: Just because a variable shows up in the list does *NOT* mean all occurrenc
                  (node-let
                   (let* ((bindings (node-let-bindings expr))
                          (subexpr (node-let-subexpr expr))
-                         (vars (mapcar #'car bindings))
-                         (vals (mapcar #'cdr bindings))
+                         (vars (cl-mapcar #'car bindings))
+                         (vals (cl-mapcar #'cdr bindings))
                          (bv* (union bv vars)))
                     (mapc (lambda (expr) (analyze expr bv*)) (cons subexpr vals))))
 
@@ -55,6 +55,6 @@ NOTE: Just because a variable shows up in the list does *NOT* mean all occurrenc
       fv)))
 
 (defun bindings-to-dag (bindings)
-  (let ((vars (mapcar #'car bindings)))
+  (let ((vars (cl-mapcar #'car bindings)))
     (loop :for (var . val) :in bindings
           :collect (cons var (copy-list (intersection vars (free-variables val)))))))

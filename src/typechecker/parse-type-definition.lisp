@@ -75,7 +75,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
 
     ;; Then, re-parse all of the type definitions and ctors using the environment
     (let* ((new-bindings
-             (mapcar
+             (cl-mapcar
               (lambda (parsed)
                 (cons
                  (first parsed)
@@ -136,11 +136,11 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
 
                                       ((and enum-type
                                             (eql coalton-impl:*interaction-mode* ':release))
-                                       (let ((parsed-ctors (mapcar 'rewrite-ctor parsed-ctors)))
+                                       (let ((parsed-ctors (cl-mapcar 'rewrite-ctor parsed-ctors)))
                                          (make-type-definition
                                           :name tycon-name
                                           :type tcon
-                                          :runtime-type `(cl-member ,@(mapcar 'constructor-entry-compressed-repr parsed-ctors))
+                                          :runtime-type `(cl-member ,@(cl-mapcar 'constructor-entry-compressed-repr parsed-ctors))
                                           :enum-repr t
                                           :newtype nil
                                           :constructors parsed-ctors)))
@@ -192,8 +192,8 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
     (with-parsing-context ("constructor definition of ~A" ctor-name)
       ;; Lookup all type arguments either within the given TYPE-VARS or
       ;; as a type in the environment
-      (let* ((tyvars (mapcar (lambda (v) (tvar-tyvar (cadr v))) type-vars))
-             (tyargs (mapcar (lambda (arg)
+      (let* ((tyvars (cl-mapcar (lambda (v) (tvar-tyvar (cadr v))) type-vars))
+             (tyargs (cl-mapcar (lambda (arg)
                                (qualified-ty-type (fresh-inst (parse-and-resolve-type env arg type-vars tyvars))))
                              tyarg-names)))
 
@@ -214,7 +214,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
                    (let* ((vars (remove-if
                                  (lambda (x) (not (find x (type-variables type) :test 'equalp)))
                                  tyvars))
-                          (kinds (mapcar 'kind-of vars))
+                          (kinds (cl-mapcar 'kind-of vars))
                           (subst (loop :for var :in vars
                                        :for id :from 0
                                        :collect (%make-substitution var (%make-tgen id)))))
@@ -222,7 +222,7 @@ Returns (TYPE-DEFINITIONS DOCSTRINGS)"
           (make-constructor-entry
            :name ctor-name
            :arity (length tyarg-names)
-           :arguments (mapcar (lambda (arg)
+           :arguments (cl-mapcar (lambda (arg)
                                 (quantify tyvars (qualify nil arg)))
                               tyargs)
            :constructs constructs

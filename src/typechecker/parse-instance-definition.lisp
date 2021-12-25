@@ -136,7 +136,7 @@
                                                      method-bindings
                                                      :key #'car)))
                 (unless (null missing-methods)
-                  (coalton-impl/ast::error-parsing form "Incomplete instance definition for instance ~A. Missing methods ~S" instance-predicate (mapcar #'car missing-methods))))
+                  (coalton-impl/ast::error-parsing form "Incomplete instance definition for instance ~A. Missing methods ~S" instance-predicate (cl-mapcar #'car missing-methods))))
 
               (make-instance-definition
                :class-name class-name

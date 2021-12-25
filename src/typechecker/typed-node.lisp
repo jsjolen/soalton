@@ -186,7 +186,7 @@
   (typed-node-abstraction
    (apply-substitution subs (typed-node-type node))
    (typed-node-unparsed node)
-   (mapcar
+   (cl-mapcar
     (lambda (binding) (cons (car binding) (apply-substitution subs (cdr binding))))
     (typed-node-abstraction-vars node))
    (apply-substitution subs (typed-node-abstraction-subexpr node))
@@ -198,7 +198,7 @@
   (typed-node-let
    (apply-substitution subs (typed-node-type node))
    (typed-node-unparsed node)
-   (mapcar
+   (cl-mapcar
     (lambda (binding) (cons (car binding) (apply-substitution subs (cdr binding))))
     (typed-node-let-bindings node))
    (apply-substitution subs (typed-node-let-subexpr node))
@@ -231,7 +231,7 @@
    (typed-match-branch-unparsed node)
    (typed-match-branch-pattern node)
    (apply-substitution subs (typed-match-branch-subexpr node))
-   (mapcar (lambda (b)
+   (cl-mapcar (lambda (b)
              (cons (car b)
                    (apply-substitution subs (cdr b))))
            (typed-match-branch-bindings node))
@@ -355,7 +355,7 @@
     (remove-duplicates
      (append (collect-type-predicates (typed-node-type node))
              (collect-type-predicates (typed-node-let-subexpr node))
-             (mapcan #'collect-type-predicates (mapcar #'cdr (typed-node-let-bindings node))))
+             (mapcan #'collect-type-predicates (cl-mapcar #'cdr (typed-node-let-bindings node))))
      :test #'equalp))
 
   (:method ((node typed-node-match))
@@ -368,7 +368,7 @@
   (:method ((node typed-match-branch))
     (remove-duplicates
      (append (collect-type-predicates (typed-match-branch-subexpr node))
-             (mapcan #'collect-type-predicates (mapcar #'cdr (typed-match-branch-bindings node))))
+             (mapcan #'collect-type-predicates (cl-mapcar #'cdr (typed-match-branch-bindings node))))
      :test #'equalp))
 
   (:method ((node typed-node-seq))
@@ -407,7 +407,7 @@
      (collect-variable-namespace-g (typed-node-let-subexpr node))))
 
   (:method ((node typed-node-lisp))
-    (mapcar #'cdr (typed-node-lisp-variables node)))
+    (cl-mapcar #'cdr (typed-node-lisp-variables node)))
 
   (:method ((node typed-node-match))
     (append
