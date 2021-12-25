@@ -7,7 +7,7 @@
 (serapeum:defstruct-read-only (value-environment (:include immutable-map)))
 
 
-(defmethod apply-substitution (subst-list (env value-environment))
+(cl-defmethod apply-substitution (subst-list (env value-environment))
   (make-value-environment :data (fset:image (lambda (key value)
                   (values key (apply-substitution subst-list value)))
                 (immutable-map-data env))))
@@ -231,7 +231,7 @@
   '(satisfies ty-class-list-p))
 
 
-(defmethod apply-substitution (subst-list (class ty-class))
+(cl-defmethod apply-substitution (subst-list (class ty-class))
   (declare (type substitution-list subst-list)
            (values ty-class &optional))
   (ty-class (ty-class-name class)
@@ -271,7 +271,7 @@
   `(satisfies ty-class-instance-list-p))
 
 
-(defmethod apply-substitution (subst-list (instance ty-class-instance))
+(cl-defmethod apply-substitution (subst-list (instance ty-class-instance))
   (declare (type substitution-list subst-list)
            (values ty-class-instance &optional))
   (ty-class-instance
@@ -404,7 +404,7 @@
 ;;; Methods
 ;;;
 
-(defmethod apply-substitution (subst-list (env environment))
+(cl-defmethod apply-substitution (subst-list (env environment))
   (declare (type substitution-list subst-list)
            (type environment env)
            (values environment &optional))

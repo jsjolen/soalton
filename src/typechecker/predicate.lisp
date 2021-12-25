@@ -43,7 +43,7 @@
 ;;; Methods
 ;;;
 
-(defmethod apply-substitution (subst-list (type ty-predicate))
+(cl-defmethod apply-substitution (subst-list (type ty-predicate))
   (declare (type substitution-list subst-list)
            (values ty-predicate))
   (ty-predicate (ty-predicate-class type)
@@ -57,7 +57,7 @@
                       (instantiate types (ty-predicate-types type))))
 
 
-(defmethod apply-substitution (subst-list (type qualified-ty))
+(cl-defmethod apply-substitution (subst-list (type qualified-ty))
   (declare (type substitution-list subst-list))
   (qualified-ty (apply-substitution subst-list (qualified-ty-predicates type))
                       (apply-substitution subst-list (qualified-ty-type type))))
