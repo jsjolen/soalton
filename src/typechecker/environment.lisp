@@ -422,7 +422,7 @@
 ;;; Functions
 ;;;
 
-(defun lookup-value-type (env symbol &key no-error)
+(cl-defun lookup-value-type (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-value-environment env) symbol)
@@ -445,7 +445,7 @@
                        value
                        'make-value-environment)))
 
-(defun lookup-type (env symbol &key no-error)
+(cl-defun lookup-type (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-type-environment env) symbol)
@@ -474,7 +474,7 @@
                        value
                        'make-type-environment)))
 
-(defun lookup-constructor (env symbol &key no-error)
+(cl-defun lookup-constructor (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-constructor-environment env) symbol)
@@ -494,7 +494,7 @@
                              value
                              'make-constructor-environment)))
 
-(defun lookup-class (env symbol &key no-error)
+(cl-defun lookup-class (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-class-environment env) symbol)
@@ -514,7 +514,7 @@
                        value
                        'make-class-environment)))
 
-(defun lookup-function (env symbol &key no-error)
+(cl-defun lookup-function (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-function-environment env) symbol)
@@ -544,7 +544,7 @@
                           symbol
                           'make-function-environment)))
 
-(defun lookup-name (env symbol &key no-error)
+(cl-defun lookup-name (env symbol &key no-error)
   (declare (type environment env)
            (type symbol symbol))
   (or (immutable-map-lookup (environment-name-environment env) symbol)
@@ -572,13 +572,13 @@
                             value
                             'make-name-environment)))))
 
-(defun lookup-class-instances (env class &key no-error)
+(cl-defun lookup-class-instances (env class &key no-error)
   (declare (type environment env)
            (type symbol class)
            (values fset:seq &optional))
   (immutable-listmap-lookup (environment-instance-environment env) class :no-error no-error))
 
-(defun lookup-class-instance (env pred &key no-error)
+(cl-defun lookup-class-instance (env pred &key no-error)
   (declare (type environment env))
   (let* ((pred-class (ty-predicate-class pred))
          (instances (lookup-class-instances env pred-class :no-error no-error)))

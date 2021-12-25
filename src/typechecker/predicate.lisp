@@ -68,7 +68,7 @@
            (type-variables (qualified-ty-type type)))
    :test 'equalp))
 
-(defmethod instantiate (types (type qualified-ty))
+(cl-defmethod instantiate (types (type qualified-ty))
   (qualified-ty (instantiate types (qualified-ty-predicates type))
                       (instantiate types (qualified-ty-type type))))
 

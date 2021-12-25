@@ -144,6 +144,10 @@ We have to replace this.
   (apply 'cl-concatenate args))
 (defun union (&rest args)
   (apply 'cl-union args))
+(defun remove-duplicates (&rest args)
+  (apply 'cl-remove-duplicates args))
+(defun equalp (&rest args)
+  (apply 'cl-equalp args))
 
 ;;;; FSet
 (cl-defstruct soalton-map
