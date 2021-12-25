@@ -118,6 +118,10 @@ We have to replace this.
         (t
          nil)))
 
+(defun alexandria:ensure-symbol (n p)
+  (print p) ;; What packages is this called with???
+  (gensym (symbol-name n)))
+
 (defmacro do (&rest args)
   `(cl-do ,@args))
 (defmacro return (&rest args)
@@ -136,6 +140,10 @@ We have to replace this.
   `(cl-incf ,@args))
 (defun every (&rest args)
   (apply 'cl-every args))
+(defun concatenate (&rest args)
+  (apply 'cl-concatenate args))
+(defun union (&rest args)
+  (apply 'cl-union args))
 
 ;;;; FSet
 (cl-defstruct soalton-map
@@ -158,6 +166,9 @@ We have to replace this.
   (let ((ht-new (copy-hash-table (soalton-map-ht c))))
     (setf (gethash k ht-new) v)
     (make-soalton-map :ht ht-new)))
+(cl-defgeneric fset:lookup ((c v)))
+(cl-defmethod fset:lookup ((c soalton-map) v)
+  (gethash v (soalton-map-ht c)))
 
 (cl-defun char= (a b)
   (char-equal a b)) 
