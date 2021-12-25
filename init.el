@@ -90,6 +90,7 @@ We have to replace this.
 (defmacro serapeum:defstruct-read-only (&rest args)
   "This definition works in immutable-map.lisp"
   `(cl-defstruct ,@args))
+;;;;; alexandria
 (defmacro alexandria:define-constant (&rest args)
   `(defconst ,(car args) ,(cadr args)))
 (defun alexandria:make-gensym (x)
@@ -101,6 +102,26 @@ We have to replace this.
     (maphash (lambda (k v) (push k ks)) ht)
     ks))
 
+;; Stole this from Alexandria, thx!
+(defun alexandria:proper-list-p (object)
+  "Returns true if OBJECT is a proper list."
+  (cond ((not object)
+         t)
+        ((consp object)
+         (do ((fast object (cddr fast))
+              (slow (cons (car object) (cdr object)) (cdr slow)))
+             (nil)
+           (unless (and (listp fast) (consp (cdr fast)))
+             (return (and (listp fast) (not (cdr fast)))))
+           (when (eq fast slow)
+             (return nil))))
+        (t
+         nil)))
+
+(defmacro do (&rest args)
+  `(cl-do ,@args))
+(defmacro return (&rest args)
+  `(cl-return ,@args))
 (defun find-package (&rest a)
   nil)
 (defun symbol-package (&rest a)
@@ -113,17 +134,30 @@ We have to replace this.
   (apply 'cl-find args))
 (defmacro incf (&rest args)
   `(cl-incf ,@args))
+(defun every (&rest args)
+  (apply 'cl-every args))
 
+;;;; FSet
+(cl-defstruct soalton-map
+  ht)
+(cl-defstruct soalton-set
+  ht)
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)
-  (make-hash-table))
+  (make-soalton-map :ht (make-hash-table)))
 (cl-defmacro fset:map (&rest init)
-  `(let ((m (fset:empty-map)))
+  `(let* ((map (fset:empty-map))
+          (m (soalton-map-ht map)))
     ,@(cl-loop for (k v) in init collect
       `(setf (gethash ,k m) ,v))
-    m))
+    map))
 (cl-defun fset:empty-seq (&rest args)
   nil)
+(cl-defgeneric fset:with (c v1 &optional v2))
+(cl-defmethod fset:with ((c soalton-map) k &optional v)
+  (let ((ht-new (copy-hash-table (soalton-map-ht c))))
+    (setf (gethash k ht-new) v)
+    (make-soalton-map :ht ht-new)))
 
 (cl-defun char= (a b)
   (char-equal a b)) 
