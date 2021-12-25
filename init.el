@@ -153,7 +153,7 @@ We have to replace this.
 (cl-defstruct soalton-map
   ht)
 (cl-defstruct soalton-set
-  ht)
+  list)
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)
   (make-soalton-map :ht (make-hash-table)))
@@ -182,6 +182,21 @@ We have to replace this.
                  (setf (gethash k new-ht) v)))
              old-ht)
     (make-soalton-map :ht new-ht)))
+(cl-defgeneric fset:convert (tpe ins))
+(cl-defmethod fset:convert ((tpe (eql 'list)) (m soalton-map))
+  (let (r)
+    (maphash (lambda (k v) (push (cons k v) r)) (soalton-map-ht m))
+    r))
+(cl-defmethod fset:convert ((tpe (eql 'list)) (s soalton-set))
+  (soalton-set-list s))
+(cl-defgeneric fset:range (m))
+(cl-defmethod fset:range ((m soalton-map))
+  (let ((l nil))
+    (maphash
+     (lambda (k v)
+       (setq l (cl-union l (list k) :test 'equal)))
+     (soalton-map-ht m))
+    (make-soalton-set :list l)))
 
 (cl-defun char= (a b)
   (char-equal a b)) 
