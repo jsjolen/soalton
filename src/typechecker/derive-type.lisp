@@ -8,8 +8,7 @@
   (declare (values ty ty-predicate-list))
   (etypecase value
     (integer      (values tInteger      nil))
-    (single-float (values tSingle-Float nil))
-    (double-float (values tDouble-Float nil))
+    (float        (values tDouble-Float nil))
     (string       (values tString       nil))
     (character    (values tChar         nil))))
 

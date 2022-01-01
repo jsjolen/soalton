@@ -31,7 +31,7 @@
 
 (deftype literal-value ()
   "Allowed literal values as Lisp objects."
-  '(or integer single-float double-float string character))
+  '(or integer float string character))
 
 
 (serapeum:defstruct-read-only

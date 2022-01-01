@@ -117,7 +117,7 @@
           ('coalton:Single-Float
            (type-entry
             :name 'coalton:Single-Float
-            :runtime-type 'cl:single-float
+            :runtime-type 'float
             :type tSingle-Float
             :enum-repr nil
             :newtype nil))
@@ -125,7 +125,7 @@
           ('coalton:Double-Float
            (type-entry
             :name 'coalton:Double-Float
-            :runtime-type 'cl:double-float
+            :runtime-type 'float
             :type tDouble-Float
             :enum-repr nil
             :newtype nil))
