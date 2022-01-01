@@ -33,8 +33,7 @@ We have to replace this.
 
 (defmacro deftype (&rest args)
   `(cl-deftype ,@args))
-(defun walk (f form)
-  nil)
+
 (defmacro loop (&rest args)
   `(cl-loop ,@(cl-loop for x in args
                      collect (if (and (symbolp x) (char= (aref (symbol-name x) 0) ?:))
@@ -166,17 +165,19 @@ We have to replace this.
   ht)
 (cl-defstruct soalton-set
   list)
+(cl-defstruct soalton-seq
+  list)
 ;; TODO: What is default? FSet docs
 (cl-defun fset:empty-map (&optional default)
   (make-soalton-map :ht (make-hash-table)))
 (cl-defmacro fset:map (&rest init)
   `(let* ((map (fset:empty-map))
           (m (soalton-map-ht map)))
-    ,@(cl-loop for (k v) in init collect
-      `(setf (gethash ,k m) ,v))
-    map))
-(cl-defun fset:empty-seq (&rest args)
-  nil)
+     ,@(cl-loop for (k v) in init collect
+                `(setf (gethash ,k m) ,v))
+     map))
+;; (cl-defun fset:empty-seq (&rest args)
+;;   (make-soalton-seq))
 (cl-defgeneric fset:with (c v1 &optional v2))
 (cl-defmethod fset:with ((c soalton-map) k &optional v)
   (let ((ht-new (copy-hash-table (soalton-map-ht c))))
@@ -208,7 +209,7 @@ We have to replace this.
   (let ((l nil))
     (maphash
      (lambda (k v)
-       (setq l (cl-union l (list k) :test 'equal)))
+       (setq l (cl-union l (list v) :test 'equal)))
      (soalton-map-ht m))
     (make-soalton-set :list l)))
 (cl-defun fset:map-difference-2 (a b)
