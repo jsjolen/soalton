@@ -47,10 +47,14 @@ We have to replace this.
   (apply 'derive-bindings-type args))
 (defun coalton-impl/typechecker::apply-substitution (&rest args)
   (apply 'apply-substitution args))
-
-
 (defmacro coalton-impl/typechecker::with-type-context (&rest args)
   `(with-type-context ,@args))
+(cl-defun coalton-impl/typechecker::fresh-inst (&rest args)
+  (apply 'fresh-inst args))
+(cl-defun coalton-impl/typechecker::qualified-ty-predicates (&rest args)
+  (apply 'qualified-ty-predicates args))
+(cl-defun coalton-impl/typechecker::typed-node-abstraction-p (&rest args)
+  (apply 'typed-node-abstraction-p args))
 (defun make-array (len)
   (make-vector len nil))
 
@@ -148,6 +152,12 @@ We have to replace this.
   (apply 'cl-remove-duplicates args))
 (defun equalp (&rest args)
   (apply 'cl-equalp args))
+(cl-defun reduce (&rest args)
+  (apply 'cl-reduce args))
+(cl-defun set-difference (&rest args)
+  (apply 'cl-set-difference args))
+(cl-defun remove-if (&rest args)
+  (apply 'cl-remove-if args))
 
 ;;;; FSet
 (cl-defstruct soalton-map
@@ -183,11 +193,11 @@ We have to replace this.
              old-ht)
     (make-soalton-map :ht new-ht)))
 (cl-defgeneric fset:convert (tpe ins))
-(cl-defmethod fset:convert ((tpe (eql 'list)) (m soalton-map))
+(cl-defmethod fset:convert ((tpe (eql list)) (m soalton-map))
   (let (r)
     (maphash (lambda (k v) (push (cons k v) r)) (soalton-map-ht m))
     r))
-(cl-defmethod fset:convert ((tpe (eql 'list)) (m soalton-set))
+(cl-defmethod fset:convert ((tpe (eql list)) (m soalton-set))
   (soalton-set-list m))
 (cl-defgeneric fset:range (m))
 (cl-defmethod fset:range ((m soalton-map))
