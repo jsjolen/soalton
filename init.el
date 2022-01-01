@@ -58,7 +58,9 @@ We have to replace this.
 (defun make-array (len)
   (make-vector len nil))
 
-
+;; Used for location for reporting in case of error I assume
+(defvar *compile-file-pathname* "TODO")
+(defvar *load-truename* "TODO")
 
 ;;;; Conditions
 
@@ -193,6 +195,8 @@ We have to replace this.
              old-ht)
     (make-soalton-map :ht new-ht)))
 (cl-defgeneric fset:convert (tpe ins))
+(cl-defmethod fset:convert ((tpe (eql list)) (ins list))
+  ins)
 (cl-defmethod fset:convert ((tpe (eql list)) (m soalton-map))
   (let (r)
     (maphash (lambda (k v) (push (cons k v) r)) (soalton-map-ht m))
@@ -207,6 +211,22 @@ We have to replace this.
        (setq l (cl-union l (list k) :test 'equal)))
      (soalton-map-ht m))
     (make-soalton-set :list l)))
+(cl-defun fset:map-difference-2 (a b)
+  (let* ((al (fset:convert 'list a))
+         (bl (fset:convert 'list b))
+         (d1 (cl-set-difference al bl :test 'equal))
+         (d2 (cl-set-difference bl al :test 'equal))
+         (m1 (fset:empty-map))
+         (m2 (fset:empty-map)))
+    (cl-loop for (k . v) in d1 do
+             (setf (gethash k (soalton-map-ht m1)) v))
+    (cl-loop for (k . v) in d2 do
+             (setf (gethash k (soalton-map-ht m2)) v))
+    (values m1 m2)))
+(cl-defmacro fset:do-map ((k v m) &body body)
+  `(progn
+     (cl-loop for (,k . ,v) in (fset:convert 'list ,m)
+               do ,@body)))
 
 (cl-defun char= (a b)
   (char-equal a b)) 
