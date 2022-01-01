@@ -10,10 +10,10 @@
 (cl-defmethod apply-substitution (subst-list (env value-environment))
   (make-value-environment :data (fset:image (lambda (key value)
                   (values key (apply-substitution subst-list value)))
-                (immutable-map-data env))))
-
-(defmethod type-variables ((env value-environment))
-  (remove-duplicates (mapcan 'type-variables (fset:convert 'list (fset:range (immutable-map-data env)))) :test 'equalp))
+                                            (immutable-map-data env))))
+(cl-defmethod type-variables ((env value-environment))
+  (cl-remove-duplicates (cl-mapcan 'type-variables (fset:convert 'list (fset:range (immutable-map-data env))))
+                        :test 'equalp))
 
 ;;;
 ;;; Type environments
@@ -734,7 +734,7 @@
     (fset:do-map (k v name-table)
       (push `(setf ,env (set-name ,env ',k ,v)) forms))
 
-    `(eval-when (:load-toplevel)
+    `(cl-eval-when (load) ; TOOD: Was :load-toplevel
        ,@(reverse forms))))
 
 ;;;
