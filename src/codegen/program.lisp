@@ -30,32 +30,34 @@
              (and (or (eq 'cl:setf (car thing))
                       (eq 'cl:setq (car thing)))
                   (= 3 (length thing))
-                  (typep (caddr thing) '(cons (member load-time-value))))))
+                  (cl-typep (caddr thing) '(satisfies (lambda (x) (and (consp x) (eql (car x) 'load-time-value))))))))
     (loop :for thing :in things
           ;; (DEFSTRUCT (FOO ... (:INCLUDE ...
-          :if (and (typep thing '(cons (member cl:defstruct)))
+          :if (and (cl-typep thing '(satisfies (lambda (x) (and (consp x) (eql (car x) 'cl:defstruct)))))
                    (sub-struct-p thing))
             :collect thing :into defsubstructs
           ;; (DEFSTRUCT FOO ...
-          :else :if (and (typep thing '(cons (member cl:defstruct)))
+          :else :if (and (cl-typep thing '(satisfies (lambda (x) (and (consp x) (eql (car x) 'cl:defstruct)))))
                          (not (sub-struct-p thing)))
                   :collect thing :into defstructs
           ;; (DEFCLASS FOO (...) ...
-          :else :if (and (typep thing '(cons (member cl:defclass)))
+          :else :if (and (cl-typep thing '(satisfies (lambda (x) (and (consp x) (eql (car x) 'cl:defclass)))))
                          (not (null (third thing))))
                   :collect thing :into defsubstructs
           ;; (DEFCLASS FOO ...
-          :else :if (and (typep thing '(cons (member cl:defclass)))
+          :else :if (and (cl-typep thing '(satisfies (lambda (x) (and (consp x) (eql (car x) 'cl:defclass)))))
                          (null (third thing)))
                   :collect thing :into defstructs
           ;; (DECLAIM (INLINE ...
-          :else :if (typep thing '(cons
-                                   (member cl:declaim)
-                                   (cons
-                                    (cons (member cl:inline cl:notinline)))))
+          :else :if (cl-typep thing
+                              '(satisfies (lambda (x) (and (consp x)
+                                                          (eql (car x) 'cl:declaim)
+                                                          (consp (cdr x))
+                                                          (or (eql (car (cdr x)) 'cl:inline)
+                                                              (eql (car (cdr x)) 'cl:notinline))))))
                   :collect thing :into declaims-inline
           ;; (DECLAIM ...
-          :else :if (typep thing '(cons (member cl:declaim)))
+          :else :if (cl-typep thing '(satisfies (lambda (x) (and (consp x) (eql (car x) 'cl:declaim)))))
                   :collect thing :into declaims-other
           ;; (DEFINE-* FOO ':|@@unbound@@|)
           :else :if (or (member ':|@@unbound@@| thing)
