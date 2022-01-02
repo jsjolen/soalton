@@ -9,6 +9,8 @@ Stuff that's difficult:
 1. Coalton uses the keyword package to recognise type variables:
 ;; tyvar := symbol in the keyword package (e.g. :a, :b, etc.)
 We have to replace this.
+2. Any use of VALUES returning function needs to explicitly use m-v-b
+Programmatically find these!
 "
 
 ;(package-install 'cl-format)
