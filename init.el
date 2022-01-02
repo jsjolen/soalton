@@ -56,6 +56,8 @@ Programmatically find these!
   (apply 'qualified-ty-predicates args))
 (cl-defun coalton-impl/typechecker::typed-node-abstraction-p (&rest args)
   (apply 'typed-node-abstraction-p args))
+(cl-defun coalton-impl/typechecker::check-node-type (&rest args)
+  (apply 'check-node-type args))
 (defun make-array (len)
   (make-vector len nil))
 
@@ -161,6 +163,8 @@ Programmatically find these!
   (apply 'cl-set-difference args))
 (cl-defun remove-if (&rest args)
   (apply 'cl-remove-if args))
+(cl-defun remove-if-not (&rest args)
+  (apply 'cl-remove-if-not args))
 
 ;;;; FSet
 (cl-defstruct soalton-map
