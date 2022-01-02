@@ -43,8 +43,9 @@
   "Returns the elements that appear in M1 but not M2"
   (declare (type immutable-map m1 m2)
            (values immutable-map &optional))
-  (funcall constructor :data (fset:map-difference-2 (immutable-map-data m1)
-                                                    (immutable-map-data m2))))
+  (funcall constructor :data  (cl-multiple-value-bind (x y) (fset:map-difference-2 (immutable-map-data m1)
+                                                                                   (immutable-map-data m2))
+                                x)))
 
 (cl-defun immutable-map-remove (m key &optional (constructor #'make-immutable-map))
   (declare (type immutable-map m)
