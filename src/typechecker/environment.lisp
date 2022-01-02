@@ -584,12 +584,12 @@
          (instances (lookup-class-instances env pred-class :no-error no-error)))
     (fset:do-seq (instance instances :index index)
       (declare (ignore index))
-      (handler-case
+      (condition-case
           (let ((subs (predicate-match (ty-class-instance-predicate instance) pred)))
             (return-from lookup-class-instance (values instance subs)))
-        (predicate-unification-error () nil)))
+        (predicate-unification-error nil)))
     (unless no-error
-      (error "Unknown instance for predicate ~A" pred))))
+      (error "Unknown instance for predicate %s" pred))))
 
 
 (defun push-value-environment (env value-types)
@@ -660,10 +660,11 @@
     (error "Class ~S does not exist." class))
 
   (fset:do-seq (inst (lookup-class-instances env class :no-error t) :index index)
-    (when (handler-case (or (predicate-mgu (ty-class-instance-predicate value)
-                                           (ty-class-instance-predicate inst))
-                            t)
-            (predicate-unification-error () nil))
+    (when (condition-case nil
+              (or (predicate-mgu (ty-class-instance-predicate value)
+                                 (ty-class-instance-predicate inst))
+                  t)
+            (predicate-unification-error nil))
 
       ;; If we have the same instance then simply overwrite the old one
       (if (type-predicate= (ty-class-instance-predicate value)

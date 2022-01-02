@@ -156,7 +156,7 @@
 
     (typed-node-type node)))
 
-(defun sub-ty-scheme-p (scheme1 scheme2 env)
+(cl-defun sub-ty-scheme-p (scheme1 scheme2 env)
   "Is SCHEME1 a sub-scheme of SCHEME2?"
   (let* ((qual1 (fresh-inst scheme1))
          (qual2 (fresh-inst scheme2))
@@ -164,13 +164,13 @@
          (type1 (qualified-ty-type qual1))
          (type2 (qualified-ty-type qual2))
 
-         (subs (handler-case
+         (subs (condition-case nil
                    (match type2 type1)
-                 (coalton-type-error ()
-                   (return-from sub-ty-scheme-p nil)))))
+                 (coalton-type-error
+                   (cl-return-from sub-ty-scheme-p nil)))))
     (loop :for pred :in (qualified-ty-predicates qual2) :do
         (unless (entail env
                         (qualified-ty-predicates qual1)
                         (apply-substitution subs pred))
-          (return-from sub-ty-scheme-p nil)))
+          (cl-return-from sub-ty-scheme-p nil)))
     t))

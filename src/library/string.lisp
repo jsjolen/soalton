@@ -34,7 +34,7 @@
     "Pack a list of charactes into a string."
     (lisp String (xs)
       (cl:labels ((f (xs)
-                    (cl:if (cl:typep xs 'List/Nil)
+                    (cl:if (cl-typep xs 'List/Nil)
                            ""
                            (cl:let ((element (cl:slot-value xs 'coalton-library::|_0|))
                                     (rest (cl:slot-value xs 'coalton-library::|_1|)))

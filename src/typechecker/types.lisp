@@ -15,7 +15,7 @@
 
 (defun ty-binding-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every (lambda (b) (typep b '(cons symbol ty))) x)))
+       (every (lambda (b) (cons-typep b 'symbol 'ty)) x)))
 
 (deftype ty-binding-list ()
   `(satisfies ty-binding-list-p))

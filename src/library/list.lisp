@@ -420,5 +420,5 @@
 (cl:defun coalton-to-cl-list (list)
   (cl:loop
       :for xs := list :then (cl:slot-value xs '_1)
-      :until (cl:typep xs 'List/Nil)
+      :until (cl-typep xs 'List/Nil)
       :collect (cl:slot-value xs '_0)))

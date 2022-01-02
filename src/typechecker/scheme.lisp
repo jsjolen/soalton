@@ -18,7 +18,7 @@
 
 (defun scheme-binding-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every (lambda (b) (typep b '(cons symbol ty-scheme))) x)))
+       (every (lambda (b) (cons-typep b 'symbol 'ty-scheme)) x)))
 
 (deftype scheme-binding-list ()
   `(satisfies scheme-binding-list-p))

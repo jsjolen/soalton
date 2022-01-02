@@ -10,7 +10,7 @@
 
 (defun substitution-list-p (thing)
   (and (alexandria:proper-list-p thing)
-       (every (lambda (x) (typep x 'substitution)) thing)))
+       (every (lambda (x) (cl-typep x 'substitution)) thing)))
 
 (deftype substitution-list ()
   '(satisfies substitution-list-p))

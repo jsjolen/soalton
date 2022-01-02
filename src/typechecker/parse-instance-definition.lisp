@@ -53,7 +53,7 @@
                    (let* ((pred-class (ty-predicate-class instance-predicate))
                           (instances (lookup-class-instances env pred-class :no-error t)))
                      (fset:do-seq (instance instances)
-                       (handler-case
+                       (condition-case
                            (let ((subs (predicate-match (ty-class-instance-predicate instance) instance-predicate)))
                              ;; Ensure that the context matches using the substitution
                              (unless (null (set-exclusive-or
@@ -62,7 +62,7 @@
                                             :test #'equalp))
                                (coalton-impl::coalton-bug "Incompatible context with environment for instance during method parsing for ~S ~A ~A ~A" pred-class (apply-substitution subs instance-context) (ty-class-instance-constraints instance) subs))
                              (return-from find-instance-entry instance))
-                         (predicate-unification-error () nil)))
+                         (predicate-unification-error  nil)))
                      ;; If we didn't find anything then signal an error
                      (coalton-impl::coalton-bug "Instance unknown in environment during method parsing for ~S" pred-class))))
 

@@ -14,7 +14,8 @@
 
 (defun binding-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every (lambda (b) (typep b '(cons symbol node))) x)))
+       (every (lambda (b) (cons-typep b 'symbol 'node))
+              x)))
 
 (deftype binding-list ()
   `(satisfies binding-list-p))

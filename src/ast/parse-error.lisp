@@ -29,15 +29,18 @@
              (coalton-parse-error-context c)))))
 
 (cl-defmacro with-parsing-context ((context &rest args) &rest body)
-  `(handler-case
+  `(condition-case c
        (progn ,@body)
-     (coalton-parse-error (c) (error 'coalton-parse-error-context
-                                     :context (format nil ,context ,@args)
-                                     :suberror c))
-     (coalton-impl/typechecker::coalton-type-error (c)
-       (error 'coalton-parse-error-context
-              :context (format nil ,context ,@args)
-              :suberror c))))
+     (coalton-parse-error
+      (signal 'coalton-parse-error-context
+              (list
+               :context (format ,context ,@args)
+               :suberror c)))
+     (coalton-impl/typechecker::coalton-type-error
+       (signal 'coalton-parse-error-context
+               (list
+                :context (format ,context ,@args)
+                :suberror) c))))
 
 (defun error-parsing (form reason-control &rest reason-args)
   (error 'coalton-parse-error

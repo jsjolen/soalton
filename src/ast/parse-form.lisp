@@ -177,7 +177,7 @@ This does not attempt to do any sort of analysis whatsoever. It is suitable for 
 
 (defun parse-pattern (pattern)
   (cond
-    ((typep pattern 'literal-value)
+    ((cl-typep pattern 'literal-value)
      (pattern-literal (parse-atom pattern)))
     ((and (symbolp pattern)
           (eql 'coalton:_ pattern))

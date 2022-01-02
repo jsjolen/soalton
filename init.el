@@ -64,7 +64,8 @@ Programmatically find these!
 ;; Used for location for reporting in case of error I assume
 (defvar *compile-file-pathname* "TODO")
 (defvar *load-truename* "TODO")
-
+;; Who knows
+(defvar coalton-impl:*interaction-mode* :development)
 ;;;; Conditions
 
 (defmacro define-condition (name superclass &rest args)
@@ -88,7 +89,10 @@ Programmatically find these!
 
 (defun uiop:getenv (env-var)
   (getenv env-var))
-
+(defun cons-typep (x a b)
+  (and (cl-typep x 'cons)
+       (cl-typep (car x) a)
+       (cl-typep (cadr x) b)))
 (defmacro check-type (&rest args)
   (progn))
 (defmacro etypecase (&rest args)

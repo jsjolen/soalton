@@ -14,7 +14,7 @@
 
 (defun ty-predicate-list-p (x)
   (and (alexandria:proper-list-p x)
-       (every (lambda (b) (typep b 'ty-predicate)) x)))
+       (every (lambda (b) (cl-typep b 'ty-predicate)) x)))
 
 (deftype ty-predicate-list ()
   "A list of type predicates"
