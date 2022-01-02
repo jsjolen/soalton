@@ -61,7 +61,7 @@
                   :collect thing :into declaims-other
           ;; (DEFINE-* FOO ':|@@unbound@@|)
           :else :if (or (member ':|@@unbound@@| thing)
-                        (member '':|@@unbound@@| thing :test 'equal))
+                        (cl-member '':|@@unbound@@| thing :test 'equal))
                   :collect thing :into deflex-stubs
           :else :if (setf-ltv-p thing)
                   :collect thing :into setfs-ltv

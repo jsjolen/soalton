@@ -11,12 +11,12 @@
       ;; string every time.
       (setf (lexical-cell symbol)
             ;; Intentionally obtuse name.
-            (alexandria:format-symbol '#:coalton-global-symbols
-                                      "(lexical) ~A::~A"
+            (alexandria:format-symbol "coalton-global-symbols"
+                                      "(lexical) %s::%s"
                                       (package-name (symbol-package symbol))
                                       symbol))))
 
-(defmacro define-global-lexical (var val &key documentation)
+(cl-defmacro define-global-lexical (var val &key documentation)
   (let ((cell (get-lexical-cell var)))
     `(progn
        (global-vars:define-global-var ,cell ':|@@unbound@@|)

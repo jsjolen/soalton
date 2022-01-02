@@ -135,7 +135,7 @@
                         (local-dynamic-extent-bindings
                           (mapcan
                            (lambda (b)
-                             (when (member b dynamic-extent-bindings :test #'equalp)
+                             (when (cl-member b dynamic-extent-bindings :test #'equalp)
                                (list b)))
                            scc)))
                    ;; TODO: We should move some of these checks to typechecking

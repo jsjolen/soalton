@@ -58,6 +58,8 @@ Programmatically find these!
   (apply 'typed-node-abstraction-p args))
 (cl-defun coalton-impl/typechecker::check-node-type (&rest args)
   (apply 'check-node-type args))
+(cl-defmacro coalton-impl::define-global-lexical (&rest args)
+  `(define-global-lexical ,@args))
 (defun make-array (len)
   (make-vector len nil))
 
@@ -143,6 +145,8 @@ Programmatically find these!
   nil)
 (defun symbol-package (&rest a)
   nil)
+(defun package-name (x)
+  "EMACS-DEVEL")
 (defun copy-list (&rest args)
   (apply 'cl-copy-list args))
 (defun intersection (&rest args)
@@ -259,9 +263,14 @@ Programmatically find these!
 
 (defun format-symbol (str &rest args)
   (intern (apply 'format str args)))
+(defun alexandria:format-symbol (&rest args)
+  (apply 'format-symbol args))
+
 
 ;; TODO: Diff between the two?
 (defmacro define-global-var (name value)
+  `(defvar ,name ,value))
+(defmacro global-vars:define-global-var (name value)
   `(defvar ,name ,value))
 (defmacro defparameter (name value)
   `(defvar ,name ,value))

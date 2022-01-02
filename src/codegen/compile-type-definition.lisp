@@ -11,7 +11,7 @@
                         ,(constructor-entry-name constructor)
                         ',(constructor-entry-compressed-repr constructor))
                    `(deftype ,(constructor-entry-classname constructor) ()
-                      (quote (member ,(constructor-entry-compressed-repr constructor)))))))
+                      (quote (cl-member ,(constructor-entry-compressed-repr constructor)))))))
 
       ((type-definition-newtype def)
        (let ((constructor (first (type-definition-constructors def))))
