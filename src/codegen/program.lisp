@@ -118,14 +118,21 @@
   (loop :for (name docstring type) :in docstrings
         :append
         (unless (equalp docstring nil)
-            (ecase type
+            (cl-ecase type
               (:variable
-               `((setf (documentation ',name 'variable) ,docstring)))
+               '()
+               ; TODO: Set doc stings
+               ;`((setf (documentation ',name 'variable) ,docstring))
+               )
               (:function
-               `((setf (documentation ',name 'variable) ,docstring
-                        (documentation ',name 'function) ,docstring)))
+               '()
+               ; `((setf (documentation ',name 'variable) ,docstring
+               ;         (documentation ',name 'function) ,docstring))
+               )
               (:type
-               `((setf (documentation ',name 'type) ,docstring)))))))
+               '()
+               ;`((setf (documentation ',name 'type) ,docstring))
+               )))))
 
 (defun update-function-env (toplevel-bindings env)
   (declare (type typed-binding-list toplevel-bindings)

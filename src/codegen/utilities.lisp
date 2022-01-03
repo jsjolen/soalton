@@ -18,7 +18,7 @@
 
   (let ((field-names (mapcar #'struct-or-class-field-name fields)))
 
-    (ecase mode
+    (cl-ecase mode
       (:struct
        (list
         `(defstruct (,classname

@@ -43,7 +43,8 @@
                 :suberror) c))))
 
 (defun error-parsing (form reason-control &rest reason-args)
-  (error 'coalton-parse-error
+  (signal 'coalton-parse-error
+   (list
          :form form
          :reason-control reason-control
-         :reason-args reason-args))
+         :reason-args reason-args)))
