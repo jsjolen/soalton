@@ -62,6 +62,8 @@ Yet this is required by Coalton.
   (apply 'check-node-type args))
 (cl-defmacro coalton-impl::define-global-lexical (&rest args)
   `(define-global-lexical ,@args))
+(cl-defun coalton-impl/algorithm::immutable-map-keys (&rest args)
+  (apply 'immutable-map-keys args))
 (defun make-array (len)
   (make-vector len nil))
 
@@ -175,6 +177,8 @@ Yet this is required by Coalton.
   (apply 'cl-remove-if args))
 (cl-defun remove-if-not (&rest args)
   (apply 'cl-remove-if-not args))
+(cl-defun macro-function (sym)
+  (macrop (symbol-function sym)))
 
 ;;;; FSet
 (cl-defstruct soalton-map
@@ -226,6 +230,14 @@ Yet this is required by Coalton.
     (maphash
      (lambda (k v)
        (setq l (cl-union l (list v) :test 'equal)))
+     (soalton-map-ht m))
+    (make-soalton-set :list l)))
+(cl-defgeneric fset:domain (m))
+(cl-defmethod fset:domain ((m soalton-map))
+  (let ((l nil))
+    (maphash
+     (lambda (k v)
+       (setq l (cl-union l (list k) :test 'equal)))
      (soalton-map-ht m))
     (make-soalton-set :list l)))
 (cl-defun fset:map-difference-2 (a b)

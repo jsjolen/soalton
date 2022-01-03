@@ -430,7 +430,7 @@
         (let* ((sym-name (symbol-name symbol))
                (valid-bindings (coalton-impl/algorithm::immutable-map-keys (environment-value-environment env)))
                (matches (remove-if-not (lambda (s) (string= (symbol-name s) sym-name)) valid-bindings)))
-          (error 'unknown-binding-error :symbol symbol :alternatives matches)))))
+          (signal 'unknown-binding-error (list :symbol symbol :alternatives matches))))))
 
 (defun set-value-type (env symbol value)
   (declare (type environment env)
