@@ -11,6 +11,8 @@ Stuff that's difficult:
 We have to replace this.
 2. Any use of VALUES returning function needs to explicitly use m-v-b
 Programmatically find these!
+3. We cannot have lexical global variables in ELisp
+Yet this is required by Coalton.
 "
 
 ;(package-install 'cl-format)
@@ -190,8 +192,8 @@ Programmatically find these!
      ,@(cl-loop for (k v) in init collect
                 `(setf (gethash ,k m) ,v))
      map))
-;; (cl-defun fset:empty-seq (&rest args)
-;;   (make-soalton-seq))
+(cl-defun fset:empty-seq (&rest args)
+   (make-soalton-seq))
 (cl-defgeneric fset:with (c v1 &optional v2))
 (cl-defmethod fset:with ((c soalton-map) k &optional v)
   (let ((ht-new (copy-hash-table (soalton-map-ht c))))

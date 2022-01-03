@@ -178,7 +178,7 @@
                        ,@(mapcar (lambda (dict) `(type ,(car  dict) ,(cdr dict))) dict-types)
                        (values ,(lisp-type return-type env) &optional))))
         ,(compile-expression node dict-context env))
-      (setf ,name (load-time-value ,(construct-function-entry `#',name (+ (length vars) (length preds))))))))
+      (setf ,name (cl-load-time-value ,(construct-function-entry `#',name (+ (length vars) (length preds))))))))
 
 (defun compile-toplevel-sccs (toplevel-bindings sccs env)
   (loop :for scc :in sccs
@@ -205,7 +205,7 @@
              (if (not (every #'static-predicate-p  preds))
                  `(,@(compile-function (car b) nil (typed-node-type (cdr b)) (typed-node-type (cdr b)) (cdr b) env))
                  `((coalton-impl::define-global-lexical ,(car b) ':|@@unbound@@|)
-                   (setf ,(car b) (load-time-value
+                   (setf ,(car b) (cl-load-time-value
                                    ,(compile-expression (cdr b) nil env)))))))
           (t (error "")))))
 
@@ -336,7 +336,7 @@
         (if (null context)
             `(cl:setf
               ,codegen-sym
-              (load-time-value
+              (cl-load-time-value
                (,class-codegen-sym
                 ,@codegen-superclasses
                 ,@codegen-methods)))

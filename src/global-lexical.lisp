@@ -16,13 +16,16 @@
                                       (package-name (symbol-package symbol))
                                       symbol))))
 
+;; (cl-defmacro define-global-lexical (var val &key documentation)
+;;   (let ((cell (get-lexical-cell var)))
+;;     `(progn
+;;        (global-vars:define-global-var ,cell ':|@@unbound@@|)
+;;        (define-symbol-macro ,var ,cell)
+;;        ,@(when documentation
+;;            (list
+;;             `(setf (documentation ',var 'cl:variable) ,documentation)))
+;;        (setf ,var (cl-load-time-value ,val))
+;;        ',var)))
+
 (cl-defmacro define-global-lexical (var val &key documentation)
-  (let ((cell (get-lexical-cell var)))
-    `(progn
-       (global-vars:define-global-var ,cell ':|@@unbound@@|)
-       (define-symbol-macro ,var ,cell)
-       ,@(when documentation
-           (list
-            `(setf (documentation ',var 'cl:variable) ,documentation)))
-       (setf ,var (load-time-value ,val))
-       ',var)))
+  `(defvar ,var ,val))
